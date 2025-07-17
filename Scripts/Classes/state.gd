@@ -13,10 +13,9 @@ func update(_delta:float) -> void:
 
 func physics_update(_delta:float) -> void:
 	pass
-#triggered when object enters a state
+
 func enter(previous_state_path: String ,data := {}) -> void:
 	pass
-#triggered when object exits a state
+
 func exit()->void:
 	pass
-	

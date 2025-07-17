@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://buiwatv1812e3"]
+
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
+[ext_resource type="PackedScene" uid="uid://dpi1jrbhldjhh" path="res://Player/player.tscn" id="1_m7c7u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
+size = Vector2(1232, 37)
+
+[node name="TestStage" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(236.907, 90)
+rotation = 1.5708
+scale = Vector2(0.448187, 6.14194)
+texture = ExtResource("1_a230b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(231, 94)
+shape = SubResource("RectangleShape2D_a230b")
+
+[node name="Player" parent="." instance=ExtResource("1_m7c7u")]
+position = Vector2(79, 3)
+scale = Vector2(0.465, 0.465)
