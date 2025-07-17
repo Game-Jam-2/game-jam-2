@@ -5,9 +5,9 @@ class_name Leg
 @onready var calf: RigidBody2D = $Calf
 @onready var foot: RigidBody2D = $Foot
 
-var hip_joint: DampedSpringJoint2D
-var knee_joint: DampedSpringJoint2D
-var ankle_joint: DampedSpringJoint2D
+var hip_joint: PinJoint2D
+var knee_joint: PinJoint2D
+var ankle_joint: PinJoint2D
 
 func _ready() -> void:
 	var knee_joint = _create_joint(thigh, calf, calf.global_position)

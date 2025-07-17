@@ -19,6 +19,7 @@ polygon = PackedVector2Array(35, 106, -4, 106, -5, 130, -16, 125, -27, 130, -31,
 [node name="Camera2D" type="Camera2D" parent="Torso"]
 
 [node name="RightArm_Socket" type="Node2D" parent="."]
+position = Vector2(497, 425)
 
 [node name="LeftArm_Socket" type="Node2D" parent="."]
 

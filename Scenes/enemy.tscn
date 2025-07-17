@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://difdatc2n7072" path="res://Art/arm TEMP.png" id="2_afpow"]
 
 [node name="Enemy" type="Node2D"]
+position = Vector2(1, 1)
 
 [node name="Torso" type="RigidBody2D" parent="."]
 position = Vector2(-12, 7)
