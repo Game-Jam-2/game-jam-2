@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1dqtjio7e7lg"]
+
+[ext_resource type="Texture2D" uid="uid://rn1ceha36fxo" path="res://Art/torso TEMO.png" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://w7dhay856xs6" path="res://Scenes/arm.gd" id="2_287tu"]
+[ext_resource type="Texture2D" uid="uid://difdatc2n7072" path="res://Art/arm TEMP.png" id="2_afpow"]
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Torso" type="RigidBody2D" parent="."]
+position = Vector2(-12, 7)
+mass = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Torso"]
+position = Vector2(0, -1)
+texture = ExtResource("1_1f0kj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
+position = Vector2(-1, 1)
+polygon = PackedVector2Array(-33, -45, -6, -25, 18, -37, 57, 4, 59, 69, 57, 90, 31, 101, 4, 120, -13, 124, -37, 114, -66, 64, -71, 35, -65, 3, -55, -17)
+
+[node name="Arm" type="RigidBody2D" parent="."]
+position = Vector2(124, -11)
+rotation = -0.131666
+constant_force = Vector2(20, 10)
+script = ExtResource("2_287tu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Arm"]
+position = Vector2(-42, -8)
+texture = ExtResource("2_afpow")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arm"]
+position = Vector2(3, 1)
+polygon = PackedVector2Array(-81, 6, -51, 5, -35, -5, 16, -21, 50, -27, 72, -34, 80, -49, 80, -60, 62, -65, 34, -70, -25, -63, -53, -50, -83, -34, -97, -14, -101, 5)
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(46, -9)
+rotation = 0.975018
+node_a = NodePath("../Torso")
+node_b = NodePath("../Arm")
+length = 4.0
