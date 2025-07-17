@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpi1jrbhldjhh"]
+[gd_scene load_steps=3 format=3 uid="uid://dpi1jrbhldjhh"]
 
-[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_l8h54"]
-[ext_resource type="Script" uid="uid://cfmeig1x5y5n8" path="res://Player/Limbs/Torso/torso.gd" id="2_4ntmi"]
+[ext_resource type="Script" uid="uid://b1m38vphc6ic0" path="res://Player/nodetest.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="2_btcbx"]
 
 [node name="Player" type="Node2D"]
-script = ExtResource("1_l8h54")
+script = ExtResource("1_4ntmi")
 
 [node name="Torso" type="RigidBody2D" parent="."]
 scale = Vector2(0.8, 0.8)
-script = ExtResource("2_4ntmi")
 
 [node name="TorsoSprite" type="Sprite2D" parent="Torso"]
 texture = ExtResource("2_btcbx")
@@ -18,12 +16,16 @@ texture = ExtResource("2_btcbx")
 polygon = PackedVector2Array(35, 106, -4, 106, -5, 130, -16, 125, -27, 130, -31, 108, -78, 100, -75, 26, -100, -32, -102, -45, -95, -52, -97, -68, -110, -77, -99, -100, -56, -105, -49, -118, 6, -119, 31, -101, 67, -99, 68, -79, 58, -72, 57, -56, 66, -47, 65, -39, 46, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Torso"]
+position = Vector2(0, 2.5)
 
 [node name="RightArm_Socket" type="Node2D" parent="."]
-position = Vector2(497, 425)
+position = Vector2(51, -50)
 
 [node name="LeftArm_Socket" type="Node2D" parent="."]
+position = Vector2(-74, -45)
 
 [node name="RightLeg_Socket" type="Node2D" parent="."]
+position = Vector2(31, 86)
 
 [node name="LeftLeg_Socket" type="Node2D" parent="."]
+position = Vector2(-57, 82)
