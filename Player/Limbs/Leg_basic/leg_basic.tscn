@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://kthxfhmsc70t"]
+
+[ext_resource type="Script" uid="uid://coogfplhd5knu" path="res://Player/Limbs/Leg_basic/leg_basic.gd" id="1_jeirh"]
+[ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="2_ylmc8"]
+[ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="3_ahqge"]
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="4_rqyha"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u072"]
+radius = 32.2326
+height = 218.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdklt"]
+radius = 28.0
+height = 214.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dguhn"]
+radius = 23.1274
+height = 140.401
+
+[node name="Leg_basic" type="Node2D"]
+scale = Vector2(0.305, 0.305)
+script = ExtResource("1_jeirh")
+
+[node name="Thigh" type="RigidBody2D" parent="."]
+scale = Vector2(0.305, 0.305)
+
+[node name="ThighSprite" type="Sprite2D" parent="Thigh"]
+position = Vector2(8, 26)
+rotation = -0.174533
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("2_ylmc8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Thigh"]
+position = Vector2(11, 24)
+rotation = -0.253073
+scale = Vector2(0.305, 0.305)
+shape = SubResource("CapsuleShape2D_5u072")
+
+[node name="Calf" type="RigidBody2D" parent="."]
+scale = Vector2(0.305, 0.305)
+
+[node name="CalfSprite" type="Sprite2D" parent="Calf"]
+position = Vector2(11, 209)
+rotation = 0.226893
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("3_ahqge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Calf"]
+position = Vector2(17, 209)
+rotation = 0.191986
+scale = Vector2(0.305, 0.305)
+shape = SubResource("CapsuleShape2D_fdklt")
+
+[node name="Foot" type="RigidBody2D" parent="."]
+scale = Vector2(0.305, 0.305)
+
+[node name="FootSprite" type="Sprite2D" parent="Foot"]
+position = Vector2(54, 315)
+rotation = -1.41372
+scale = Vector2(0.673875, 0.681564)
+texture = ExtResource("4_rqyha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
+position = Vector2(54, 310)
+rotation = 1.77675
+shape = SubResource("CapsuleShape2D_dguhn")

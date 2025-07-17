@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpi1jrbhldjhh"]
+
+[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://cfmeig1x5y5n8" path="res://Player/Limbs/Torso/torso.gd" id="2_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="2_btcbx"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_l8h54")
+
+[node name="Torso" type="RigidBody2D" parent="."]
+script = ExtResource("2_4ntmi")
+
+[node name="TorsoSprite" type="Sprite2D" parent="Torso"]
+texture = ExtResource("2_btcbx")
+
+[node name="PlayerCollisionShape" type="CollisionPolygon2D" parent="Torso"]
+polygon = PackedVector2Array(35, 106, -4, 106, -5, 130, -16, 125, -27, 130, -31, 108, -78, 100, -75, 26, -100, -32, -102, -45, -95, -52, -97, -68, -110, -77, -99, -100, -56, -105, -49, -118, 6, -119, 31, -101, 67, -99, 68, -79, 58, -72, 57, -56, 66, -47, 65, -39, 46, 8)
+
+[node name="Camera2D" type="Camera2D" parent="Torso"]
+
+[node name="RightArm_Socket" type="Node2D" parent="."]
+
+[node name="LeftArm_Socket" type="Node2D" parent="."]
+
+[node name="RightLeg_Socket" type="Node2D" parent="."]
+
+[node name="LeftLeg_Socket" type="Node2D" parent="."]
