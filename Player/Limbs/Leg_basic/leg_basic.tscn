@@ -16,15 +16,14 @@ radius = 28.0
 height = 214.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dguhn"]
-radius = 23.1274
-height = 140.401
+radius = 10.7436
+height = 42.9743
 
 [node name="Leg_basic" type="Node2D"]
 scale = Vector2(0.305, 0.305)
 script = ExtResource("1_jeirh")
 
 [node name="Thigh" type="RigidBody2D" parent="."]
-scale = Vector2(0.305, 0.305)
 physics_material_override = SubResource("PhysicsMaterial_ylmc8")
 
 [node name="ThighSprite" type="Sprite2D" parent="Thigh"]
@@ -40,30 +39,31 @@ scale = Vector2(0.305, 0.305)
 shape = SubResource("CapsuleShape2D_5u072")
 
 [node name="Calf" type="RigidBody2D" parent="."]
-position = Vector2(3.27869, 22.9508)
-scale = Vector2(0.305, 0.305)
+position = Vector2(6.55738, 78.6885)
 
 [node name="CalfSprite" type="Sprite2D" parent="Calf"]
+position = Vector2(-5.36432e-06, 10.7499)
 rotation = 0.226893
 scale = Vector2(0.305, 0.305)
 texture = ExtResource("3_ahqge")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Calf"]
-position = Vector2(1.52764e-13, -1.02518e-05)
+position = Vector2(-5.1259e-06, 10.7499)
 rotation = 0.191986
 scale = Vector2(0.305, 0.305)
 shape = SubResource("CapsuleShape2D_fdklt")
 
 [node name="Foot" type="RigidBody2D" parent="."]
-position = Vector2(19.6721, 32.7869)
+position = Vector2(55.7377, 118.033)
 rotation = -0.172034
-scale = Vector2(0.305, 0.305)
 
 [node name="FootSprite" type="Sprite2D" parent="Foot"]
+position = Vector2(-33.6135, 5.07041)
 rotation = -1.41372
-scale = Vector2(0.673875, 0.681564)
+scale = Vector2(0.255105, 0.239582)
 texture = ExtResource("4_rqyha")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
+position = Vector2(-33.6135, 5.07041)
 rotation = 1.77675
 shape = SubResource("CapsuleShape2D_dguhn")
