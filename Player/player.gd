@@ -38,6 +38,9 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.node_b = limb.get_node("Thigh").get_path()
 	joint.global_position = slot.global_position 
 	joint.bias = 0.0
-	
-	add_child(joint)
+	joint.softness = 8
+	joint.angular_limit_enabled
+	joint.angular_limit_lower = 0
+	joint.angular_limit_upper = 180
+	get_parent().add_child(joint)
 	current_limb = limb
