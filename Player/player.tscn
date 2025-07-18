@@ -90,12 +90,14 @@ position = Vector2(-72.22, 110.045)
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Left Leg Link")
+bias = 0.9
 
 [node name="Left Leg to Torso2" type="PinJoint2D" parent="."]
 position = Vector2(-86.675, 107.555)
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Left Leg Link")
+bias = 0.9
 
 [node name="Right Leg Link" type="RigidBody2D" parent="."]
 position = Vector2(18, 122)
@@ -108,9 +110,11 @@ position = Vector2(10.07, 115)
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Right Leg Link")
+bias = 0.9
 
 [node name="Right Leg to Torso2" type="PinJoint2D" parent="."]
 position = Vector2(24.84, 115)
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Right Leg Link")
+bias = 0.9
