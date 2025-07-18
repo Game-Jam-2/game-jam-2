@@ -7,8 +7,7 @@ radius = 36.0
 height = 224.0
 
 [node name="LegBasic" type="Node2D"]
-position = Vector2(88, 69)
-scale = Vector2(0.135, 0.135)
+position = Vector2(416, 174)
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 
@@ -19,12 +18,7 @@ shape = SubResource("CapsuleShape2D_dkyer")
 texture = ExtResource("2_ylmc8")
 
 [node name="KneeJoint" type="PinJoint2D" parent="."]
-position = Vector2(-7.305, 110.85)
-node_a = NodePath("../Thigh")
-node_b = NodePath("../Calf")
-
-[node name="KneeJoint2" type="PinJoint2D" parent="."]
-position = Vector2(14.02, 110.85)
+position = Vector2(3, 112)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
 
@@ -38,21 +32,17 @@ shape = SubResource("CapsuleShape2D_dkyer")
 texture = ExtResource("2_ylmc8")
 
 [node name="AnkleJoint" type="PinJoint2D" parent="."]
-position = Vector2(1.925, 337)
-node_a = NodePath("../Thigh")
-node_b = NodePath("../Calf")
-
-[node name="AnkleJoint2" type="PinJoint2D" parent="."]
-position = Vector2(20.975, 330.18)
-node_a = NodePath("../Thigh")
-node_b = NodePath("../Calf")
+position = Vector2(9, 337)
+node_a = NodePath("../Calf")
+node_b = NodePath("../Foot")
+bias = 0.9
 
 [node name="Foot" type="RigidBody2D" parent="."]
 position = Vector2(113, 353)
 rotation = 1.5708
 
 [node name="FootCollisionShape" type="CollisionShape2D" parent="Foot"]
-position = Vector2(2.55554, 1.8889)
+position = Vector2(0, -2.38419e-07)
 shape = SubResource("CapsuleShape2D_dkyer")
 
 [node name="Sprite2D" type="Sprite2D" parent="Foot/FootCollisionShape"]
