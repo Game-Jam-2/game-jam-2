@@ -9,16 +9,20 @@ var hip_joint: PinJoint2D
 var knee_joint: PinJoint2D
 var ankle_joint: PinJoint2D
 
-func _ready() -> void:
-	add_child(knee_joint)
-	add_child(ankle_joint)
 
-func setup_joint(torso: RigidBody2D, socket_position: Vector2) -> void:
-	var hip_joint := PinJoint2D.new()
-	hip_joint.node_a = torso.get_path()
-	hip_joint.node_b = thigh.get_path()
-	hip_joint.position = socket_position
-	get_tree().get_root().add_child(hip_joint)
+func setup_joint(torso: RigidBody2D, attach_pos: Vector2) -> void:
+	var hip_joint = _create_joint(thigh, torso, attach_pos)
+	get_parent().add_child(hip_joint)
+
+func _create_joint(a: RigidBody2D, b: RigidBody2D, pos: Vector2) -> PinJoint2D:
+	var joint := PinJoint2D.new()
+	joint.set_node_a(a.get_path())
+	joint.set_node_b(b.get_path())
+	joint.position = pos
+	joint.bias = 0.9
+	joint.softness = 0.0
+	return joint
+
 
 func physics_update(delta: float) -> void:
 	var tilt_force := 300.0

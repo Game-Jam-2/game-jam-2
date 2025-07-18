@@ -3,10 +3,10 @@ extends Node2D
 @onready var torso: RigidBody2D = $Torso
 
 @onready var sockets := {
-	"1": $"Left Arm Link",
-	"2": $"Right Arm Link",
-	"3": $"Left Leg Link",
-	"4": $"Right Leg Link",
+	"1": $LeftArm_Socket,
+	"2": $RightArm_Socket,
+	"3": $LeftLeg_Socket,
+	"4": $RightLeg_Socket,
 }
 
 # swap this for testing limb scene
@@ -36,11 +36,9 @@ func _attach_limb_to_slot(key: String) -> void:
 
 	if limb.has_method("setup_joint"):
 		var joint = DampedSpringJoint2D.new()
-		joint.set_node_a(slot.get_path())
+		joint.set_node_a(limb.get_node("Test").get_path())
 		joint.set_node_b(limb.get_node("Thigh").get_path())
 		joint.length = 1
-		joint.stiffness = 64
-		joint.damping = 16
 		print(joint.length)
 		add_child(joint)
 		print("break")

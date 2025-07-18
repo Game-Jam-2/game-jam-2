@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4f5if64h767k"]
+
+[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
+[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_yv0sd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yv0sd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
+
+[node name="Player" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_rupg5")
+
+[node name="Left Arm Link" type="RigidBody2D" parent="."]
+position = Vector2(-119, -54)
+rotation = 0.975018
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]
+position = Vector2(-0.883786, 6.64973)
+shape = SubResource("CircleShape2D_rupg5")
+
+[node name="Torso" type="RigidBody2D" parent="."]
+position = Vector2(-12, 7)
+mass = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Torso"]
+position = Vector2(0, -1)
+texture = ExtResource("1_yv0sd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
+position = Vector2(-13, 10)
+polygon = PackedVector2Array(53, 93, 49, 53, 56, 37, 60, 7, 63, -23, 86, -47, 73, -61, 72, -85, 80, -92, 77, -110, 60, -110, 20, -126, -14, -131, -34, -129, -45, -121, -67, -110, -80, -109, -97, -95, -85, -78, -85, -60, -90, -48, -82, -29, -75, -10, -67, 13, -60, 38, -65, 71, -62, 86, -30, 96, -14, 93, -16, 116, -4, 111, 4, 122, 11, 96)
+
+[node name="Camera2D" type="Camera2D" parent="Torso"]
+position = Vector2(2, -5)
+
+[node name="Right Arm to Torso" type="PinJoint2D" parent="."]
+position = Vector2(51, -51)
+rotation = 0.975018
+node_a = NodePath("../Torso")
+node_b = NodePath("../Right Arm Link")
+bias = 0.9
+
+[node name="Right Arm Link" type="RigidBody2D" parent="."]
+position = Vector2(59, -53)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Arm Link"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_46bvi")
+
+[node name="Left Arm to Torso" type="PinJoint2D" parent="."]
+position = Vector2(-113, -50)
+rotation = -0.603061
+node_a = NodePath("../Torso")
+node_b = NodePath("../Left Arm Link")
+bias = 0.9
+
+[node name="Left Leg Link" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Leg Link"]
+position = Vector2(-82, 118)
+shape = SubResource("CircleShape2D_yv0sd")
+
+[node name="Left Leg to Torso" type="PinJoint2D" parent="."]
+position = Vector2(-79, 109)
+node_a = NodePath("../Torso")
+node_b = NodePath("../Left Leg Link")
+
+[node name="Right Leg Link" type="RigidBody2D" parent="."]
+position = Vector2(19, 115)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Leg Link"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_ocw3p")
+
+[node name="Right Leg to Torso" type="PinJoint2D" parent="Right Leg Link"]
+node_a = NodePath("../../Torso")
+node_b = NodePath("..")

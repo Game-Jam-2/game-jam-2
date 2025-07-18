@@ -40,10 +40,12 @@ scale = Vector2(0.305, 0.305)
 shape = SubResource("CapsuleShape2D_5u072")
 
 [node name="KneeJoint" type="DampedSpringJoint2D" parent="."]
-position = Vector2(6.55738, 32.7869)
+position = Vector2(6.55738, 39.3443)
+rotation = -3.07491
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
-length = 1.0
+length = 8.0
+stiffness = 64.0
 
 [node name="Calf" type="RigidBody2D" parent="."]
 position = Vector2(0, 65.5738)
@@ -61,11 +63,12 @@ scale = Vector2(0.305, 0.305)
 shape = SubResource("CapsuleShape2D_fdklt")
 
 [node name="AnkleJoint" type="DampedSpringJoint2D" parent="."]
-position = Vector2(-3.27869, 98.3607)
-rotation = -0.380482
+position = Vector2(-3.27869, 95.082)
+rotation = -0.517605
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
-length = 1.0
+length = 7.0
+stiffness = 64.0
 
 [node name="Foot" type="RigidBody2D" parent="."]
 position = Vector2(22.9508, 104.918)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
-[ext_resource type="PackedScene" uid="uid://dpi1jrbhldjhh" path="res://Player/player.tscn" id="1_m7c7u"]
+[ext_resource type="PackedScene" uid="uid://b4f5if64h767k" path="res://Scenes/playerNEW.tscn" id="2_a230b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(1232, 37)
@@ -20,6 +20,5 @@ texture = ExtResource("1_a230b")
 position = Vector2(231, 94)
 shape = SubResource("RectangleShape2D_a230b")
 
-[node name="Player" parent="." instance=ExtResource("1_m7c7u")]
-position = Vector2(79, 3)
-scale = Vector2(0.465, 0.465)
+[node name="PlayerNew" parent="." instance=ExtResource("2_a230b")]
+position = Vector2(114, -127)

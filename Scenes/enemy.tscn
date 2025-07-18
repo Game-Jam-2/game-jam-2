@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1dqtjio7e7lg"]
 
-[ext_resource type="Texture2D" uid="uid://rn1ceha36fxo" path="res://Art/torso TEMO.png" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
 [ext_resource type="Script" uid="uid://w7dhay856xs6" path="res://Scenes/arm.gd" id="2_287tu"]
 [ext_resource type="Texture2D" uid="uid://difdatc2n7072" path="res://Art/arm TEMP.png" id="2_afpow"]
 
@@ -13,14 +13,13 @@ mass = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
 position = Vector2(0, -1)
-texture = ExtResource("1_1f0kj")
+texture = ExtResource("1_afpow")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
-position = Vector2(-1, 1)
-polygon = PackedVector2Array(-33, -45, -6, -25, 18, -37, 57, 4, 59, 69, 57, 90, 31, 101, 4, 120, -13, 124, -37, 114, -66, 64, -71, 35, -65, 3, -55, -17)
+polygon = PackedVector2Array(37, 107, 40, 72, 42, 31, 46, 3, 52, -34, 65, -48, 51, -68, 65, -73, 66, -96, 33, -105, 2, -120, -18, -123, -50, -123, -55, -109, -85, -105, -99, -99, -106, -86, -97, -73, -95, -59, -96, -45, -104, -40, -96, -17, -92, -2, -79, 23, -78, 39, -73, 61, -75, 93, -68, 102, -44, 101, -31, 109, -32, 123, -25, 129, -22, 129, -9, 127, -3, 131, -5, 104, 17, 107)
 
 [node name="Arm" type="RigidBody2D" parent="."]
-position = Vector2(124, -11)
+position = Vector2(123, -42)
 rotation = -0.131666
 constant_force = Vector2(20, 10)
 script = ExtResource("2_287tu")
@@ -30,8 +29,10 @@ position = Vector2(-42, -8)
 texture = ExtResource("2_afpow")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arm"]
-position = Vector2(3, 1)
+position = Vector2(-2.24526, 1.72012)
 polygon = PackedVector2Array(-81, 6, -51, 5, -35, -5, 16, -21, 50, -27, 72, -34, 80, -49, 80, -60, 62, -65, 34, -70, -25, -63, -53, -50, -83, -34, -97, -14, -101, 5)
+
+[node name="Camera2D" type="Camera2D" parent="Arm"]
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
 position = Vector2(46, -9)
