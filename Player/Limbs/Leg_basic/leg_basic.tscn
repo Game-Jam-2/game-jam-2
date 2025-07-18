@@ -20,7 +20,7 @@ radius = 10.7436
 height = 42.9743
 
 [node name="Leg_basic" type="Node2D"]
-position = Vector2(5, 10)
+position = Vector2(115, 43)
 scale = Vector2(0.305, 0.305)
 script = ExtResource("1_jeirh")
 
