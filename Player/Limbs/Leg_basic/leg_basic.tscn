@@ -1,49 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://dypya3on0xofm"]
+[gd_scene load_steps=7 format=3 uid="uid://dypya3on0xofm"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="2_ylmc8"]
+[ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="3_ahqge"]
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="4_rqyha"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkyer"]
 radius = 36.0
 height = 224.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6khia"]
+radius = 40.0
+height = 192.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylmc8"]
+radius = 40.0
+height = 220.0
+
 [node name="LegBasic" type="Node2D"]
-position = Vector2(416, 174)
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Thigh"]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_dkyer")
 
 [node name="Sprite2D" type="Sprite2D" parent="Thigh"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ylmc8")
 
 [node name="KneeJoint" type="PinJoint2D" parent="."]
-position = Vector2(3, 112)
+position = Vector2(2, 56)
+scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
 
 [node name="Calf" type="RigidBody2D" parent="."]
-position = Vector2(-1, 224)
-
-[node name="CalfCollisionShape" type="CollisionShape2D" parent="Calf"]
-shape = SubResource("CapsuleShape2D_dkyer")
+position = Vector2(0, 114)
 
 [node name="Sprite2D" type="Sprite2D" parent="Calf"]
-texture = ExtResource("2_ylmc8")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ahqge")
+
+[node name="CalfCollisionShape" type="CollisionShape2D" parent="Calf"]
+position = Vector2(1, 1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_6khia")
 
 [node name="AnkleJoint" type="PinJoint2D" parent="."]
-position = Vector2(9, 337)
+position = Vector2(1, 171)
+scale = Vector2(0.405, 0.405)
 node_a = NodePath("../Calf")
 node_b = NodePath("../Foot")
 bias = 0.9
 
 [node name="Foot" type="RigidBody2D" parent="."]
-position = Vector2(113, 353)
+position = Vector2(34, 177)
 rotation = 1.5708
 
-[node name="FootCollisionShape" type="CollisionShape2D" parent="Foot"]
-position = Vector2(0, -2.38419e-07)
-shape = SubResource("CapsuleShape2D_dkyer")
+[node name="Sprite2D" type="Sprite2D" parent="Foot"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_rqyha")
 
-[node name="Sprite2D" type="Sprite2D" parent="Foot/FootCollisionShape"]
-texture = ExtResource("2_ylmc8")
+[node name="FootCollisionShape" type="CollisionShape2D" parent="Foot"]
+position = Vector2(1, -4.37114e-08)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CapsuleShape2D_ylmc8")
