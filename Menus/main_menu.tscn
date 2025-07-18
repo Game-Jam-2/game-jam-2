@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmmetif4dh4tm"]
+
+[ext_resource type="Script" uid="uid://r47kyrhxkb5y" path="res://Menus/quit_from_main.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://bm6dixo028wbx" path="res://Menus/main_menu.gd" id="1_48xlc"]
+
+[node name="Main Menu" type="Node"]
+
+[node name="Main Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_48xlc")
+
+[node name="Panel" type="Panel" parent="Main Menu"]
+layout_mode = 2
+offset_right = 1150.0
+offset_bottom = 652.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 269.0
+offset_right = 864.0
+offset_bottom = 370.0
+
+[node name="New Gane" type="Button" parent="Main Menu/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="Load Game" type="Button" parent="Main Menu/VBoxContainer"]
+layout_mode = 2
+text = "Load Game"
+
+[node name="Quit" type="Button" parent="Main Menu/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("1_28flt")

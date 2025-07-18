@@ -25,7 +25,7 @@ constant_force = Vector2(20, 10)
 script = ExtResource("2_287tu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Arm"]
-position = Vector2(-42, -8)
+position = Vector2(41.5343, -4.37361)
 texture = ExtResource("2_afpow")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arm"]
@@ -35,8 +35,40 @@ polygon = PackedVector2Array(-81, 6, -51, 5, -35, -5, 16, -21, 50, -27, 72, -34,
 [node name="Camera2D" type="Camera2D" parent="Arm"]
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
-position = Vector2(46, -9)
+position = Vector2(38, -1)
 rotation = 0.975018
 node_a = NodePath("../Torso")
 node_b = NodePath("../Arm")
+bias = 0.9
 length = 4.0
+rest_length = 4.0
+stiffness = 64.0
+damping = 16.0
+
+[node name="Arm2" type="RigidBody2D" parent="."]
+position = Vector2(-72, 8)
+rotation = 0.843352
+constant_force = Vector2(20, 10)
+script = ExtResource("2_287tu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Arm2"]
+position = Vector2(-54.3638, 4.00709)
+rotation = 3.2306
+texture = ExtResource("2_afpow")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arm2"]
+position = Vector2(-97.546, -7.8145)
+rotation = 3.2306
+polygon = PackedVector2Array(-81, 6, -51, 5, -35, -5, 16, -21, 50, -27, 72, -34, 80, -49, 80, -60, 62, -65, 34, -70, -25, -63, -53, -50, -83, -34, -97, -14, -101, 5)
+
+[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-70.6111, 8.26656)
+rotation = 1.95004
+scale = Vector2(1, 1)
+node_a = NodePath("../Torso")
+node_b = NodePath("../Arm2")
+bias = 0.9
+length = 4.0
+rest_length = 4.0
+stiffness = 64.0
+damping = 16.0
