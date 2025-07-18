@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://5kfn33bybh6n"]
+
+[ext_resource type="Script" uid="uid://rdc2d04bck7r" path="res://De Cave/Cave_Modifiers.gd" id="1_8tuhk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tuhk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vki6m"]
+
+[node name="Cave" type="Area2D"]
+position = Vector2(89, 36)
+script = ExtResource("1_8tuhk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(8.83, 3.64)
+shape = SubResource("RectangleShape2D_8tuhk")
+
+[node name="MeatGrinder" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeatGrinder"]
+position = Vector2(-79, 27)
+shape = SubResource("RectangleShape2D_vki6m")
