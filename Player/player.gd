@@ -35,14 +35,11 @@ func _attach_limb_to_slot(key: String) -> void:
 	limb.global_position = slot.global_position
 
 	if limb.has_method("setup_joint"):
-		var joint = DampedSpringJoint2D.new()
-		joint.set_node_a(slot.get_path())
-		joint.set_node_b(limb.get_node("Thigh").get_path())
-		joint.length = 1
-		joint.stiffness = 64
-		joint.damping = 16
-		print(joint.length)
+		var joint = PinJoint2D.new()
+		joint.node_a = slot.get_path()
+		joint.node_b = limb.get_node("Thigh").get_path()
+		joint.global_position = slot.global_position
 		add_child(joint)
-		print("break")
+		print("PinJoint created at", joint.global_position)
 
 	current_limb = limb
