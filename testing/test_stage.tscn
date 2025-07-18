@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
-[ext_resource type="PackedScene" uid="uid://c1l3mwkmgect" path="res://Scenes/playerNEW.tscn" id="2_a230b"]
-[ext_resource type="PackedScene" uid="uid://kthxfhmsc70t" path="res://Player/Limbs/Leg_basic/leg_basic.tscn" id="3_daoas"]
+[ext_resource type="PackedScene" uid="uid://bu1xlxa6543cd" path="res://Player/player.tscn" id="2_a230b"]
+[ext_resource type="PackedScene" uid="uid://dypya3on0xofm" path="res://Player/Limbs/Leg_basic/leg_basic.tscn" id="3_daoas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(1232, 37)
@@ -25,5 +25,5 @@ shape = SubResource("RectangleShape2D_a230b")
 position = Vector2(114, -127)
 
 [node name="Leg_basic" parent="." instance=ExtResource("3_daoas")]
-position = Vector2(288, -80)
-scale = Vector2(1.115, 1.115)
+position = Vector2(257, -115)
+scale = Vector2(0.24, 0.24)
