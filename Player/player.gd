@@ -33,13 +33,11 @@ func _attach_limb_to_slot(key: String) -> void:
 	var limb = current_limb_scene.instantiate()
 	slot.add_child(limb)
 	limb.global_position = slot.global_position
-
-	if limb.has_method("setup_joint"):
-		var joint = PinJoint2D.new()
-		joint.node_a = slot.get_path()
-		joint.node_b = limb.get_node("Thigh").get_path()
-		joint.global_position = slot.global_position
-		add_child(joint)
-		print("PinJoint created at", joint.global_position)
-
+	var joint = PinJoint2D.new()
+	joint.node_a = slot.get_path()
+	joint.node_b = limb.get_node("Thigh").get_path()
+	joint.global_position = slot.global_position 
+	joint.bias = 0.0
+	
+	add_child(joint)
 	current_limb = limb

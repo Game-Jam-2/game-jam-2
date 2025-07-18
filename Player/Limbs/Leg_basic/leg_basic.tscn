@@ -19,6 +19,7 @@ height = 220.0
 [node name="LegBasic" type="Node2D"]
 
 [node name="Thigh" type="RigidBody2D" parent="."]
+mass = 0.001
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Thigh"]
 scale = Vector2(0.5, 0.5)
@@ -36,6 +37,7 @@ node_b = NodePath("../Calf")
 
 [node name="Calf" type="RigidBody2D" parent="."]
 position = Vector2(0, 114)
+mass = 0.001
 
 [node name="Sprite2D" type="Sprite2D" parent="Calf"]
 scale = Vector2(0.5, 0.5)
@@ -56,6 +58,7 @@ bias = 0.9
 [node name="Foot" type="RigidBody2D" parent="."]
 position = Vector2(34, 177)
 rotation = 1.5708
+mass = 0.001
 
 [node name="Sprite2D" type="Sprite2D" parent="Foot"]
 scale = Vector2(0.3, 0.3)

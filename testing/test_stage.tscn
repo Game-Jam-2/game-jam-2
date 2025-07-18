@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
-[ext_resource type="PackedScene" uid="uid://bu1xlxa6543cd" path="res://Player/player.tscn" id="2_a230b"]
+[ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
 [ext_resource type="PackedScene" uid="uid://dypya3on0xofm" path="res://Player/Limbs/Leg_basic/leg_basic.tscn" id="3_daoas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
