@@ -20,6 +20,7 @@ radius = 10.7436
 height = 42.9743
 
 [node name="Leg_basic" type="Node2D"]
+position = Vector2(5, 10)
 scale = Vector2(0.305, 0.305)
 script = ExtResource("1_jeirh")
 
@@ -27,43 +28,56 @@ script = ExtResource("1_jeirh")
 physics_material_override = SubResource("PhysicsMaterial_ylmc8")
 
 [node name="ThighSprite" type="Sprite2D" parent="Thigh"]
-position = Vector2(8, 26)
+position = Vector2(0.0902023, 1.24759)
 rotation = -0.174533
 scale = Vector2(0.305, 0.305)
 texture = ExtResource("2_ylmc8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Thigh"]
-position = Vector2(11, 24)
+position = Vector2(0.0902019, 1.24759)
 rotation = -0.253073
 scale = Vector2(0.305, 0.305)
 shape = SubResource("CapsuleShape2D_5u072")
 
+[node name="KneeJoint" type="DampedSpringJoint2D" parent="."]
+position = Vector2(6.55738, 32.7869)
+node_a = NodePath("../Thigh")
+node_b = NodePath("../Calf")
+length = 1.0
+
 [node name="Calf" type="RigidBody2D" parent="."]
-position = Vector2(6.55738, 78.6885)
+position = Vector2(0, 65.5738)
 
 [node name="CalfSprite" type="Sprite2D" parent="Calf"]
-position = Vector2(-5.36432e-06, 10.7499)
+position = Vector2(1.08471e-06, -3.8147e-06)
 rotation = 0.226893
 scale = Vector2(0.305, 0.305)
 texture = ExtResource("3_ahqge")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Calf"]
-position = Vector2(-5.1259e-06, 10.7499)
+position = Vector2(-7.62939e-06, 4.76837e-07)
 rotation = 0.191986
 scale = Vector2(0.305, 0.305)
 shape = SubResource("CapsuleShape2D_fdklt")
 
+[node name="AnkleJoint" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-3.27869, 98.3607)
+rotation = -0.380482
+node_a = NodePath("../Thigh")
+node_b = NodePath("../Calf")
+length = 1.0
+
 [node name="Foot" type="RigidBody2D" parent="."]
-position = Vector2(55.7377, 118.033)
+position = Vector2(22.9508, 104.918)
 rotation = -0.172034
 
 [node name="FootSprite" type="Sprite2D" parent="Foot"]
-position = Vector2(-33.6135, 5.07041)
+position = Vector2(0, -8.10623e-06)
 rotation = -1.41372
 scale = Vector2(0.255105, 0.239582)
 texture = ExtResource("4_rqyha")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
-position = Vector2(-33.6135, 5.07041)
+position = Vector2(2.38419e-06, -8.10623e-06)
 rotation = 1.77675
 shape = SubResource("CapsuleShape2D_dguhn")

@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	for key in ["1", "2", "3", "4"]:
-		if Input.is_action_just_pressed(key):
+		if Input.is_action_just_pressed(key) and current_limb != torso:
 			_attach_limb_to_slot(key)
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +36,7 @@ func _attach_limb_to_slot(key: String) -> void:
 	limb.global_position = slot.global_position
 
 	if limb.has_method("setup_joint"):
-		limb.setup_joint(torso, slot.global_position)
+		limb.setup_joint(slot, slot.global_position)
+
 
 	current_limb = limb

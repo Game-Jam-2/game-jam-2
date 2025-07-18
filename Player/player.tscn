@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpi1jrbhldjhh"]
+[gd_scene load_steps=7 format=3 uid="uid://dpi1jrbhldjhh"]
 
-[ext_resource type="Script" uid="uid://b1m38vphc6ic0" path="res://Player/nodetest.gd" id="1_4ntmi"]
+[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="2_btcbx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwnis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k53q1"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_4ntmi")
 
 [node name="Torso" type="RigidBody2D" parent="."]
-scale = Vector2(0.8, 0.8)
 
 [node name="TorsoSprite" type="Sprite2D" parent="Torso"]
 texture = ExtResource("2_btcbx")
@@ -18,14 +25,26 @@ polygon = PackedVector2Array(35, 106, -4, 106, -5, 130, -16, 125, -27, 130, -31,
 [node name="Camera2D" type="Camera2D" parent="Torso"]
 position = Vector2(0, 2.5)
 
-[node name="RightArm_Socket" type="Node2D" parent="."]
-position = Vector2(51, -50)
+[node name="RightArm_Socket" type="RigidBody2D" parent="."]
+position = Vector2(59, -64)
 
-[node name="LeftArm_Socket" type="Node2D" parent="."]
-position = Vector2(-74, -45)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm_Socket"]
+shape = SubResource("CircleShape2D_4ntmi")
 
-[node name="RightLeg_Socket" type="Node2D" parent="."]
-position = Vector2(31, 86)
+[node name="LeftArm_Socket" type="RigidBody2D" parent="."]
+position = Vector2(-97, -59)
 
-[node name="LeftLeg_Socket" type="Node2D" parent="."]
-position = Vector2(-57, 82)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm_Socket"]
+shape = SubResource("CircleShape2D_btcbx")
+
+[node name="RightLeg_Socket" type="RigidBody2D" parent="."]
+position = Vector2(20, 107)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLeg_Socket"]
+shape = SubResource("CircleShape2D_gwnis")
+
+[node name="LeftLeg_Socket" type="RigidBody2D" parent="."]
+position = Vector2(-53, 105)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLeg_Socket"]
+shape = SubResource("CircleShape2D_k53q1")
