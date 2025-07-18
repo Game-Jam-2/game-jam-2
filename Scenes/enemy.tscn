@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1dqtjio7e7lg"]
+[gd_scene load_steps=3 format=3 uid="uid://b1dqtjio7e7lg"]
 
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
-[ext_resource type="Script" path="res://Scenes/arm.gd" id="2_287tu"]
 [ext_resource type="Texture2D" uid="uid://difdatc2n7072" path="res://Art/arm TEMP.png" id="2_afpow"]
 
 [node name="Enemy" type="Node2D"]
@@ -22,7 +21,6 @@ polygon = PackedVector2Array(37, 107, 40, 72, 42, 31, 46, 3, 52, -34, 65, -48, 5
 position = Vector2(55, -58)
 rotation = -0.131666
 constant_force = Vector2(20, 10)
-script = ExtResource("2_287tu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Arm"]
 position = Vector2(41.5343, -4.37361)
@@ -50,7 +48,6 @@ damping = 16.0
 position = Vector2(-108, -53)
 rotation = 0.843352
 constant_force = Vector2(20, 10)
-script = ExtResource("2_287tu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Arm2"]
 position = Vector2(-54.3638, 4.00709)
