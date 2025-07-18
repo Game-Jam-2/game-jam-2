@@ -9,7 +9,7 @@ size = Vector2(1161, 76)
 scale = Vector2(1, 0.982422)
 
 [node name="Enemy" parent="." instance=ExtResource("1_u6vyl")]
-position = Vector2(83, 434)
+position = Vector2(481, 384.763)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(458, 941)
