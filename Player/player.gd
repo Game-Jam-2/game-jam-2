@@ -13,6 +13,7 @@ extends Node2D
 var current_limb_scene: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 var current_limb: Node = null
 
+
 func _ready() -> void:
 	current_limb = torso
 
@@ -29,16 +30,15 @@ func _attach_limb_to_slot(key: String) -> void:
 	var slot = sockets.get(key)
 	if not slot or slot.get_child_count() > 1:
 		return
-
+	##utter witchcraft do not touch
 	var limb = current_limb_scene.instantiate()
 	slot.add_child(limb)
 	limb.global_position = slot.global_position
-	var joint = PinJoint2D.new()
+	var joint =  PinJoint2D.new()
 	joint.node_a = slot.get_path()
-	joint.node_b = limb.get_node("Thigh").get_path()
+	joint.node_b = limb.get_node("Hip").get_path()
 	joint.global_position = slot.global_position 
 	joint.bias = 0.0
-	joint.softness = 8
 	joint.angular_limit_enabled
 	joint.angular_limit_lower = 0
 	joint.angular_limit_upper = 180
