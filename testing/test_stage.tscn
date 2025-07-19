@@ -10,6 +10,8 @@ size = Vector2(1232, 37)
 [node name="TestStage" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
+light_mask = 130
+visibility_layer = 130
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
 position = Vector2(236.907, 90)
@@ -21,9 +23,11 @@ texture = ExtResource("1_a230b")
 position = Vector2(231, 94)
 shape = SubResource("RectangleShape2D_a230b")
 
-[node name="PlayerNew" parent="." instance=ExtResource("2_a230b")]
+[node name="Player" parent="." instance=ExtResource("2_a230b")]
 position = Vector2(114, -127)
 
 [node name="Leg_basic" parent="." instance=ExtResource("3_daoas")]
+light_mask = 130
+visibility_layer = 130
 position = Vector2(257, -115)
 scale = Vector2(0.24, 0.24)
