@@ -14,6 +14,7 @@ func _ready() -> void:
 	current_state.enter("")
 		
 func _transistion_to_next_state(target_state_path: String ,data:Dictionary = {}) -> void:
+	print("transistioning")
 	var previous_state_path := current_state.name
 	current_state.exit()
 	current_state = get_node(target_state_path)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://frpnltij6fjb"]
+
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Leg_basic/arm_basic.tscn" id="1_f7m4b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m53mr"]
+size = Vector2(1156, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7m4b"]
+size = Vector2(73.9717, 120.103)
+
+[node name="ArmTester" type="Node2D"]
+
+[node name="Arm" parent="." instance=ExtResource("1_f7m4b")]
+rotation = -0.276893
+
+[node name="Bottom of the world" type="StaticBody2D" parent="."]
+position = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom of the world"]
+position = Vector2(573, 636)
+shape = SubResource("RectangleShape2D_m53mr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(368, 301)
+rotation = -3.14537
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.58517
+shape = SubResource("RectangleShape2D_f7m4b")
