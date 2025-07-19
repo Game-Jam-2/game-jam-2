@@ -1,31 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0lrkaqjwsj8v"]
+[gd_scene format=3 uid="uid://cceaua4lv7tio"]
 
-[ext_resource type="Texture2D" uid="uid://d13uqdmomhqx2" path="res://De Cave/Ph Armoury BG.png" id="1_jqfua"]
-[ext_resource type="PackedScene" path="res://De Cave/slot.tscn" id="1_m3prs"]
+[node name="Armoury" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.984615, 1.03175)
 
-[node name="Armoury" type="Area2D"]
+[node name="Background (switched out for tilemap)" type="Sprite2D" parent="."]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-scale = Vector2(1, 1.00654)
-texture = ExtResource("1_jqfua")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect/CenterContainer"]
-layout_mode = 2
-columns = 5
-
-[node name="Slot" parent="NinePatchRect/CenterContainer/GridContainer" instance=ExtResource("1_m3prs")]
-layout_mode = 2
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(29.2495, 15.7021)
