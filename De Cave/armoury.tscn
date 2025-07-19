@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://caousb8vl88jc"]
+[gd_scene load_steps=3 format=3 uid="uid://b0lrkaqjwsj8v"]
 
 [ext_resource type="Texture2D" uid="uid://d13uqdmomhqx2" path="res://De Cave/Ph Armoury BG.png" id="1_jqfua"]
-[ext_resource type="PackedScene" uid="uid://cojspxdplxg4m" path="res://De Cave/slot.tscn" id="1_m3prs"]
+[ext_resource type="PackedScene" path="res://De Cave/slot.tscn" id="1_m3prs"]
 
 [node name="Armoury" type="Area2D"]
 
