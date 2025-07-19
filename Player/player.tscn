@@ -19,7 +19,7 @@ metadata/_edit_horizontal_guides_ = [1.0]
 visibility_layer = 4
 position = Vector2(-12, 7)
 collision_mask = 4
-mass = 7.0
+mass = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
 position = Vector2(0, -1)
@@ -36,7 +36,7 @@ position = Vector2(2, -5)
 position = Vector2(57, -56)
 collision_layer = 0
 collision_mask = 0
-gravity_scale = 0.2
+gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Arm Link"]
 shape = SubResource("CircleShape2D_46bvi")
@@ -66,7 +66,7 @@ position = Vector2(-119, -54)
 rotation = 0.975018
 collision_layer = 0
 collision_mask = 0
-gravity_scale = 0.2
+gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]
 position = Vector2(-1.19209e-07, 1.19209e-06)

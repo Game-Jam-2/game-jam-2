@@ -22,7 +22,7 @@ height = 220.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ahqge"]
 radius = 23.0
-height = 94.0
+height = 56.0
 
 [node name="LegBasic" type="Node2D"]
 script = ExtResource("1_ahqge")
@@ -61,6 +61,8 @@ position = Vector2(0, 111)
 scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
+bias = 0.26
+angular_limit_upper = 1.48353
 
 [node name="KneeMuscle" type="DampedSpringJoint2D" parent="."]
 light_mask = 0
@@ -93,6 +95,8 @@ position = Vector2(-1, 226)
 scale = Vector2(0.405, 0.405)
 node_a = NodePath("../Calf")
 node_b = NodePath("../Foot")
+bias = 0.26
+angular_limit_upper = 1.5708
 
 [node name="AnkleMuscle" type="DampedSpringJoint2D" parent="."]
 light_mask = 0

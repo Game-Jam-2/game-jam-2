@@ -60,9 +60,7 @@ func _attach_limb_to_slot(key: String) -> void:
 func _on_foot_grounded_changed(is_grounded: bool) -> void:
 	if is_grounded:
 		print("Foot touched the ground")
-		torso.mass = 5.0
 		torso.gravity_scale = -1.0
 	else:
 		print("Foot left the ground")
-		torso.mass = 7.0
-		torso.gravity_scale = 1.0
+		torso.gravity_scale = 0.5
