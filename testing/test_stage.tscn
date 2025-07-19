@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://buiwatv1812e3"]
+[gd_scene load_steps=4 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
-[ext_resource type="PackedScene" uid="uid://dypya3on0xofm" path="res://Player/Limbs/Leg_basic/leg_basic.tscn" id="3_daoas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(1232, 37)
@@ -10,8 +9,6 @@ size = Vector2(1232, 37)
 [node name="TestStage" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
-light_mask = 130
-visibility_layer = 130
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
 position = Vector2(236.907, 90)
@@ -24,10 +21,4 @@ position = Vector2(231, 94)
 shape = SubResource("RectangleShape2D_a230b")
 
 [node name="Player" parent="." instance=ExtResource("2_a230b")]
-position = Vector2(114, -127)
-
-[node name="Leg_basic" parent="." instance=ExtResource("3_daoas")]
-light_mask = 130
-visibility_layer = 130
-position = Vector2(257, -115)
-scale = Vector2(0.24, 0.24)
+position = Vector2(114, -464)

@@ -21,8 +21,6 @@ height = 220.0
 [node name="LegBasic" type="Node2D"]
 
 [node name="Hip" type="RigidBody2D" parent="."]
-collision_layer = 128
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hip"]
 shape = SubResource("CircleShape2D_6khia")
@@ -31,12 +29,9 @@ shape = SubResource("CircleShape2D_6khia")
 position = Vector2(0, 4)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Hip")
-bias = 0.9
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 position = Vector2(-2, 55)
-collision_layer = 128
-collision_mask = 2
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Thigh"]
 scale = Vector2(0.5, 0.5)
@@ -51,12 +46,18 @@ position = Vector2(0, 111)
 scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
-bias = 0.9
+
+[node name="KneeMuscle" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-13, 56)
+node_a = NodePath("../Thigh")
+node_b = NodePath("../Calf")
+length = 115.0
+rest_length = 110.0
+stiffness = 30.0
+damping = 2.0
 
 [node name="Calf" type="RigidBody2D" parent="."]
 position = Vector2(-2, 169)
-collision_layer = 128
-collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Calf"]
 scale = Vector2(0.5, 0.5)
@@ -72,13 +73,19 @@ position = Vector2(-1, 226)
 scale = Vector2(0.405, 0.405)
 node_a = NodePath("../Calf")
 node_b = NodePath("../Foot")
-bias = 0.9
+
+[node name="AnkleMuscle" type="DampedSpringJoint2D" parent="."]
+position = Vector2(5, 185)
+rotation = -0.6353
+node_a = NodePath("../Calf")
+node_b = NodePath("../Foot")
+length = 100.0
+rest_length = 56.0
+stiffness = 64.0
 
 [node name="Foot" type="RigidBody2D" parent="."]
 position = Vector2(32, 232)
 rotation = 1.5708
-collision_layer = 128
-collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Foot"]
 scale = Vector2(0.3, 0.3)
