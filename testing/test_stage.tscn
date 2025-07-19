@@ -8,7 +8,11 @@ size = Vector2(1232, 37)
 
 [node name="TestStage" type="Node2D"]
 
-[node name="Floor" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="." groups=["Ground"]]
+light_mask = 4
+visibility_layer = 11
+collision_layer = 4
+collision_mask = 11
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
 position = Vector2(236.907, 90)
@@ -17,6 +21,22 @@ scale = Vector2(0.448187, 6.14194)
 texture = ExtResource("1_a230b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(231, 94)
+shape = SubResource("RectangleShape2D_a230b")
+
+[node name="Floor2" type="StaticBody2D" parent="." groups=["Ground"]]
+light_mask = 4
+visibility_layer = 11
+collision_layer = 4
+collision_mask = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor2"]
+position = Vector2(236.907, 90)
+rotation = 1.5708
+scale = Vector2(0.448187, 6.14194)
+texture = ExtResource("1_a230b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
 position = Vector2(231, 94)
 shape = SubResource("RectangleShape2D_a230b")
 

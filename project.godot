@@ -73,6 +73,13 @@ Grab={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Torso"
+2d_physics/layer_2="Limb"
+2d_physics/layer_3="Floor"
+2d_physics/layer_4="Floor Detection"
+
 [rendering]
 
 renderer/rendering_method="mobile"
