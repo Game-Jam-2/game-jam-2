@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://31jaqh140kv1"]
+
+[ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_qbtp2"]
+[ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_3jnhd"]
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="3_xq6s1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkyer"]
+radius = 36.0
+height = 224.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6khia"]
+radius = 40.0
+height = 192.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylmc8"]
+radius = 40.0
+height = 220.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
+radius = 3.0
+
+[node name="Arm" type="Node2D"]
+position = Vector2(387, 39)
+
+[node name="Hip" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip"]
+shape = SubResource("CircleShape2D_6khia")
+
+[node name="Bicep" type="RigidBody2D" parent="."]
+position = Vector2(-2, 55)
+collision_layer = 2
+collision_mask = 14
+
+[node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_dkyer")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bicep"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qbtp2")
+
+[node name="KneeJoint" type="PinJoint2D" parent="."]
+position = Vector2(0, 111)
+scale = Vector2(0.45, 0.45)
+node_a = NodePath("../Bicep")
+node_b = NodePath("../ForeArm")
+bias = 0.9
+
+[node name="ForeArm" type="RigidBody2D" parent="."]
+position = Vector2(-2, 169)
+collision_layer = 2
+collision_mask = 14
+
+[node name="Sprite2D" type="Sprite2D" parent="ForeArm"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3jnhd")
+
+[node name="CalfCollisionShape" type="CollisionShape2D" parent="ForeArm"]
+position = Vector2(1, 1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_6khia")
+
+[node name="AnkleJoint" type="PinJoint2D" parent="."]
+position = Vector2(-1, 226)
+scale = Vector2(0.405, 0.405)
+node_a = NodePath("../ForeArm")
+node_b = NodePath("../Hand")
+bias = 0.9
+
+[node name="Hand" type="RigidBody2D" parent="."]
+position = Vector2(32, 232)
+rotation = 1.7909
+collision_layer = 2
+collision_mask = 14
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+rotation = 0.0108286
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_xq6s1")
+
+[node name="FootCollisionShape" type="CollisionShape2D" parent="Hand"]
+position = Vector2(1, -4.37114e-08)
+rotation = 0.00591673
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CapsuleShape2D_ylmc8")
+
+[node name="Wrist" type="PinJoint2D" parent="."]
+position = Vector2(0, 4)
+node_a = NodePath("../Bicep")
+node_b = NodePath("../Hip")
+bias = 0.9
+
+[node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
+position = Vector2(62, 237)
+node_a = NodePath("../Grab Point")
+node_b = NodePath("../Hand")
+bias = 0.9
+
+[node name="Hand to Grab Point 2" type="PinJoint2D" parent="."]
+position = Vector2(58, 245)
+node_a = NodePath("../Grab Point")
+node_b = NodePath("../Hand")
+softness = 16.0
+
+[node name="Grab Point" type="RigidBody2D" parent="."]
+position = Vector2(63, 242)
+collision_layer = 2
+collision_mask = 14
+mass = 0.001
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
+shape = SubResource("CircleShape2D_ijwyr")

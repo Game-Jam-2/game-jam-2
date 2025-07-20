@@ -6,15 +6,15 @@ var groups := {
 		"sacrificed_count": 0,
 		"tension_bonus": 1.0
 	},
-	"animal": {
+	"entity": {
 		"sacrificed_count": 0,
 		"tension_bonus": 1.0
 	},
-	"robotic": {
+	"effect": {
 		"sacrificed_count": 0,
 		"tension_bonus": 1.0
 	},
-	"inanimate": {
+	"weapon": {
 		"sacrificed_count": 0,
 		"tension_bonus": 1.0
 	}
@@ -56,3 +56,7 @@ func on_limb_sacrificed(limb_name: String):
 				var base = limbs[limb_key]["base_tension"]
 				var bonus = groups[group]["tension_bonus"]
 				limbs[limb_key]["tension"] = base * bonus
+
+
+func _on_collision_shape_2d_limb_sacrificed() -> void:
+	print("limb tijjmeee")
