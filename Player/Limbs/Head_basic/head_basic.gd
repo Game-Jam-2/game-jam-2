@@ -22,9 +22,9 @@ func hover():
 
 func input():
 	if Input.is_action_pressed("a"):
-		body.apply_torque_impulse(-tilt_force)
+		body.apply_central_impulse(Vector2.LEFT * ascend_force)
 	if Input.is_action_pressed("d"):
-		body.apply_torque_impulse(tilt_force)
+		body.apply_central_impulse(Vector2.RIGHT * ascend_force)
 
 	if Input.is_action_pressed("w"):
 		var up_direction = -body.transform.y
