@@ -14,7 +14,8 @@
 [node name="Player" type="Node2D"]
 position = Vector2(7, -9)
 script = ExtResource("1_rupg5")
-metadata/_edit_horizontal_guides_ = [1.0]
+metadata/_edit_horizontal_guides_ = [1.0, -54.0]
+metadata/_edit_vertical_guides_ = [-109.0]
 
 [node name="Torso" type="RigidBody2D" parent="."]
 visibility_layer = 4

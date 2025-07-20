@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcdhevxl6dj3e"]
+[gd_scene load_steps=8 format=3 uid="uid://bbulwkxe01ams"]
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
@@ -12,7 +12,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
 
-[node name="Player" type="Node2D"]
+[node name="Player2" type="Node2D"]
 position = Vector2(1, 0)
 script = ExtResource("1_1f0kj")
 metadata/_edit_horizontal_guides_ = [-52.0]
