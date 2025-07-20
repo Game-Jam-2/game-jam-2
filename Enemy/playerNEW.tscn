@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://h3s85jl7iats"]
+[gd_scene load_steps=7 format=3 uid="uid://bliy3m40al37k"]
 
-[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
-[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_yv0sd"]
+[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_e1nrg"]
+[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="2_hllf6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
 
@@ -11,9 +11,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
 
-[node name="Player" type="Node2D"]
+[node name="Enemy" type="Node2D"]
 position = Vector2(1, 0)
-script = ExtResource("1_rupg5")
+script = ExtResource("1_e1nrg")
 metadata/_edit_horizontal_guides_ = [-52.0]
 
 [node name="Left Arm Link" type="RigidBody2D" parent="."]
@@ -30,7 +30,7 @@ mass = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
 position = Vector2(0, -1)
-texture = ExtResource("1_yv0sd")
+texture = ExtResource("2_hllf6")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
 position = Vector2(-13, 10)
