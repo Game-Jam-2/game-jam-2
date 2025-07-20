@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjcecy3ssds4p"]
+[gd_scene load_steps=8 format=3 uid="uid://d0w6x7mcsqror"]
 
-[ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
-[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_yv0sd"]
+[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
+[ext_resource type="Script" uid="uid://bn0toyh2g3ty2" path="res://Enemy/enemy.gd" id="1_am0pq"]
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Scenes/arm_basic.tscn" id="2_px1sc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 
@@ -11,10 +12,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
 
-[node name="Player" type="Node2D"]
-position = Vector2(7, -9)
-script = ExtResource("1_rupg5")
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_am0pq")
 metadata/_edit_horizontal_guides_ = [1.0]
+
+[node name="Arm Attach" type="PinJoint2D" parent="."]
+position = Vector2(-119, -52)
+node_a = NodePath("../Torso")
 
 [node name="Torso" type="RigidBody2D" parent="."]
 visibility_layer = 4
@@ -24,7 +28,7 @@ mass = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
 position = Vector2(0, -1)
-texture = ExtResource("1_yv0sd")
+texture = ExtResource("1_afpow")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
 position = Vector2(-13, 10)
@@ -147,3 +151,6 @@ scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Right Leg Link")
 bias = 0.9
+
+[node name="Arm" parent="." instance=ExtResource("2_px1sc")]
+position = Vector2(-121, -51)

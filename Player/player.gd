@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var torso: RigidBody2D = $Torso
-@export var attachPointName:String
 @onready var sockets := {
 	"1": $"Left Arm Link",
 	"2": $"Right Arm Link",
