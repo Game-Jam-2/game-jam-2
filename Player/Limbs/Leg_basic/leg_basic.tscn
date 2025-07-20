@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dypya3on0xofm"]
+[gd_scene load_steps=12 format=3 uid="uid://dypya3on0xofm"]
 
 [ext_resource type="Script" uid="uid://ctyl477maeugn" path="res://Player/Limbs/Leg_basic/leg_basic.gd" id="1_ahqge"]
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="2_ylmc8"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="3_ahqge"]
-[ext_resource type="Script" path="res://Player/Limbs/Leg_basic/foot_jump_detector.gd" id="3_ylmc8"]
+[ext_resource type="Script" uid="uid://dwrxptd6fdfwm" path="res://Player/Limbs/Leg_basic/foot_jump_detector.gd" id="3_ylmc8"]
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="4_rqyha"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
@@ -24,6 +24,8 @@ height = 220.0
 radius = 23.0
 height = 56.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahqge"]
+
 [node name="LegBasic" type="Node2D"]
 script = ExtResource("1_ahqge")
 
@@ -37,16 +39,17 @@ shape = SubResource("CircleShape2D_6khia")
 [node name="HipJoint" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(0, 4)
+position = Vector2(-0.08, 0.06)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Hip")
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 position = Vector2(-2, 55)
 collision_layer = 2
-collision_mask = 4
+collision_mask = 20
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Thigh"]
+position = Vector2(1, 0)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_dkyer")
 
@@ -66,11 +69,11 @@ angular_limit_upper = 1.48353
 
 [node name="KneeMuscle" type="DampedSpringJoint2D" parent="."]
 light_mask = 0
-position = Vector2(0, 56)
+position = Vector2(-14, 13)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
-length = 115.0
-rest_length = 80.0
+length = 200.0
+rest_length = 170.0
 stiffness = 64.0
 damping = 0.01
 
@@ -100,11 +103,12 @@ angular_limit_upper = 1.5708
 
 [node name="AnkleMuscle" type="DampedSpringJoint2D" parent="."]
 light_mask = 0
-position = Vector2(0, 170)
+position = Vector2(18, 165)
+rotation = 0.115192
 node_a = NodePath("../Calf")
 node_b = NodePath("../Foot")
-length = 90.0
-rest_length = 50.0
+length = 120.0
+rest_length = 60.0
 stiffness = 64.0
 damping = 0.01
 
@@ -133,3 +137,83 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foot/ground_detection"]
 shape = SubResource("CapsuleShape2D_ahqge")
+
+[node name="KneeStopper 1" type="RigidBody2D" parent="."]
+position = Vector2(9, 122)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KneeStopper 1"]
+shape = SubResource("CircleShape2D_ahqge")
+
+[node name="KneeStopper 1 Connector 1" type="PinJoint2D" parent="."]
+position = Vector2(14, 131)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Calf")
+node_b = NodePath("../KneeStopper 1")
+
+[node name="KneeStopper 1 Connector 2" type="PinJoint2D" parent="."]
+position = Vector2(3, 114)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Calf")
+node_b = NodePath("../KneeStopper 1")
+
+[node name="KneeStopper 2" type="RigidBody2D" parent="."]
+position = Vector2(10, 102)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KneeStopper 2"]
+shape = SubResource("CircleShape2D_ahqge")
+
+[node name="KneeStopper 2 Connector 1" type="PinJoint2D" parent="."]
+position = Vector2(14, 93)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Thigh")
+node_b = NodePath("../KneeStopper 2")
+
+[node name="KneeStopper 2 Connector 2" type="PinJoint2D" parent="."]
+position = Vector2(4, 109)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Thigh")
+node_b = NodePath("../KneeStopper 2")
+
+[node name="AnkleStopper 1" type="RigidBody2D" parent="."]
+position = Vector2(-8, 217)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnkleStopper 1"]
+shape = SubResource("CircleShape2D_ahqge")
+
+[node name="AnkleStopper 1 Connector 1" type="PinJoint2D" parent="."]
+position = Vector2(-13, 210)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Calf")
+node_b = NodePath("../AnkleStopper 1")
+
+[node name="AnkleStopper 1 Connector 2" type="PinJoint2D" parent="."]
+position = Vector2(2, 217)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Calf")
+node_b = NodePath("../AnkleStopper 1")
+
+[node name="AnkleStopper 2" type="RigidBody2D" parent="."]
+position = Vector2(-9, 237)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnkleStopper 2"]
+shape = SubResource("CircleShape2D_ahqge")
+
+[node name="AnkleStopper 2 Connector 1" type="PinJoint2D" parent="."]
+position = Vector2(-11, 246)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Foot")
+node_b = NodePath("../AnkleStopper 2")
+
+[node name="AnkleStopper 2 Connector 2" type="PinJoint2D" parent="."]
+position = Vector2(-4, 229)
+scale = Vector2(0.395, 0.395)
+node_a = NodePath("../Foot")
+node_b = NodePath("../AnkleStopper 2")

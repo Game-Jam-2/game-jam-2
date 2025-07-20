@@ -80,6 +80,7 @@ Grab={
 2d_physics/layer_2="Limb"
 2d_physics/layer_3="Floor"
 2d_physics/layer_4="Floor Detection"
+2d_physics/layer_5="Joint Stopper"
 
 [rendering]
 
