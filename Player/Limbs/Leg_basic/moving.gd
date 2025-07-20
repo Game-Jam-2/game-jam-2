@@ -1,5 +1,5 @@
 extends State
-var speed : int = 1000
+var speed : int = 10
 var collision_in_progress = false
 var object_collided : Node2D
 var firstEntry:bool = true #represents the first time this state is entered used to ensure that 

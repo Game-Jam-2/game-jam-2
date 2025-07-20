@@ -9,10 +9,6 @@ func enter(previous_state_path : String,data :={}) -> void:
 	swing_pin.set_node_a(object_reference.get_path())
 	swing_pin.set_node_b(data["object_collided"].get_path())
 	swing_pin.bias = 0.0
-	print(data["object_collided"])
-	print( "Global Pos " + str(data["object_collided"].global_position))
-	print( "Normal Pos " + str(data["object_collided"].position))
-	
 	swing_pin.global_position = object_reference.get_parent().get_node("Grab Point").position
 	swing_pin.disable_collision = false
 	object_reference.get_parent().add_child(swing_pin)

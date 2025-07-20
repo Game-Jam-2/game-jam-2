@@ -66,6 +66,7 @@ position = Vector2(-119, -54)
 rotation = 0.975018
 collision_layer = 0
 collision_mask = 0
+mass = 10.015
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]

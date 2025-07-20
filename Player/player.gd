@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var torso: RigidBody2D = $Torso
-
+@export var attachPointName:String
 @onready var sockets := {
 	"1": $"Left Arm Link",
 	"2": $"Right Arm Link",
@@ -10,7 +10,7 @@ extends Node2D
 }
 
 # Swap this for testing limb scene
-var current_limb_scene: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
+var current_limb_scene: PackedScene = preload("res://Scenes/arm_basic.tscn")
 var current_limb: Node = null
 
 func _ready() -> void:
@@ -37,7 +37,7 @@ func _attach_limb_to_slot(key: String) -> void:
 
 	var joint = PinJoint2D.new()
 	joint.node_a = slot.get_path()
-	joint.node_b = limb.get_node("Hip").get_path()
+	joint.node_b = limb.get_child(0).get_path()
 	joint.global_position = slot.global_position
 	joint.bias = 0.0
 	joint.angular_limit_enabled
@@ -47,20 +47,8 @@ func _attach_limb_to_slot(key: String) -> void:
 
 	var ligament1 = DampedSpringJoint2D.new()
 	ligament1.node_a = slot.get_path()
-	ligament1.node_b = limb.get_node("Hip").get_path()
+	ligament1.node_b = limb.get_child(0).get_path()
 	ligament1.global_position = slot.global_position
 	get_parent().add_child(ligament1)
 
 	current_limb = limb
-
-	var foot = limb.get_node_or_null("Foot")
-	if foot and foot.has_signal("grounded_state_changed"):
-		foot.connect("grounded_state_changed", Callable(self, "_on_foot_grounded_changed"))
-
-func _on_foot_grounded_changed(is_grounded: bool) -> void:
-	if is_grounded:
-		print("Foot touched the ground")
-		torso.gravity_scale = -1.0
-	else:
-		print("Foot left the ground")
-		torso.gravity_scale = 0.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://4wambd6lyjw4"]
+[gd_scene load_steps=13 format=3 uid="uid://4wambd6lyjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_a7d8b"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_rmjea"]
@@ -6,6 +6,14 @@
 [ext_resource type="Script" uid="uid://ckrqtbrww8gnc" path="res://Player/Limbs/Leg_basic/hand_state_machine.gd" id="5_vimqa"]
 [ext_resource type="Script" uid="uid://b6kgvrxfdpf03" path="res://Player/Limbs/Leg_basic/moving.gd" id="6_vimqa"]
 [ext_resource type="Script" uid="uid://mf1b00t6o5nl" path="res://Scenes/grabbing.gd" id="7_0hup5"]
+
+[sub_resource type="GDScript" id="GDScript_ijwyr"]
+script/source = "extends RigidBody2D
+
+	
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkyer"]
 radius = 36.0
@@ -19,18 +27,24 @@ height = 192.0
 radius = 40.0
 height = 220.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
 radius = 3.0
 
 [node name="Arm" type="Node2D"]
 position = Vector2(387, 39)
 
+[node name="Hip" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 14
+script = SubResource("GDScript_ijwyr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip"]
+shape = SubResource("CircleShape2D_6khia")
+
 [node name="Bicep" type="RigidBody2D" parent="."]
 position = Vector2(-2, 55)
-collision_layer = 128
-collision_mask = 2
+collision_layer = 2
+collision_mask = 14
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
 scale = Vector2(0.5, 0.5)
@@ -49,8 +63,8 @@ bias = 0.9
 
 [node name="ForeArm" type="RigidBody2D" parent="."]
 position = Vector2(-2, 169)
-collision_layer = 128
-collision_mask = 2
+collision_layer = 2
+collision_mask = 14
 
 [node name="Sprite2D" type="Sprite2D" parent="ForeArm"]
 scale = Vector2(0.5, 0.5)
@@ -71,8 +85,8 @@ bias = 0.9
 [node name="Hand" type="RigidBody2D" parent="."]
 position = Vector2(32, 232)
 rotation = 1.7909
-collision_layer = 128
-collision_mask = 2
+collision_layer = 2
+collision_mask = 14
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
 rotation = 0.0108286
@@ -96,13 +110,6 @@ metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 script = ExtResource("7_0hup5")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Hip" type="RigidBody2D" parent="."]
-collision_layer = 128
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip"]
-shape = SubResource("CircleShape2D_6khia")
-
 [node name="Wrist" type="PinJoint2D" parent="."]
 position = Vector2(0, 4)
 node_a = NodePath("../Bicep")
@@ -123,6 +130,8 @@ softness = 16.0
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
 position = Vector2(63, 242)
+collision_layer = 2
+collision_mask = 14
 mass = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
