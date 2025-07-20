@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://frpnltij6fjb"]
 
-[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Scenes/arm_basic.tscn" id="1_f7m4b"]
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Arm_basic/arm_basic.tscn" id="1_f7m4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m53mr"]
 size = Vector2(1156, 20)

@@ -38,6 +38,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Arm Link"]
+position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_46bvi")
 
 [node name="Right Arm Joint 1" type="PinJoint2D" parent="."]
@@ -66,6 +67,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head Link"]
+position = Vector2(-1.2, 9.24001)
 shape = SubResource("CircleShape2D_46bvi")
 
 [node name="Head Joint 3" type="PinJoint2D" parent="."]
@@ -95,7 +97,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]
-position = Vector2(-1.19209e-07, 1.19209e-06)
+position = Vector2(3.90004, -2.18854)
 shape = SubResource("CircleShape2D_rupg5")
 
 [node name="Left Arm Joint 1" type="PinJoint2D" parent="."]
@@ -126,6 +128,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Leg Link"]
+position = Vector2(4, -3)
 shape = SubResource("CircleShape2D_yv0sd")
 
 [node name="Left Leg Joint 1" type="PinJoint2D" parent="."]
@@ -150,6 +153,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Leg Link"]
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_ocw3p")
 
 [node name="Right Leg Joint 1" type="PinJoint2D" parent="."]

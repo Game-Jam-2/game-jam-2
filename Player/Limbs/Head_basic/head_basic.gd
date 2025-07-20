@@ -1,0 +1,31 @@
+extends Node2D
+
+@onready var body: RigidBody2D = $Head
+@onready var floor_ray: RayCast2D = $FloorRay
+
+var hover_height := 700.0
+var hover_force := 370.0
+var tilt_force := 700.0
+var ascend_force := 100.0
+var max_hover_velocity := 200.0
+
+func _physics_process(delta):
+	hover()
+	input()
+
+func hover():
+	if floor_ray.is_colliding():
+		var distance_to_floor = floor_ray.get_collision_point().y - body.global_position.y
+		if distance_to_floor < hover_height:
+			if body.linear_velocity.y > -max_hover_velocity:
+				body.apply_central_impulse(Vector2.UP * hover_force * (1.0 - distance_to_floor / hover_height))
+
+func input():
+	if Input.is_action_pressed("a"):
+		body.apply_torque_impulse(-tilt_force)
+	if Input.is_action_pressed("d"):
+		body.apply_torque_impulse(tilt_force)
+
+	if Input.is_action_pressed("w"):
+		var up_direction = -body.transform.y
+		body.apply_central_impulse(up_direction * ascend_force)
