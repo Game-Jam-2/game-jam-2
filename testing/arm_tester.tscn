@@ -11,6 +11,7 @@ size = Vector2(73.9717, 120.103)
 [node name="ArmTester" type="Node2D"]
 
 [node name="Arm" parent="." instance=ExtResource("1_f7m4b")]
+position = Vector2(386, 78)
 rotation = -0.276893
 
 [node name="Bottom of the world" type="StaticBody2D" parent="."]
@@ -23,10 +24,11 @@ position = Vector2(573, 636)
 shape = SubResource("RectangleShape2D_m53mr")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(307, 175)
+position = Vector2(238, 141)
 rotation = -3.14537
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3.0575e-05, -1.51434e-05)
 rotation = 1.58517
 shape = SubResource("RectangleShape2D_f7m4b")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4wambd6lyjw4"]
+[gd_scene load_steps=12 format=3 uid="uid://4wambd6lyjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_a7d8b"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_rmjea"]
@@ -20,6 +20,9 @@ radius = 40.0
 height = 220.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
+radius = 3.0
 
 [node name="Arm" type="Node2D"]
 position = Vector2(387, 39)
@@ -100,8 +103,27 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hip"]
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
+[node name="Wrist" type="PinJoint2D" parent="."]
 position = Vector2(0, 4)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Hip")
 bias = 0.9
+
+[node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
+position = Vector2(62, 237)
+node_a = NodePath("../Grab Point")
+node_b = NodePath("../Hand")
+bias = 0.9
+
+[node name="Hand to Grab Point 2" type="PinJoint2D" parent="."]
+position = Vector2(58, 245)
+node_a = NodePath("../Grab Point")
+node_b = NodePath("../Hand")
+softness = 16.0
+
+[node name="Grab Point" type="RigidBody2D" parent="."]
+position = Vector2(63, 242)
+mass = 0.001
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
+shape = SubResource("CircleShape2D_ijwyr")

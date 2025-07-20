@@ -1,12 +1,16 @@
 extends State
-var speed : int = 500
+var speed : int = 1000
 var collision_in_progress = false
 var object_collided : Node2D
+var firstEntry:bool = true #represents the first time this state is entered used to ensure that 
+#connections made when the state is first entered are not made twice 
 func enter(previous_state_path: String,data:= {}) -> void:
-	object_reference.contact_monitor = true
-	object_reference.max_contacts_reported = 10
-	object_reference.body_shape_entered.connect(on_collision)
-	object_reference.body_shape_exited.connect(on_collision_end)
+	if firstEntry:
+		object_reference.contact_monitor = true
+		object_reference.max_contacts_reported = 10
+		object_reference.body_shape_entered.connect(on_collision)
+		object_reference.body_shape_exited.connect(on_collision_end)
+		firstEntry = false
 	
 
 func physics_update(delta: float) -> void:
