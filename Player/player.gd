@@ -7,6 +7,7 @@ extends Node2D
 	"2": $"Right Arm Link",
 	"3": $"Left Leg Link",
 	"4": $"Right Leg Link",
+	"5": $"Head Link"
 }
 
 # Swap this for testing limb scene
@@ -17,7 +18,7 @@ func _ready() -> void:
 	current_limb = torso
 
 func _process(_delta: float) -> void:
-	for key in ["1", "2", "3", "4"]:
+	for key in ["1", "2", "3", "4", "5"]:
 		if Input.is_action_just_pressed(key):
 			_attach_limb_to_slot(key)
 
