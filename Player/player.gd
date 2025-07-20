@@ -10,7 +10,7 @@ extends Node2D
 }
 
 # Swap this for testing limb scene
-var current_limb_scene: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
+var current_limb_scene: PackedScene = preload("res://Scenes/arm_basic.tscn")
 var current_limb: Node = null
 
 func _ready() -> void:

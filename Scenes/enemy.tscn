@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://drm5rcaq4bo6q"]
+[gd_scene load_steps=8 format=3 uid="uid://dcdhevxl6dj3e"]
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
+[ext_resource type="PackedScene" uid="uid://c44t73wct8usg" path="res://Enemy/Enemy Limbs/arm_basic_enemy.tscn" id="3_afpow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
 
@@ -81,3 +82,6 @@ shape = SubResource("CircleShape2D_ocw3p")
 [node name="Right Leg to Torso" type="PinJoint2D" parent="Right Leg Link"]
 node_a = NodePath("../../Torso")
 node_b = NodePath("..")
+
+[node name="Arm" parent="." instance=ExtResource("3_afpow")]
+position = Vector2(-127, -54)
