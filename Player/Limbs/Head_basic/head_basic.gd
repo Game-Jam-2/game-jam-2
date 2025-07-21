@@ -29,7 +29,7 @@ func input():
 	if Input.is_action_pressed("d") and hovering:
 		body.apply_central_impulse(Vector2.RIGHT * ascend_force)
 
-	if Input.is_action_pressed("w"):
+	if Input.is_action_pressed("w") or Input.is_action_pressed("space"):
 		hovering = true
 		var up_direction = -body.transform.y
 		body.apply_central_impulse(up_direction * ascend_force)
