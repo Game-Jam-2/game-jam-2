@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctrh2y4bnwy5w"]
+
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_41gnb"]
+[ext_resource type="Script" uid="uid://ddve43vp63juj" path="res://Player/Limbs/Head_basic/head_basic.gd" id="1_w7gmr"]
+[ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="3_7uha8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7uha8"]
+radius = 38.0132
+
+[node name="HeadBasic" type="Node2D"]
+script = ExtResource("1_w7gmr")
+
+[node name="Head" type="RigidBody2D" parent="."]
+position = Vector2(-2, -38)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2(2, 1)
+shape = SubResource("CircleShape2D_7uha8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(-3.24997, -0.499993)
+scale = Vector2(1.09197, 0.343575)
+texture = ExtResource("1_41gnb")
+
+[node name="FloorRay" type="RayCast2D" parent="."]
+position = Vector2(0.53, -38)
+target_position = Vector2(0, 700)
+collision_mask = 4
+collide_with_areas = true
+script = ExtResource("3_7uha8")

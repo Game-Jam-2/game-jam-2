@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://bad272rg8qscu"]
+
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_4eotu"]
+[ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
+[ext_resource type="Texture2D" uid="uid://bbma8ou1p8da2" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue.png" id="3_l5x01"]
+[ext_resource type="Texture2D" uid="uid://wo3w762umer7" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue_end.png" id="4_xihee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xjcec"]
+radius = 10.7703
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bn0d"]
+radius = 38.0132
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5x01"]
+
+[node name="HeadGrappleTongue" type="Node2D"]
+script = ExtResource("1_xjcec")
+
+[node name="Neck" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Neck"]
+shape = SubResource("CircleShape2D_xjcec")
+
+[node name="Sprite2D" type="Sprite2D" parent="Neck"]
+
+[node name="Neck Joint" type="PinJoint2D" parent="."]
+scale = Vector2(0.45, 0.45)
+node_a = NodePath("../Neck")
+node_b = NodePath("../Head")
+
+[node name="Neck Muscle 1" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-21.6, -31.865)
+node_a = NodePath("../Head")
+node_b = NodePath("../Neck")
+rest_length = 60.0
+stiffness = 64.0
+damping = 0.01
+
+[node name="Neck Muscle 2" type="DampedSpringJoint2D" parent="."]
+position = Vector2(21.6, -31.865)
+node_a = NodePath("../Head")
+node_b = NodePath("../Neck")
+rest_length = 60.0
+stiffness = 64.0
+damping = 0.01
+
+[node name="Head" type="RigidBody2D" parent="."]
+position = Vector2(-1, -33)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2(-1.25, -16.5)
+shape = SubResource("CircleShape2D_2bn0d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(-4.25, -16.5)
+scale = Vector2(1.09197, 0.343575)
+texture = ExtResource("1_4eotu")
+
+[node name="Tongue" type="Line2D" parent="Head"]
+texture_repeat = 2
+texture = ExtResource("3_l5x01")
+texture_mode = 1
+
+[node name="GrappleRay" type="RayCast2D" parent="Head"]
+position = Vector2(1, 33)
+
+[node name="Anchor" type="StaticBody2D" parent="."]
+position = Vector2(0, -121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor"]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_l5x01")
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor"]
+position = Vector2(-1, 0.499998)
+scale = Vector2(0.0934066, 0.0846995)
+texture = ExtResource("4_xihee")
+
+[node name="GrappleJoint" type="PinJoint2D" parent="."]
+node_a = NodePath("../Head")
