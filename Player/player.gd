@@ -9,7 +9,8 @@ extends Node2D
 	"5": $"Head Link"
 }
 
-var roll_strength = 60.0
+var stand_strength = 200
+var roll_strength = 60
 
 # Swap this for testing limb scene
 var current_limb_scene: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
@@ -28,8 +29,14 @@ func _physics_process(delta: float) -> void:
 		current_limb.physics_update(delta)
 	if current_limb == torso:
 		if Input.is_action_pressed("d"):
+			if torso.linear_velocity.x <= 30:
+				torso.apply_central_impulse(Vector2.UP * stand_strength)
+				print("getting up")
 			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
 		if Input.is_action_pressed("a"):
+			if torso.linear_velocity.x >= -30:
+				torso.apply_central_impulse(Vector2.UP * stand_strength)
+				print("getting up")
 			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
 		
 
@@ -80,12 +87,5 @@ func _attach_limb_to_slot(key: String) -> void:
 	get_parent().add_child(jointOne)
 	get_parent().add_child(jointTwo)
 
-
-
-	var ligament1 = DampedSpringJoint2D.new()
-	ligament1.node_a = slot.get_path()
-	ligament1.node_b = limb.get_child(0).get_path()
-	ligament1.global_position = slot.global_position
-	get_parent().add_child(ligament1)
 
 	current_limb = limb
