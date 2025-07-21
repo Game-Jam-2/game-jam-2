@@ -104,7 +104,6 @@ rotation = 3.10789
 collision_layer = 2
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_02gj7")
-linear_velocity = Vector2(0, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
 rotation = 0.0108286
@@ -147,9 +146,6 @@ rotation = 1.65896
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 softness = 16.0
-
-[node name="Wrist Angle Limiter 1 Pin" type="PinJoint2D" parent="."]
-position = Vector2(47, 216)
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
 position = Vector2(4, 272)

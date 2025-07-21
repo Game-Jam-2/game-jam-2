@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0w6x7mcsqror"]
+[gd_scene load_steps=9 format=3 uid="uid://d0w6x7mcsqror"]
 
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
 [ext_resource type="Script" uid="uid://bn0toyh2g3ty2" path="res://Enemy/enemy.gd" id="1_am0pq"]
 [ext_resource type="PackedScene" uid="uid://c44t73wct8usg" path="res://Enemy/Enemy Limbs/arm_basic_enemy.tscn" id="3_am0pq"]
+[ext_resource type="Script" uid="uid://oielko770mgb" path="res://Enemy/limb_breaker.gd" id="3_eqilm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 
@@ -70,6 +71,8 @@ collision_layer = 0
 collision_mask = 0
 mass = 10.015
 gravity_scale = 0.0
+script = ExtResource("3_eqilm")
+tension_threshold = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]
 position = Vector2(-1.19209e-07, 1.19209e-06)
