@@ -10,7 +10,7 @@ extends Node2D
 }
 
 # Swap this for testing limb scene
-var current_limb_scene: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
+var current_limb_scene: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 var current_limb: Node = null
 
 func _ready() -> void:
@@ -24,6 +24,19 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if current_limb and current_limb.has_method("physics_update"):
 		current_limb.physics_update(delta)
+	
+	if current_limb == torso:
+		if Input.is_action_pressed("d"):
+			if torso.linear_velocity.x <= 30:
+				torso.apply_central_impulse(Vector2.UP * stand_strength)
+				print("getting up")
+			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
+		if Input.is_action_pressed("a"):
+			if torso.linear_velocity.x >= -30:
+				torso.apply_central_impulse(Vector2.UP * stand_strength)
+				print("getting up")
+			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
+		
 
 func _attach_limb_to_slot(key: String) -> void:
 	var slot = sockets.get(key)

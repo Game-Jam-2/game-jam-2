@@ -24,12 +24,12 @@ func hover():
 				body.apply_central_impulse(Vector2.UP * hover_force * (1.0 - distance_to_floor / hover_height))
 
 func input():
-	if Input.is_action_pressed("a"):
+	if Input.is_action_pressed("a") and hovering:
 		body.apply_central_impulse(Vector2.LEFT * ascend_force)
-	if Input.is_action_pressed("d"):
+	if Input.is_action_pressed("d") and hovering:
 		body.apply_central_impulse(Vector2.RIGHT * ascend_force)
 
-	if Input.is_action_pressed("w"):
+	if Input.is_action_pressed("w") or Input.is_action_pressed("space"):
 		hovering = true
 		var up_direction = -body.transform.y
 		body.apply_central_impulse(up_direction * ascend_force)
