@@ -3,18 +3,21 @@ extends Node2D
 @onready var body: RigidBody2D = $Head
 @onready var floor_ray: RayCast2D = $FloorRay
 
-var hover_height := 700.0
-var hover_force := 370.0
-var tilt_force := 700.0
-var ascend_force := 100.0
-var max_hover_velocity := 200.0
+var hovering = false
+
+var hover_height = 700.0
+var def_hover_height = 700.0 #make same as hover_height
+var hover_force = 370.0
+var tilt_force = 700.0
+var ascend_force = 100.0
+var max_hover_velocity = 200.0
 
 func _physics_process(delta):
 	hover()
 	input()
 
 func hover():
-	if floor_ray.is_colliding():
+	if floor_ray.is_colliding() and hovering:
 		var distance_to_floor = floor_ray.get_collision_point().y - body.global_position.y
 		if distance_to_floor < hover_height:
 			if body.linear_velocity.y > -max_hover_velocity:
@@ -27,5 +30,10 @@ func input():
 		body.apply_central_impulse(Vector2.RIGHT * ascend_force)
 
 	if Input.is_action_pressed("w"):
+		hovering = true
 		var up_direction = -body.transform.y
 		body.apply_central_impulse(up_direction * ascend_force)
+	
+	if Input.is_action_pressed("s"):
+		hovering = false
+		
