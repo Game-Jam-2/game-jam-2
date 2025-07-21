@@ -13,7 +13,7 @@ var stand_strength = 200
 var roll_strength = 60
 
 # Swap this for testing limb scene
-var current_limb_scene: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
+var current_limb_scene: PackedScene = preload("res://Player/Limbs/Head_basic/Head_basic.tscn")
 var current_limb: Node = null
 var spriteTexture : Texture2D = preload("res://icon.svg")
 func _ready() -> void:
@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if current_limb and current_limb.has_method("physics_update"):
 		current_limb.physics_update(delta)
+	
 	if current_limb == torso:
 		if Input.is_action_pressed("d"):
 			if torso.linear_velocity.x <= 30:
