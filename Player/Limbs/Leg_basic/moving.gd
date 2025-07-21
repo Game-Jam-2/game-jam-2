@@ -1,16 +1,17 @@
 extends State
-var speed : int = 0
+var speed : int = 50
 var collision_in_progress = false
 var object_collided : Node2D
-var firstEntry:bool = true #represents the first time this state is entered used to ensure that 
+var first_entry:bool = true #represents the first time this state is entered used to ensure that 
 #connections made when the state is first entered are not made twice 
+var hand_boost : int = 10
 func enter(previous_state_path: String,data:= {}) -> void:
-	if firstEntry:
+	if first_entry:
 		object_reference.contact_monitor = true
 		object_reference.max_contacts_reported = 10
 		object_reference.body_shape_entered.connect(on_collision)
 		object_reference.body_shape_exited.connect(on_collision_end)
-		firstEntry = false
+		first_entry = false
 	
 
 func physics_update(delta: float) -> void:
@@ -18,7 +19,7 @@ func physics_update(delta: float) -> void:
 	var direction:Vector2 = (mouse_position - object_reference.global_position).normalized()
 	var distance = (mouse_position -object_reference.global_position).length()
 	var force = direction * distance * speed * delta
-	object_reference.apply_central_force(force * 10)
+	object_reference.apply_central_force(force * hand_boost)
 	object_reference.get_parent().get_node("ForeArm").apply_central_force(force)
 	object_reference.get_parent().get_node("Bicep").apply_central_force(force)
 

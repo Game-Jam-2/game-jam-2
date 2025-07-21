@@ -13,15 +13,17 @@ func enter(previous_state_path : String,data :={}) -> void:
 	swing_pin.global_position = object_reference.get_parent().get_node("Grab Point").position
 	swing_pin.disable_collision = false
 	object_reference.get_parent().add_child(swing_pin)
-	print("Pin Position" + str(swing_pin.global_position))
 	
 		
 func _physics_process(delta: float) -> void:
 	var mouse_position = object_reference.get_global_mouse_position()
-	var direction:Vector2 = (mouse_position - object_reference.get_parent().get_node("Bicep").global_position).normalized()
-	var distance = (mouse_position -object_reference.get_parent().get_node("Bicep").global_position).length()
+	var direction:Vector2 = (mouse_position - object_reference.get_parent().get_node("Hand").global_position).normalized()
+	var distance = (mouse_position -object_reference.get_parent().get_node("Hand").global_position).length()
 	var force = direction * distance * speed * delta
-	object_reference.get_parent().get_node("Bicep").apply_central_force(force)
+	
+		
+
+	object_reference.get_parent().get_node("Hand").apply_central_force(force)
 	if pull:
 		object_reference.get_parent().get_node("Bicep").apply_central_force(force * pull_strength)
 		object_reference.get_parent().get_node("ForeArm").apply_central_force(force * pull_strength)

@@ -14,7 +14,7 @@ var roll_strength = 60
 }
 
 # Swap this for testing limb scene
-var current_limb_scene: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
+var current_limb_scene: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
 var current_limb: Node = null
 
 func _ready() -> void:
@@ -57,9 +57,7 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.node_b = limb.get_child(0).get_path()
 	joint.global_position = slot.global_position
 	joint.bias = 0.0
-	joint.angular_limit_enabled
-	joint.angular_limit_lower = 0
-	joint.angular_limit_upper = 180
+
 	get_parent().add_child(joint)
 
 

@@ -12,8 +12,6 @@ absorbent = true
 
 [sub_resource type="GDScript" id="GDScript_ijwyr"]
 script/source = "extends RigidBody2D
-
-	
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
@@ -59,6 +57,7 @@ shape = SubResource("CircleShape2D_6khia")
 position = Vector2(-2, 55)
 collision_layer = 2
 collision_mask = 14
+mass = 2.06
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
@@ -96,7 +95,7 @@ position = Vector2(-1, 226)
 scale = Vector2(0.405, 0.405)
 node_a = NodePath("../ForeArm")
 node_b = NodePath("../Hand")
-bias = 0.9
+angular_limit_upper = 3.14159
 
 [node name="Hand" type="RigidBody2D" parent="."]
 position = Vector2(1, 255)
@@ -147,9 +146,6 @@ rotation = 1.65896
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 softness = 16.0
-
-[node name="Wrist Angle Limiter 1 Pin" type="PinJoint2D" parent="."]
-position = Vector2(47, 216)
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
 position = Vector2(4, 272)
