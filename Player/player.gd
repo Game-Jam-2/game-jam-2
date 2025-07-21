@@ -13,7 +13,7 @@ var stand_strength = 200
 var roll_strength = 60
 
 # Swap this for testing limb scene
-var current_limb_scene: PackedScene = preload("res://Player/Limbs/Head_basic/Head_basic.tscn")
+var current_limb_scene: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 var current_limb: Node = null
 var spriteTexture : Texture2D = preload("res://icon.svg")
 func _ready() -> void:
