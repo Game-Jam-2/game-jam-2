@@ -12,7 +12,7 @@ size = Vector2(3654, 37)
 [node name="Floor" type="StaticBody2D" parent="." groups=["Ground"]]
 light_mask = 4
 visibility_layer = 11
-position = Vector2(711, -473)
+position = Vector2(790, 428)
 collision_layer = 4
 collision_mask = 11
 
@@ -44,7 +44,7 @@ position = Vector2(1432, 86)
 shape = SubResource("RectangleShape2D_a230b")
 
 [node name="Enemy" parent="." instance=ExtResource("3_daoas")]
-position = Vector2(1655, -408)
+position = Vector2(2035, -1150)
 
 [node name="Player" parent="." instance=ExtResource("2_a230b")]
 position = Vector2(832, -16)
