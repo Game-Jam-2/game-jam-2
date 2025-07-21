@@ -29,7 +29,7 @@ texture = ExtResource("1_yv0sd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
 position = Vector2(-13, 10)
-polygon = PackedVector2Array(53, 93, 49, 53, 56, 37, 60, 7, 63, -23, 86, -47, 73, -61, 72, -85, 80, -92, 77, -110, 60, -110, 20, -126, -14, -131, -34, -129, -45, -121, -67, -110, -80, -109, -97, -95, -85, -78, -85, -60, -90, -48, -82, -29, -75, -10, -67, 13, -60, 38, -65, 71, -62, 86, -30, 96, -14, 93, -16, 116, -4, 111, 4, 122, 11, 96)
+polygon = PackedVector2Array(53, 93, 49, 53, 56, 37, 60, 7, 63, -23, 86, -47, 73, -61, 72, -85, 80, -92, 77, -110, 60, -110, 20, -126, -14, -131, -34, -129, -45, -121, -67, -110, -80, -109, -97, -95, -85, -78, -85, -75.3177, -85, -60, -90, -48, -82, -29, -75, -10, -67, 13, -60, 38, -65, 71, -62, 86, -30, 96, -14, 93, -16, 116, -4, 111, 4, 122, 11, 96)
 
 [node name="Camera2D" type="Camera2D" parent="Torso"]
 position = Vector2(2, -5)
@@ -72,7 +72,7 @@ collision_mask = 0
 position = Vector2(-1.2, 9.24001)
 shape = SubResource("CircleShape2D_46bvi")
 
-[node name="Head Joint 3" type="PinJoint2D" parent="."]
+[node name="Head Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
 position = Vector2(-43, -114.345)
@@ -82,7 +82,7 @@ node_a = NodePath("../Torso")
 node_b = NodePath("../Head Link")
 bias = 0.9
 
-[node name="Head Joint 4" type="PinJoint2D" parent="."]
+[node name="Head Joint 2" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
 position = Vector2(-25, -115)
