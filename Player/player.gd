@@ -9,6 +9,8 @@ extends Node2D
 	"5": $"Head Link"
 }
 
+var roll_strength = 60.0
+
 # Swap this for testing limb scene
 var current_limb_scene: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
 var current_limb: Node = null
@@ -24,6 +26,12 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if current_limb and current_limb.has_method("physics_update"):
 		current_limb.physics_update(delta)
+	if current_limb == torso:
+		if Input.is_action_pressed("d"):
+			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
+		if Input.is_action_pressed("a"):
+			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
+		
 
 func _attach_limb_to_slot(key: String) -> void:
 	var slot = sockets.get(key)
