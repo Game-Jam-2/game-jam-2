@@ -16,7 +16,7 @@ var roll_strength = 75
 # Swap this for testing limb scene
 var current_limb_scene: PackedScene
 var Head: PackedScene = preload("res://Player/Limbs/Head_basic/Head_basic.tscn")
-var Arm: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
+var Arm: PackedScene = preload("res://Player/Limbs/Arm_Katana/arm_katana.tscn")
 var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 
 var current_limb: Node = null
