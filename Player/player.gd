@@ -1,7 +1,7 @@
 extends Node2D
 
-var stand_strength = 200
-var roll_strength = 70
+var stand_strength = 150
+var roll_strength = 75
 
 
 @onready var torso: RigidBody2D = $Torso
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			if torso.linear_velocity.x >= -30:
 				torso.apply_central_impulse(Vector2.UP * stand_strength)
 				print("getting up")
-				torso.apply_central_impulse(Vector2.LEFT * roll_strength)
+			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
 		
 
 func _attach_limb_to_slot(key: String) -> void:
