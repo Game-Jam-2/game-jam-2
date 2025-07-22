@@ -32,45 +32,44 @@ physics_material_override = SubResource("PhysicsMaterial_ijwyr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="Katana Tip" type="RigidBody2D" parent="."]
-position = Vector2(-3.835, 284)
-collision_layer = 2
-collision_mask = 14
-mass = 0.2
-physics_material_override = SubResource("PhysicsMaterial_ijwyr")
-script = ExtResource("1_igd87")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana Tip"]
-position = Vector2(1.87, -6.675)
-shape = SubResource("CircleShape2D_6khia")
-
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
 bias = 0.9
 
 [node name="Elbow" type="PinJoint2D" parent="."]
-position = Vector2(0, 111)
+position = Vector2(-0.155, 110.48)
 scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Katana")
 bias = 0.9
 
 [node name="Katana" type="RigidBody2D" parent="."]
-position = Vector2(-1, 267)
+position = Vector2(-0.165009, 201)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 4
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_gwuy3")
+gravity_scale = 0.0
 script = ExtResource("1_gr8gs")
 
+[node name="Katana Tip" type="Area2D" parent="Katana"]
+position = Vector2(-3.83499, 86)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_igd87")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Tip"]
+position = Vector2(1.87, -6.675)
+shape = SubResource("CircleShape2D_6khia")
+
 [node name="Sprite2D" type="Sprite2D" parent="Katana"]
-position = Vector2(13, -72.5)
+position = Vector2(12, -3.5)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_s8hmk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Katana"]
-position = Vector2(0, -86.5)
+position = Vector2(-1, -17.5)
 polygon = PackedVector2Array(-4, 105, 7, 90, 7, -50, -5, -50)
 
 [node name="Bicep" type="RigidBody2D" parent="."]
@@ -79,6 +78,7 @@ collision_layer = 2
 collision_mask = 14
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
+gravity_scale = 0.0
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
 scale = Vector2(0.5, 0.5)

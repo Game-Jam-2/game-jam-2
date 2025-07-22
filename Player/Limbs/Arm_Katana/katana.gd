@@ -5,12 +5,14 @@ var move_speed = 8000
 
 
 func _physics_process(delta: float) -> void:
-	var direction = (get_global_mouse_position() - global_position).normalized()
-	apply_central_force(direction * move_speed)
+	var target_pos = get_global_mouse_position()
+	var to_target = target_pos - global_position
+	var distance = to_target.length()
+	var deadzone = 10.0  # Adjust this value as needed
 
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("right_mouse"):
-		lock_rotation = true
-	elif Input.is_action_just_released("right_mouse"):
-		lock_rotation = false
+	if distance > deadzone:
+		var direction = to_target.normalized()
+		apply_central_force(direction * move_speed)
+	else:
+		# Optionally, you can dampen the velocity to stop the object smoothly
+		linear_velocity = linear_velocity * 0.8

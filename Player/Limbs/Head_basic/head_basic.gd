@@ -9,7 +9,7 @@ var hover_height = 700.0
 var def_hover_height = 700.0 #make same as hover_height
 var hover_force = 370.0
 var tilt_force = 700.0
-var ascend_force = 100.0
+var ascend_force = 180.0
 var max_hover_velocity = 200.0
 
 func _physics_process(delta):
@@ -31,8 +31,7 @@ func input():
 
 	if Input.is_action_pressed("w") or Input.is_action_pressed("space"):
 		hovering = true
-		var up_direction = -body.transform.y
-		body.apply_central_impulse(up_direction * ascend_force)
+		body.apply_central_impulse(Vector2.UP * ascend_force)
 	
 	if Input.is_action_pressed("s"):
 		hovering = false
