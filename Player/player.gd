@@ -16,7 +16,7 @@ var roll_strength = 75
 # Swap this for testing limb scene
 var current_limb_scene: PackedScene
 var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
-var Arm: PackedScene = preload("res://Player/Limbs/Arm_Katana/arm_katana.tscn")
+var Arm: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
 var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 
 var current_limb: Node = null
@@ -56,11 +56,16 @@ func _physics_process(delta: float) -> void:
 
 func _attach_limb_to_slot(key: String) -> void:
 	var slot = sockets.get(key)
+	
+
 	if not slot or slot.get_child_count() > 1:
 		return
 
 	# 🧪 Utter witchcraft – do not touch
 	var limb = current_limb_scene.instantiate()
+	var limb_rigid_bodies:Array[Node] = limb.get_children() 
+
+			
 	slot.add_child(limb)
 	limb.global_position = slot.global_position
 
@@ -69,6 +74,7 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.node_b = limb.get_child(0).get_path()
 	joint.global_position = slot.global_position
 	get_parent().add_child(joint)
+
 
 
 	current_limb = limb

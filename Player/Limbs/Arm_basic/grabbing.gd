@@ -4,7 +4,9 @@ var swing_pin: PinJoint2D
 var sprite:Sprite2D
 var texture : Texture = load("res://icon.svg")
 var pull:bool = true
-var pull_strength = 100
+var pull_strength = 500
+var hand_boost : int = 500
+
 func enter(previous_state_path : String,data :={}) -> void:
 	swing_pin = PinJoint2D.new()
 	swing_pin.set_node_a(object_reference.get_path())
@@ -15,18 +17,18 @@ func enter(previous_state_path : String,data :={}) -> void:
 	object_reference.get_parent().add_child(swing_pin)
 	
 		
-func _physics_process(delta: float) -> void:
+func physics_update(delta: float) -> void:
 	var mouse_position = object_reference.get_global_mouse_position()
 	var direction:Vector2 = (mouse_position - object_reference.get_parent().get_node("Hand").global_position).normalized()
 	var distance = (mouse_position -object_reference.get_parent().get_node("Hand").global_position).length()
-	var force = direction * distance * speed * delta
+	var force = direction * speed * delta
 	
 		
 
-	object_reference.get_parent().get_node("Hand").apply_central_force(force)
+	object_reference.get_parent().get_node("Hand").apply_central_force(force *  hand_boost)
 	if pull:
-		object_reference.get_parent().get_node("Bicep").apply_central_force(force * pull_strength)
-		object_reference.get_parent().get_node("ForeArm").apply_central_force(force * pull_strength)
+		object_reference.get_parent().get_node("Bicep").apply_impulse(force * pull_strength)
+		object_reference.get_parent().get_node("ForeArm").apply_impulse(force * pull_strength)
 		pull = false
 	
 func handle_input(event: InputEvent) -> void:
