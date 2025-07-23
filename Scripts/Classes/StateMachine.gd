@@ -12,9 +12,9 @@ func _ready() -> void:
 		
 	await  owner.ready
 	current_state.enter("")
+	print("intial state " + str(current_state))
 		
 func _transistion_to_next_state(target_state_path: String ,data:Dictionary = {}) -> void:
-	print("transistioning")
 	var previous_state_path := current_state.name
 	current_state.exit()
 	current_state = get_node(target_state_path)

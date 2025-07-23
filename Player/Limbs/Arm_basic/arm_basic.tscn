@@ -1,27 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://4wambd6lyjw4"]
+[gd_scene load_steps=15 format=3 uid="uid://4wambd6lyjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_a7d8b"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_rmjea"]
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="3_nur61"]
 [ext_resource type="Script" uid="uid://ckrqtbrww8gnc" path="res://Player/Limbs/Leg_basic/hand_state_machine.gd" id="5_vimqa"]
-[ext_resource type="Script" uid="uid://b6kgvrxfdpf03" path="res://Player/Limbs/Leg_basic/moving.gd" id="6_vimqa"]
+[ext_resource type="Script" uid="uid://b6kgvrxfdpf03" path="res://Player/Limbs/Arm_basic/moving.gd" id="6_vimqa"]
 [ext_resource type="Script" uid="uid://mf1b00t6o5nl" path="res://Player/Limbs/Arm_basic/grabbing.gd" id="7_0hup5"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
-absorbent = true
-
-[sub_resource type="GDScript" id="GDScript_ijwyr"]
-script/source = "extends RigidBody2D
-
-"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
+radius = 8.94427
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nnko"]
 absorbent = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkyer"]
-radius = 36.0
+radius = 38.0
 height = 224.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gwuy3"]
@@ -48,8 +41,6 @@ position = Vector2(387, 39)
 collision_layer = 2
 collision_mask = 14
 mass = 0.2
-physics_material_override = SubResource("PhysicsMaterial_ijwyr")
-script = SubResource("GDScript_ijwyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
 shape = SubResource("CircleShape2D_6khia")
@@ -58,6 +49,7 @@ shape = SubResource("CircleShape2D_6khia")
 position = Vector2(-2, 55)
 collision_layer = 2
 collision_mask = 14
+mass = 2.06
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
 
 [node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
@@ -95,7 +87,7 @@ position = Vector2(-1, 226)
 scale = Vector2(0.405, 0.405)
 node_a = NodePath("../ForeArm")
 node_b = NodePath("../Hand")
-bias = 0.9
+angular_limit_upper = 3.14159
 
 [node name="Hand" type="RigidBody2D" parent="."]
 position = Vector2(1, 255)
@@ -116,8 +108,10 @@ rotation = 0.00591673
 scale = Vector2(0.3, 0.3)
 shape = SubResource("CapsuleShape2D_ylmc8")
 
-[node name="StateMachine" type="Node2D" parent="Hand"]
+[node name="StateMachine" type="Node" parent="Hand" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_vimqa")
+initial_state = NodePath("Moving")
+metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
 [node name="Moving" type="Node" parent="Hand/StateMachine"]
 script = ExtResource("6_vimqa")
@@ -146,9 +140,6 @@ rotation = 1.65896
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 softness = 16.0
-
-[node name="Wrist Angle Limiter 1 Pin" type="PinJoint2D" parent="."]
-position = Vector2(47, 216)
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
 position = Vector2(4, 272)
