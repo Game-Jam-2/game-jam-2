@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	var to_target = target_pos - global_position
 	var distance = to_target.length()
 
-	if freeze != true:
+	if freeze != true:5
 		if distance > deadzone:
 			var direction = to_target.normalized()
 			apply_central_force(direction * move_speed)
