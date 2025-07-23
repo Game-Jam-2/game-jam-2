@@ -44,6 +44,17 @@ node_a = NodePath("../Bicep")
 node_b = NodePath("../Katana")
 bias = 0.9
 
+[node name="Katana Tip" type="RigidBody2D" parent="."]
+position = Vector2(-4, 287)
+collision_layer = 8
+collision_mask = 4
+freeze = true
+script = ExtResource("1_igd87")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana Tip"]
+position = Vector2(1.87, -6.675)
+shape = SubResource("CircleShape2D_6khia")
+
 [node name="Katana" type="RigidBody2D" parent="."]
 position = Vector2(-0.165009, 201)
 collision_layer = 2
@@ -53,13 +64,12 @@ physics_material_override = SubResource("PhysicsMaterial_gwuy3")
 gravity_scale = 0.0
 script = ExtResource("1_gr8gs")
 
-[node name="Katana Tip" type="Area2D" parent="Katana"]
+[node name="Katana Stab Detector" type="Area2D" parent="Katana"]
 position = Vector2(-3.83499, 86)
 collision_layer = 8
 collision_mask = 4
-script = ExtResource("1_igd87")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Tip"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Stab Detector"]
 position = Vector2(1.87, -6.675)
 shape = SubResource("CircleShape2D_6khia")
 
