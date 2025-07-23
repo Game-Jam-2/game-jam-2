@@ -29,13 +29,13 @@ shape = SubResource("CircleShape2D_xjcec")
 scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Neck")
 node_b = NodePath("../Head")
+softness = 1.0
 
 [node name="Neck Muscle 1" type="DampedSpringJoint2D" parent="."]
 position = Vector2(-21.6, -31.865)
 node_a = NodePath("../Head")
 node_b = NodePath("../Neck")
 rest_length = 60.0
-stiffness = 64.0
 damping = 0.01
 
 [node name="Neck Muscle 2" type="DampedSpringJoint2D" parent="."]
@@ -43,7 +43,6 @@ position = Vector2(21.6, -31.865)
 node_a = NodePath("../Head")
 node_b = NodePath("../Neck")
 rest_length = 60.0
-stiffness = 64.0
 damping = 0.01
 
 [node name="Head" type="RigidBody2D" parent="."]

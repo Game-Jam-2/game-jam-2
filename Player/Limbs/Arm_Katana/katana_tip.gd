@@ -1,17 +1,18 @@
-extends RigidBody2D
+extends Area2D
 
-@onready var Katana = $"../Katana"
-@onready var tip_detector = $"../Katana/Katana Stab Detector"
+@onready var Katana = $".."
+@onready var swing_pin = $"../../swing_pin"
 
 var anchor: Vector2
 var hooked = false
 var hook_threshold = 10.0
 var tips_in = false
 var Katana_pos: Vector2
+var hook_body: Node
 
 func _ready():
-	tip_detector.connect("body_entered", _on_body_entered)
-	tip_detector.connect("body_exited", _on_body_exited)
+	connect("body_entered", _on_body_entered)
+	connect("body_exited", _on_body_exited)
 
 func _process(delta: float) -> void:
 	if not hooked:
@@ -19,8 +20,10 @@ func _process(delta: float) -> void:
 			anchor = global_position
 			hooked = true
 			Katana.lock_rotation = true
-			Katana_pos = Katana.global_position
-			freeze = true
+			swing_pin.set_node_b(hook_body.get_path())
+			swing_pin.bias = 0.9
+			swing_pin.global_position = anchor
+			get_parent().get_parent().add_child(swing_pin)
 			
 		elif Input.is_action_pressed("right_mouse"):
 			Katana.lock_rotation = true
@@ -28,19 +31,14 @@ func _process(delta: float) -> void:
 			Katana.lock_rotation = false
 	elif Input.is_action_just_released("left_mouse"):
 			hooked = false
-			freeze = false
-	
-
-func _physics_process(delta: float) -> void:
-	if hooked:
-		print("hooked")
-		global_position = anchor
-		Katana.global_position = Katana_pos
+			swing_pin.node_b = NodePath("")
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Ground"):
+		hook_body = body
 		tips_in = true
 
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("Ground"):
+		hook_body = null
 		tips_in = false
