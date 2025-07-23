@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @onready var Katana = $"../Katana"
-@onready var tip_detector = $"../Katana Tip Detector"
+@onready var tip_detector = $"../Katana/Katana Stab Detector"
 
 var anchor: Vector2
 var hooked = false

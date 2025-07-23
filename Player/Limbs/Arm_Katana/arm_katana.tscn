@@ -55,18 +55,6 @@ script = ExtResource("1_igd87")
 position = Vector2(1.87, -6.675)
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="Katana Stab Joint" type="PinJoint2D" parent="."]
-node_a = NodePath("../Katana")
-
-[node name="Katana Tip Detector" type="Area2D" parent="."]
-position = Vector2(-4, 287)
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana Tip Detector"]
-position = Vector2(1.87, -6.675)
-shape = SubResource("CircleShape2D_6khia")
-
 [node name="Katana" type="RigidBody2D" parent="."]
 position = Vector2(-0.165009, 201)
 collision_layer = 2
@@ -75,6 +63,15 @@ mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_gwuy3")
 gravity_scale = 0.0
 script = ExtResource("1_gr8gs")
+
+[node name="Katana Stab Detector" type="Area2D" parent="Katana"]
+position = Vector2(-3.83499, 86)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Stab Detector"]
+position = Vector2(1.87, -6.675)
+shape = SubResource("CircleShape2D_6khia")
 
 [node name="Sprite2D" type="Sprite2D" parent="Katana"]
 position = Vector2(12, -3.5)

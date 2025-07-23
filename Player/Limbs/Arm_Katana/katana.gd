@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var move_speed = 8000
-var deadzone = 10.0
+var deadzone = 20.0
 
 
 
@@ -10,8 +10,9 @@ func _physics_process(delta: float) -> void:
 	var to_target = target_pos - global_position
 	var distance = to_target.length()
 
-	if distance > deadzone:
-		var direction = to_target.normalized()
-		apply_central_force(direction * move_speed)
-	else:
-		linear_velocity = linear_velocity * 0.8
+	if freeze != true:
+		if distance > deadzone:
+			var direction = to_target.normalized()
+			apply_central_force(direction * move_speed)
+		else:
+			linear_velocity = linear_velocity * 0.8
