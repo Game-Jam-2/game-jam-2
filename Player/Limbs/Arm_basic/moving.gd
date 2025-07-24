@@ -42,7 +42,6 @@ func handle_input(event: InputEvent) -> void:
 func on_collision(body_rid:RID,body:Node,body_shape_index: int, local_shape_index:int) -> void:
 	collision_in_progress = true
 	object_collided = body
-	print(body)
 
 func on_collision_end(body_rid:RID,body:Node,body_shape_index: int, local_shape_index:int) -> void:
 	collision_in_progress = false
