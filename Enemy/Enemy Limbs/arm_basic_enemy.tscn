@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c44t73wct8usg"]
+[gd_scene load_steps=16 format=3 uid="uid://c44t73wct8usg"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_1045o"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_vlu41"]
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="3_5aumv"]
+[ext_resource type="Script" uid="uid://c2mbm30fb0o53" path="res://Enemy/Enemy Limbs/enemy_arm_state_machine.gd" id="4_um587"]
+[ext_resource type="Script" uid="uid://cysns7dwlqdla" path="res://Enemy/Enemy Limbs/enemy_arm_idle.gd" id="5_d7tn5"]
+[ext_resource type="Script" uid="uid://b3soj74fm74dx" path="res://Enemy/Enemy Limbs/enemy_arm_chasing.gd" id="6_hsgbf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
 absorbent = true
@@ -89,8 +92,8 @@ node_b = NodePath("../Hand")
 bias = 0.9
 
 [node name="Hand" type="RigidBody2D" parent="."]
-position = Vector2(32, 232)
-rotation = 1.7909
+position = Vector2(2, 248)
+rotation = 3.12025
 collision_layer = 2
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_02gj7")
@@ -102,9 +105,21 @@ texture = ExtResource("3_5aumv")
 
 [node name="FootCollisionShape" type="CollisionShape2D" parent="Hand"]
 position = Vector2(1, -4.37114e-08)
-rotation = 0.00591673
+rotation = -0.027947
 scale = Vector2(0.3, 0.3)
 shape = SubResource("CapsuleShape2D_ylmc8")
+
+[node name="StateMachine" type="Node2D" parent="Hand" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_um587")
+initial_state = NodePath("Enemy_Arm_Idle")
+
+[node name="Enemy_Arm_Idle" type="Node" parent="Hand/StateMachine"]
+script = ExtResource("5_d7tn5")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="Enemy_Arm_Chasing" type="Node" parent="Hand/StateMachine"]
+script = ExtResource("6_hsgbf")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
 position = Vector2(0, 4)
@@ -113,18 +128,18 @@ node_b = NodePath("../Shoulder")
 bias = 0.9
 
 [node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
-position = Vector2(62, 237)
+position = Vector2(5, 277)
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 bias = 0.9
 
 [node name="Hand to Grab Point 2" type="PinJoint2D" parent="."]
-position = Vector2(58, 245)
+position = Vector2(-2, 277)
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
-position = Vector2(63, 242)
+position = Vector2(1, 281)
 collision_layer = 2
 collision_mask = 14
 mass = 0.001

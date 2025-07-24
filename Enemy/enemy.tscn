@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0w6x7mcsqror"]
+[gd_scene load_steps=10 format=3 uid="uid://d0w6x7mcsqror"]
 
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
 [ext_resource type="Script" uid="uid://bn0toyh2g3ty2" path="res://Enemy/enemy.gd" id="1_am0pq"]
 [ext_resource type="PackedScene" uid="uid://c44t73wct8usg" path="res://Enemy/Enemy Limbs/arm_basic_enemy.tscn" id="3_am0pq"]
 [ext_resource type="Script" uid="uid://oielko770mgb" path="res://Enemy/limb_breaker.gd" id="3_eqilm"]
+[ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="5_ncf7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 
@@ -24,8 +25,32 @@ node_a = NodePath("../Torso")
 [node name="Torso" type="RigidBody2D" parent="."]
 visibility_layer = 4
 position = Vector2(-12, 7)
+collision_layer = 32
 collision_mask = 4
 mass = 20.0
+
+[node name="Player_Detect _Left" type="RayCast2D" parent="Torso"]
+position = Vector2(-7, 28)
+target_position = Vector2(-987, -1)
+collide_with_areas = true
+script = ExtResource("5_ncf7h")
+
+[node name="Player Detect Right" type="RayCast2D" parent="Torso"]
+position = Vector2(-7, 28)
+target_position = Vector2(942, -1)
+script = ExtResource("5_ncf7h")
+
+[node name="Player_Detect_Down" type="RayCast2D" parent="Torso"]
+position = Vector2(-7, 30)
+target_position = Vector2(-1, 191)
+collide_with_areas = true
+script = ExtResource("5_ncf7h")
+
+[node name="Player_Detect_Up" type="RayCast2D" parent="Torso"]
+position = Vector2(-7, 30)
+target_position = Vector2(-6, -334)
+collide_with_areas = true
+script = ExtResource("5_ncf7h")
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
 position = Vector2(0, -1)
@@ -69,7 +94,6 @@ position = Vector2(-119, -54)
 rotation = 0.975018
 collision_layer = 0
 collision_mask = 0
-mass = 10.015
 gravity_scale = 0.0
 script = ExtResource("3_eqilm")
 tension_threshold = 1000
