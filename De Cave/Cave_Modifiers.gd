@@ -1,6 +1,8 @@
 extends Node
 class_name LimbManager
 
+const limb = preload("res://De Cave/arm_cave_test.tscn")
+
 var groups := {
 	"human": {
 		"sacrificed_count": 0,
@@ -37,6 +39,19 @@ var limbs := {
 	}
 }
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Remove Limb in Cave"):
+		on_limb_enter_cave("limb")
+
+
+
+# Called when a new limb enters cave (either armoury, pile or grinder) (currently spawning every time hit tab not just once help)
+func on_limb_enter_cave(limb_name: String):
+	var limb_scene = limbs["arm_basic"]
+	var limb_instance = limb.instantiate()
+	limb_instance.position = get_viewport().get_mouse_position()
+	add_child(limb_instance)
+
 
 # Called when a limb is collected
 func on_limb_collected(limb_name: String):
@@ -59,4 +74,6 @@ func on_limb_sacrificed(limb_name: String):
 
 
 func _on_collision_shape_2d_limb_sacrificed() -> void:
-	print("limb tijjmeee")
+	print("limb time")
+	#on_limb_sacrificed()
+	
