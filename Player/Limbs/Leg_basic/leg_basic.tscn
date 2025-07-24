@@ -42,6 +42,7 @@ visibility_layer = 0
 position = Vector2(-0.08, 0.06)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Hip")
+softness = 0.1
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 position = Vector2(-2, 55)
@@ -65,22 +66,23 @@ scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
 bias = 0.26
+softness = 0.5
 angular_limit_upper = 1.48353
 
 [node name="KneeMuscle" type="DampedSpringJoint2D" parent="."]
 light_mask = 0
-position = Vector2(-14, 13)
+position = Vector2(-10, 55)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Calf")
-length = 200.0
-rest_length = 170.0
-stiffness = 64.0
+length = 120.0
+rest_length = 110.0
+stiffness = 32.0
 damping = 0.01
 
 [node name="Calf" type="RigidBody2D" parent="."]
 position = Vector2(-2, 169)
 collision_layer = 2
-collision_mask = 4
+collision_mask = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="Calf"]
 scale = Vector2(0.5, 0.5)
@@ -99,6 +101,7 @@ scale = Vector2(0.405, 0.405)
 node_a = NodePath("../Calf")
 node_b = NodePath("../Foot")
 bias = 0.26
+softness = 0.5
 angular_limit_upper = 1.5708
 
 [node name="AnkleMuscle" type="DampedSpringJoint2D" parent="."]
