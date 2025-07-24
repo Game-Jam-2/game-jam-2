@@ -5,11 +5,11 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yv0sd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_rupg5")
@@ -35,14 +35,85 @@ polygon = PackedVector2Array(53, 93, 54, 56.1, 56, 37, 60, 7, 63, -23, 79, -53.9
 [node name="Camera2D" type="Camera2D" parent="Torso"]
 position = Vector2(0, -0.68)
 
-[node name="Right Arm Link" type="RigidBody2D" parent="."]
+[node name="Connector 1" type="RigidBody2D" parent="."]
+position = Vector2(1.2, -124.34)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 1"]
+position = Vector2(-1.2, 9.24001)
+shape = SubResource("CircleShape2D_46bvi")
+
+[node name="Connector 2" type="RigidBody2D" parent="."]
 position = Vector2(92, -56.1)
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Arm Link"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 2"]
 position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_46bvi")
+
+[node name="Connector 3" type="RigidBody2D" parent="."]
+position = Vector2(53, 121.9)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 3"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_ocw3p")
+
+[node name="Connector 4" type="RigidBody2D" parent="."]
+position = Vector2(-49, 117.9)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 4"]
+position = Vector2(4, -3)
+shape = SubResource("CircleShape2D_yv0sd")
+
+[node name="Connector 5" type="RigidBody2D" parent="."]
+position = Vector2(-84, -54.1)
+rotation = 0.975018
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 5"]
+position = Vector2(3.90004, -2.18854)
+shape = SubResource("CircleShape2D_rupg5")
+
+[node name="Left Leg Joint 1" type="PinJoint2D" parent="."]
+position = Vector2(-37.22, 109.945)
+scale = Vector2(0.455, 0.455)
+node_a = NodePath("../Torso")
+node_b = NodePath("../Connector 4")
+bias = 0.9
+
+[node name="Left Leg Joint 2" type="PinJoint2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(-51.675, 107.455)
+scale = Vector2(0.455, 0.455)
+node_a = NodePath("../Torso")
+node_b = NodePath("../Connector 4")
+bias = 0.9
+
+[node name="Right Leg Joint 1" type="PinJoint2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(45.07, 114.9)
+scale = Vector2(0.455, 0.455)
+node_a = NodePath("../Torso")
+node_b = NodePath("../Connector 3")
+bias = 0.9
+
+[node name="Right Leg Joint 2" type="PinJoint2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(59.84, 114.9)
+scale = Vector2(0.455, 0.455)
+node_a = NodePath("../Torso")
+node_b = NodePath("../Connector 3")
+bias = 0.9
 
 [node name="Right Arm Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
@@ -51,7 +122,7 @@ position = Vector2(82.8, -46.205)
 rotation = 0.975018
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
-node_b = NodePath("../Right Arm Link")
+node_b = NodePath("../Connector 2")
 bias = 0.9
 
 [node name="Right Arm Joint 2" type="PinJoint2D" parent="."]
@@ -61,17 +132,8 @@ position = Vector2(82.8, -63.86)
 rotation = 0.975018
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
-node_b = NodePath("../Right Arm Link")
+node_b = NodePath("../Connector 2")
 bias = 0.9
-
-[node name="Head Link" type="RigidBody2D" parent="."]
-position = Vector2(1.2, -124.34)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head Link"]
-position = Vector2(-1.2, 9.24001)
-shape = SubResource("CircleShape2D_46bvi")
 
 [node name="Head Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
@@ -80,7 +142,7 @@ position = Vector2(-8, -114.445)
 rotation = 0.975018
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
-node_b = NodePath("../Head Link")
+node_b = NodePath("../Connector 1")
 bias = 0.9
 
 [node name="Head Joint 2" type="PinJoint2D" parent="."]
@@ -90,18 +152,8 @@ position = Vector2(10, -115.1)
 rotation = 0.975018
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
-node_b = NodePath("../Head Link")
+node_b = NodePath("../Connector 1")
 bias = 0.9
-
-[node name="Left Arm Link" type="RigidBody2D" parent="."]
-position = Vector2(-84, -54.1)
-rotation = 0.975018
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]
-position = Vector2(3.90004, -2.18854)
-shape = SubResource("CircleShape2D_rupg5")
 
 [node name="Left Arm Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
@@ -110,7 +162,7 @@ position = Vector2(-76.15, -45.33)
 rotation = -0.603061
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
-node_b = NodePath("../Left Arm Link")
+node_b = NodePath("../Connector 5")
 bias = 0.9
 softness = 0.36
 
@@ -121,58 +173,6 @@ position = Vector2(-76.15, -58.18)
 rotation = -0.603061
 scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
-node_b = NodePath("../Left Arm Link")
+node_b = NodePath("../Connector 5")
 bias = 0.9
 softness = 0.44
-
-[node name="Left Leg Link" type="RigidBody2D" parent="."]
-position = Vector2(-49, 117.9)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Leg Link"]
-position = Vector2(4, -3)
-shape = SubResource("CircleShape2D_yv0sd")
-
-[node name="Left Leg Joint 1" type="PinJoint2D" parent="."]
-position = Vector2(-37.22, 109.945)
-scale = Vector2(0.455, 0.455)
-node_a = NodePath("../Torso")
-node_b = NodePath("../Left Leg Link")
-bias = 0.9
-
-[node name="Left Leg Joint 2" type="PinJoint2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-position = Vector2(-51.675, 107.455)
-scale = Vector2(0.455, 0.455)
-node_a = NodePath("../Torso")
-node_b = NodePath("../Left Leg Link")
-bias = 0.9
-
-[node name="Right Leg Link" type="RigidBody2D" parent="."]
-position = Vector2(53, 121.9)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Leg Link"]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_ocw3p")
-
-[node name="Right Leg Joint 1" type="PinJoint2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-position = Vector2(45.07, 114.9)
-scale = Vector2(0.455, 0.455)
-node_a = NodePath("../Torso")
-node_b = NodePath("../Right Leg Link")
-bias = 0.9
-
-[node name="Right Leg Joint 2" type="PinJoint2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-position = Vector2(59.84, 114.9)
-scale = Vector2(0.455, 0.455)
-node_a = NodePath("../Torso")
-node_b = NodePath("../Right Leg Link")
-bias = 0.9

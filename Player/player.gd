@@ -6,11 +6,11 @@ var roll_strength = 75
 
 @onready var torso: RigidBody2D = $Torso
 @onready var sockets := {
-	"1": $"Left Arm Link",
-	"2": $"Right Arm Link",
-	"3": $"Left Leg Link",
-	"4": $"Right Leg Link",
-	"5": $"Head Link"
+	"1": $"Connector 1",
+	"2": $"Connector 2",
+	"3": $"Connector 3",
+	"4": $"Connector 4",
+	"5": $"Connector 5"
 }
 
 # Swap this for testing limb scene
@@ -25,9 +25,9 @@ func _ready() -> void:
 	current_limb = torso
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("5"):
+	if Input.is_action_just_pressed("1"):
 		current_limb_scene = Head
-	if Input.is_action_just_pressed("1") or Input.is_action_just_pressed("2"):
+	if Input.is_action_just_pressed("2") or Input.is_action_just_pressed("5"):
 		current_limb_scene = Arm
 	if Input.is_action_just_pressed("3") or Input.is_action_just_pressed("4"):
 		current_limb_scene = Leg
