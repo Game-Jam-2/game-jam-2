@@ -122,22 +122,18 @@ func balance_torso_to_upright():
 	var x_diff = torso_pos.x - foot_pos.x
 	var abs_diff = abs(x_diff)
 
-	# Normalize difference (adjust 100.0 based on rig scale)
 	var balance_factor = clamp(abs_diff / 100.0, 0.0, 1.0)
-
-	# Adjust rest length based on direction
-	var length_adjust = lerp(0.0, 10.0, balance_factor)  # How much to adjust rest_length
+	var length_adjust = lerp(0.0, 10.0, balance_factor)
 	
 	if x_diff > 5:
-		# torso too far right — pull left
+		# torso too far right
 		left_torso_muscle.rest_length = max(left_torso_muscle.rest_length - length_adjust, 5.0)
 		right_torso_muscle.rest_length = min(right_torso_muscle.rest_length + length_adjust, 100.0)
 	elif x_diff < -5:
-		# torso too far left — pull right
+		# torso too far left
 		right_torso_muscle.rest_length = max(right_torso_muscle.rest_length - length_adjust, 5.0)
 		left_torso_muscle.rest_length = min(left_torso_muscle.rest_length + length_adjust, 100.0)
 
-	# Adjust stiffness proportionally — stiffer when more off-balance
 	var target_stiffness = lerp(10.0, 100.0, balance_factor)
 	left_torso_muscle.stiffness = target_stiffness
 	right_torso_muscle.stiffness = target_stiffness
@@ -162,20 +158,15 @@ func stand_up():
 		await get_tree().create_timer(0.05).timeout
 		attempts += 1
 
-	# Step 3: Extend leg to push torso upward
 	KneeMuscle.rest_length = knee_rest_length
 	AnkleMuscle.rest_length = ankle_rest_length
 	KneeMuscle.stiffness = 100
 	AnkleMuscle.stiffness = 100
 
-	# Step 4: Apply upward force and torque to help stand
 	Torso.apply_impulse(Vector2(0, -200))
 	Torso.apply_torque_impulse(-Torso.rotation * 500)
-
-	# Wait a moment to let the system settle
 	await get_tree().create_timer(0.4).timeout
 
-	# Step 5: Re-enable torso balancing
 	left_torso_muscle.stiffness = 40
 	right_torso_muscle.stiffness = 40
 	left_torso_muscle.damping = 10
