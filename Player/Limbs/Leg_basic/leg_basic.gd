@@ -3,6 +3,7 @@ extends Node2D
 @onready var KneeMuscle = $KneeMuscle
 @onready var AnkleMuscle = $AnkleMuscle
 @onready var Thigh = $Thigh
+@onready var Calf = $Calf
 @onready var Foot = $Foot
 @onready var ground_detector: Area2D = $Foot/ground_detection
 @onready var current_connector: RigidBody2D = get_parent()
@@ -47,6 +48,10 @@ func _process(delta: float) -> void:
 		AnkleMuscle.stiffness = 64
 		KneeMuscle.rest_length = KneeMuscle.length
 		AnkleMuscle.rest_length = AnkleMuscle.length
+		if is_grounded:
+			#accumulates as long as grounded, adding force upward to begin jump, and once not grounded, release impulse
+			#this simulates bending leg to jump higher
+			pass
 
 	elif Input.is_action_just_released("w"):
 		KneeMuscle.stiffness = knee_stiffness
@@ -54,9 +59,10 @@ func _process(delta: float) -> void:
 
 
 	elif Input.is_action_pressed("s"):
-		KneeMuscle.rest_length = 5
-		AnkleMuscle.rest_length = 5
-		torso_target.y += 100
+		print(KneeMuscle.rest_length)
+		print(AnkleMuscle.rest_length)
+		KneeMuscle.rest_length = 60
+		AnkleMuscle.rest_length = 30
 		
 	elif Input.is_action_just_released("s"):
 		KneeMuscle.rest_length = knee_rest_length
@@ -64,13 +70,31 @@ func _process(delta: float) -> void:
 		torso_target.y -= 100
 
 	if Input.is_action_pressed("a"):
-		Torso.apply_central_force(Vector2(-50,0))
+		Torso.apply_central_force(Vector2(-1000,20))
+		Foot.apply_central_force(Vector2(-20,20))
 	elif Input.is_action_pressed("d"):
-		Torso.apply_central_force(Vector2(50,0))
+		Torso.apply_central_force(Vector2(1000,200))
+		Foot.apply_central_force(Vector2(20,200))
 
 func _physics_process(delta: float) -> void:
 	find_torso_target()
+	limit_velocity()
 	balance()
+
+func limit_velocity():
+	var max_speed = 300.0
+
+	if Torso.linear_velocity.length() > max_speed:
+		Torso.linear_velocity = Torso.linear_velocity.normalized() * max_speed
+
+	if Thigh.linear_velocity.length() > max_speed:
+		Thigh.linear_velocity = Thigh.linear_velocity.normalized() * max_speed
+
+	if Calf.linear_velocity.length() > max_speed:
+		Calf.linear_velocity = Calf.linear_velocity.normalized() * max_speed
+
+	if Foot.linear_velocity.length() > max_speed:
+		Foot.linear_velocity = Foot.linear_velocity.normalized() * max_speed
 
 
 func connect_torso_muscles():
@@ -141,12 +165,22 @@ func find_torso_target():
 	torso_target = Vector2(target_x, target_y)
 
 func balance():
-	if not is_grounded:
-		left_torso_muscle.stiffness = stiff
-		right_torso_muscle.stiffness = stiff
+	if !is_grounded:
+		left_torso_muscle.stiffness = 64
+		right_torso_muscle.stiffness = 64
+		left_torso_muscle.bias = 0.9
+		right_torso_muscle.bias = 0.9
+		left_torso_muscle.rest_length = left_torso_muscle.length
+		right_torso_muscle.rest_length = left_torso_muscle.length
+		left_torso_muscle.damping = 0.01
+		right_torso_muscle.damping = 0.01
 		return
+		
 	left_torso_muscle.stiffness = 0
 	right_torso_muscle.stiffness = 0
+	left_torso_muscle.bias = 0
+	right_torso_muscle.bias = 0
+	
 	# Target velocity scaling (tune these)
 	var max_x_speed = 100.0
 	var max_y_speed = 75.0
