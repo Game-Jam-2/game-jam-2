@@ -45,12 +45,10 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("d"):
 			if torso.linear_velocity.x <= 30:
 				torso.apply_central_impulse(Vector2.UP * stand_strength)
-				print("getting up")
 			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
 		if Input.is_action_pressed("a"):
 			if torso.linear_velocity.x >= -30:
 				torso.apply_central_impulse(Vector2.UP * stand_strength)
-				print("getting up")
 			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
 		
 
