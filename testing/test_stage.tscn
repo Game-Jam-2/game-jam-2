@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://buiwatv1812e3"]
+[gd_scene load_steps=6 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
+[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background.png" id="1_d3c17"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
 [ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="3_daoas"]
 
@@ -8,6 +9,29 @@
 size = Vector2(3654, 37)
 
 [node name="TestStage" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(7042, -2591)
+scale = Vector2(14.7892, 14.7892)
+texture = ExtResource("1_d3c17")
+region_enabled = true
+region_rect = Rect2(0, 0, 8192, 324)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(1431, -444)
+scale = Vector2(3.84568, 3.84568)
+texture = ExtResource("1_d3c17")
+region_enabled = true
+region_rect = Rect2(0, 0, 8192, 324)
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["Ground"]]
 light_mask = 4
