@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c44t73wct8usg"]
+[gd_scene load_steps=17 format=3 uid="uid://c44t73wct8usg"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_1045o"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_vlu41"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c2mbm30fb0o53" path="res://Enemy/Enemy Limbs/enemy_arm_state_machine.gd" id="4_um587"]
 [ext_resource type="Script" uid="uid://cysns7dwlqdla" path="res://Enemy/Enemy Limbs/enemy_arm_idle.gd" id="5_d7tn5"]
 [ext_resource type="Script" uid="uid://b3soj74fm74dx" path="res://Enemy/Enemy Limbs/enemy_arm_chasing.gd" id="6_hsgbf"]
+[ext_resource type="Script" uid="uid://dbhw721hp54rw" path="res://Enemy/Enemy Limbs/Enemy_Attacking.gd" id="7_wupst"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
 absorbent = true
@@ -49,7 +50,7 @@ physics_material_override = SubResource("PhysicsMaterial_ijwyr")
 shape = SubResource("CircleShape2D_6khia")
 
 [node name="Bicep" type="RigidBody2D" parent="."]
-position = Vector2(-2, 55)
+position = Vector2(3, 55)
 collision_layer = 2
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
@@ -119,6 +120,13 @@ metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Enemy_Arm_Chasing" type="Node" parent="Hand/StateMachine"]
 script = ExtResource("6_hsgbf")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="Pull_Timer" type="Timer" parent="Hand/StateMachine/Enemy_Arm_Chasing"]
+wait_time = 0.5
+
+[node name="Attacking" type="Node" parent="Hand/StateMachine"]
+script = ExtResource("7_wupst")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]

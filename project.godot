@@ -96,6 +96,7 @@ space={
 2d_physics/layer_4="Floor Detection"
 2d_physics/layer_5="Joint Stopper"
 2d_physics/layer_6="Enemies"
+2d_physics/layer_7="Layer 7"
 
 [rendering]
 

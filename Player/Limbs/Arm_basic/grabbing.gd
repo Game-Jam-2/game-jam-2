@@ -2,10 +2,10 @@ extends State
 var speed : int = 1000
 var swing_pin: PinJoint2D
 var sprite:Sprite2D
-var texture : Texture = load("res://icon.svg")
+var texture:Texture = load("res://icon.svg")
 var pull:bool = true
-var pull_strength = 500
-var hand_boost : int = 500
+var pull_strength:int = 500
+var hand_boost:int = 500
 
 func enter(previous_state_path : String,data :={}) -> void:
 	swing_pin = PinJoint2D.new()
@@ -16,7 +16,6 @@ func enter(previous_state_path : String,data :={}) -> void:
 	swing_pin.disable_collision = false
 	object_reference.get_parent().add_child(swing_pin)
 	
-		
 func physics_update(delta: float) -> void:
 	var mouse_position = object_reference.get_global_mouse_position()
 	var direction:Vector2 = (mouse_position - object_reference.get_parent().get_node("Hand").global_position).normalized()
