@@ -9,14 +9,17 @@ var grabbing:bool = false
 var swing_pin: PinJoint2D
 var floor:Node2D
 var hand_boost:int = 200
+var first_entry:bool = true
 
 func enter(previous_state_path: String,data:={}):
-	player_position = data["player_position"]
-	raycasts = data["raycasts"]
-	get_node("Pull_Timer").start()
-	get_node("Pull_Timer").timeout.connect(timeout)
-	object_reference.get_parent().get_parent().get_node("Torso").get_node("Attack_Range").body_entered.connect(attack_range_entered)
-	
+	if first_entry:
+		player_position = data["player_position"]
+		raycasts = data["raycasts"]
+		get_node("Pull_Timer").start()
+		get_node("Pull_Timer").timeout.connect(timeout)
+		object_reference.get_parent().get_parent().get_parent().get_node("Torso").get_node("Attack_Range").body_entered.connect(attack_range_entered)
+		first_entry = false
+		
 func physics_update(_delta:float):
 	for raycast in raycasts:
 		if raycast.is_colliding() and raycast.get_collider().name == "Torso":
