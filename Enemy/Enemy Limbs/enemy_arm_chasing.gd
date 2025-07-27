@@ -2,7 +2,7 @@ extends State
 
 var player_position:Vector2
 var raycasts:Array[RayCast2D]
-var speed:int = 500
+var speed:int = 200
 var pull_strength:int = 200
 var floor_pos:Vector2
 var grabbing:bool = false
@@ -14,7 +14,7 @@ func enter(previous_state_path: String,data:={}):
 	raycasts = data["raycasts"]
 	get_node("Pull_Timer").start()
 	get_node("Pull_Timer").timeout.connect(timeout)
-	object_reference.get_parent().get_parent().get_node("Torso").get_node("Attack_Range").area_entered.connect(attack_range_entered)
+	object_reference.get_parent().get_parent().get_node("Torso").get_node("Attack_Range").body_entered.connect(attack_range_entered)
 	
 func physics_update(_delta:float):
 	for raycast in raycasts:
@@ -32,8 +32,8 @@ func physics_update(_delta:float):
 	if grabbing:
 		grab()
 		await get_tree().create_timer(1)
-		object_reference.get_parent().get_node("Bicep").apply_impulse(Vector2(force,direction.y))
-		object_reference.get_parent().get_node("ForeArm").apply_impulse(Vector2(force,direction.y))
+		object_reference.get_parent().get_node("Bicep").apply_impulse(Vector2(force,floor_pos.y))
+		object_reference.get_parent().get_node("ForeArm").apply_impulse(Vector2(force,floor_pos.y))
 		swing_pin.queue_free()
 		grabbing = false
 
@@ -51,7 +51,7 @@ func grab() -> void:
 func timeout()->void:
 	grabbing = true
 
-func attack_range_entered(area:Area2D):
+func attack_range_entered(body:Node2D):
 	print("range_entered")
 	var data = {"raycasts": raycasts}	
 	finished.emit("Attacking",data)
