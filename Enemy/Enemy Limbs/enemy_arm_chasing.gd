@@ -9,6 +9,7 @@ var grabbing:bool = false
 var swing_pin: PinJoint2D
 var floor:Node2D
 var hand_boost:int = 200
+
 func enter(previous_state_path: String,data:={}):
 	player_position = data["player_position"]
 	raycasts = data["raycasts"]
@@ -38,7 +39,7 @@ func physics_update(_delta:float):
 		grabbing = false
 
 		
-	
+#grabs onto the floor 
 func grab() -> void:
 	swing_pin = PinJoint2D.new()
 	swing_pin.set_node_a(object_reference.get_path())
@@ -53,6 +54,6 @@ func timeout()->void:
 
 func attack_range_entered(body:Node2D):
 	print("range_entered")
-	var data = {"raycasts": raycasts}	
+	var data = {"raycasts": raycasts,"player_torso":body}
 	finished.emit("Attacking",data)
 	
