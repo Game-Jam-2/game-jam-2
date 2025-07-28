@@ -1,5 +1,6 @@
 extends Node
 class_name LimbManager
+@onready var meat_grinder = $Area2D
 
 var limb = preload("res://De Cave/arm_cave_test.tscn")
 
@@ -39,13 +40,12 @@ var limbs := {
 	}
 }
 
+func _ready() -> void:
+	meat_grinder.connect("limb_sacrifice", on_limb_sacrificed)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Remove Limb in Cave"):
 		on_limb_enter_cave("limb")
-
-func _ready() -> void:
-	connect("limb_sacrifice", on_limb_sacrificed)
 
 # Called when a new limb enters cave (either armoury, pile or grinder) (currently spawning every time hit tab not just once help)
 func on_limb_enter_cave(limb_name: String):

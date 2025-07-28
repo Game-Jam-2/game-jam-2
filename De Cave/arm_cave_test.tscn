@@ -22,18 +22,18 @@ height = 220.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
 radius = 3.0
 
-[node name="Arm" type="Node2D"]
+[node name="arm_basic" type="Node2D" groups=["Limbs"]]
 position = Vector2(387, 39)
 script = ExtResource("1_0flvs")
 
-[node name="Hip" type="RigidBody2D" parent="." groups=["Limbs"]]
+[node name="Hip" type="RigidBody2D" parent="."]
 collision_layer = 2
 collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hip"]
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="Bicep" type="RigidBody2D" parent="." groups=["Limbs"]]
+[node name="Bicep" type="RigidBody2D" parent="."]
 position = Vector2(-2, 55)
 collision_layer = 2
 collision_mask = 14
@@ -53,7 +53,7 @@ node_a = NodePath("../Bicep")
 node_b = NodePath("../ForeArm")
 bias = 0.9
 
-[node name="ForeArm" type="RigidBody2D" parent="." groups=["Limbs"]]
+[node name="ForeArm" type="RigidBody2D" parent="."]
 position = Vector2(-2, 169)
 collision_layer = 2
 collision_mask = 14
@@ -74,7 +74,7 @@ node_a = NodePath("../ForeArm")
 node_b = NodePath("../Hand")
 bias = 0.9
 
-[node name="Hand" type="RigidBody2D" parent="." groups=["Limbs"]]
+[node name="Hand" type="RigidBody2D" parent="."]
 position = Vector2(32, 232)
 rotation = 1.7909
 collision_layer = 2
