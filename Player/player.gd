@@ -99,11 +99,13 @@ func limb_ungrabbing():
 func grab_movement():
 	if grabbing:
 		var target_pos = get_global_mouse_position()
-		var to_target = target_pos - global_position
+		var to_target = target_pos - torso.global_position
 		var distance = to_target.length()
 
 		if distance > grab_deadzone:
 			var direction = to_target.normalized()
 			torso.apply_central_force(direction * grab_move_speed)
+			if abs(torso.linear_velocity.length()) > 500:
+				torso.linear_velocity *= 0.5
 		else:
 			torso.linear_velocity = torso.linear_velocity * 0.8

@@ -126,6 +126,7 @@ position = Vector2(0, 4)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
 bias = 0.9
+softness = 1.0
 
 [node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
 position = Vector2(4, 284)
