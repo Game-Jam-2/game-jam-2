@@ -10,3 +10,4 @@ func _limb_sacrificed():
 func _on_meat_grinder_area_entered(body: Node2D) -> void:
 	if body == limb:
 		_limb_sacrificed()
+		print("print")
