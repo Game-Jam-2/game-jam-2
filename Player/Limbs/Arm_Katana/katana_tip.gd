@@ -3,6 +3,8 @@ extends Area2D
 @onready var Katana = $".."
 @onready var swing_pin = $"../../swing_pin"
 
+signal grabbing
+
 var anchor: Vector2
 var hooked = false
 var hook_threshold = 10.0
@@ -37,6 +39,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Ground"):
 		hook_body = body
 		tips_in = true
+		grabbing.emit()
 
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("Ground"):

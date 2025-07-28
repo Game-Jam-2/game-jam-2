@@ -1,4 +1,7 @@
 extends State
+
+signal grabbing
+
 var speed : int = 1000
 var swing_pin: PinJoint2D
 var sprite:Sprite2D
@@ -15,6 +18,7 @@ func enter(previous_state_path : String,data :={}) -> void:
 	swing_pin.global_position = object_reference.get_parent().get_node("Grab Point").position
 	swing_pin.disable_collision = false
 	object_reference.get_parent().add_child(swing_pin)
+	grabbing.emit()
 	
 func physics_update(delta: float) -> void:
 	var mouse_position = object_reference.get_global_mouse_position()
