@@ -10,8 +10,13 @@ var texture:Texture = load("res://icon.svg")
 var pull:bool = true
 var pull_strength:int = 500
 var hand_boost:int = 500
-
+var hand:RigidBody2D
+var bicep:RigidBody2D
+var forearm:RigidBody2D
 func enter(previous_state_path : String,data :={}) -> void:
+	hand = object_reference.get_parent().get_node("Hand")
+	bicep = object_reference.get_parent().get_node("Bicep")
+	forearm = object_reference.get_parent().get_node("ForeArm")
 	swing_pin = PinJoint2D.new()
 	swing_pin.set_node_a(object_reference.get_path())
 	swing_pin.set_node_b(data["object_collided"].get_path())
@@ -22,17 +27,17 @@ func enter(previous_state_path : String,data :={}) -> void:
 	grabbing.emit()
 	
 func physics_update(delta: float) -> void:
-	var mouse_position = object_reference.get_global_mouse_position()
-	var direction:Vector2 = (mouse_position - object_reference.get_parent().get_node("Hand").global_position).normalized()
-	var distance = (mouse_position -object_reference.get_parent().get_node("Hand").global_position).length()
+	var mouse_position = hand.get_global_mouse_position()
+	var direction:Vector2 = (mouse_position - hand.global_position).normalized()
+	var distance = (mouse_position -hand.global_position).length()
 	var force = direction * speed * delta
 	
 		
 
-	object_reference.get_parent().get_node("Hand").apply_central_force(force *  hand_boost)
+	hand.apply_central_force(force *  hand_boost)
 	if pull:
-		object_reference.get_parent().get_node("Bicep").apply_impulse(force * pull_strength)
-		object_reference.get_parent().get_node("ForeArm").apply_impulse(force * pull_strength)
+		bicep.apply_impulse(force * pull_strength)
+		forearm.apply_impulse(force * pull_strength)
 		pull = false
 	
 func handle_input(event: InputEvent) -> void:

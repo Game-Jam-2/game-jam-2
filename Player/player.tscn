@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_yv0sd"]
-[ext_resource type="Script" uid="uid://oielko770mgb" path="res://Enemy/limb_breaker.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://oielko770mgb" path="res://Scripts/Instance Scripts/limb_breaker.gd" id="3_btcbx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 
@@ -41,6 +41,8 @@ zoom = Vector2(0.56, 0.56)
 position = Vector2(1.2, -124.34)
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("3_btcbx")
+tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 1"]
 position = Vector2(-1.2, 9.24001)
@@ -51,7 +53,7 @@ position = Vector2(92, -56.1)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 5000
+tension_threshold = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 2"]
 position = Vector2(-4, 0)

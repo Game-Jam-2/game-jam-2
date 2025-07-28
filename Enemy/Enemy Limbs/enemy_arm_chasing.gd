@@ -5,7 +5,7 @@ var raycasts:Array[RayCast2D]
 var speed:int = 200
 var pull_strength:int = 200
 var floor_pos:Vector2
-var grabbing:bool = false
+var grabbing:bool = false 
 var swing_pin: PinJoint2D
 var floor:Node2D
 var hand_boost:int = 200

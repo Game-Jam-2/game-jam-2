@@ -4,7 +4,7 @@ class_name State
 signal finished(next_state_path: String,data: Dictionary)
 var object_reference:Node
 func _ready() -> void:
-	object_reference = get_parent().get_parent()
+	object_reference = get_parent()
 func handle_input(_event:InputEvent) -> void:
 	pass
 	

@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dypya3on0xofm"]
+[gd_scene load_steps=13 format=3 uid="uid://dypya3on0xofm"]
 
 [ext_resource type="Script" uid="uid://ctyl477maeugn" path="res://Player/Limbs/Leg_basic/leg_basic.gd" id="1_ahqge"]
+[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="2_rqyha"]
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="2_ylmc8"]
 [ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="3_ahqge"]
+[ext_resource type="Script" uid="uid://di5kvngdxen8y" path="res://Player/Limbs/Leg_basic/idle.gd" id="3_rqyha"]
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="4_rqyha"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
@@ -41,6 +43,19 @@ visibility_layer = 0
 position = Vector2(-0.08, 0.06)
 node_a = NodePath("../Thigh")
 node_b = NodePath("../Hip")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_rqyha")
+initial_state = NodePath("Legging")
+metadata/_custom_type_script = "uid://b5040uwupcrjn"
+
+[node name="Legging" type="Node" parent="StateMachine"]
+script = ExtResource("1_ahqge")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="LegBasic_Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_rqyha")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 position = Vector2(-2, 55)
@@ -102,6 +117,7 @@ softness = 0.1
 angular_limit_upper = 1.5708
 
 [node name="AnkleMuscle" type="DampedSpringJoint2D" parent="."]
+visible = false
 light_mask = 0
 position = Vector2(18, 165)
 rotation = 0.115192

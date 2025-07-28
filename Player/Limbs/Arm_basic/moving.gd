@@ -6,12 +6,15 @@ var first_entry:bool = true #represents the first time this state is entered use
 #connections made when the state is first entered are not made twice 
 var hand_boost : int = 500
 var deadzone : int = 40
+var hand:RigidBody2D
+
 func enter(previous_state_path: String,data:= {}) -> void:
+	hand = object_reference.get_parent().get_node("Hand")
 	if first_entry:
-		object_reference.contact_monitor = true
-		object_reference.max_contacts_reported = 10
-		object_reference.body_shape_entered.connect(on_collision)
-		object_reference.body_shape_exited.connect(on_collision_end)
+		hand.contact_monitor = true
+		hand.max_contacts_reported = 10
+		hand.body_shape_entered.connect(on_collision)
+		hand.body_shape_exited.connect(on_collision_end)
 		await get_tree().create_timer(2)
 		first_entry = false
 	
@@ -19,14 +22,14 @@ func enter(previous_state_path: String,data:= {}) -> void:
 	
 
 func physics_update(delta: float) -> void:
-	var mouse_position = object_reference.get_global_mouse_position()
-	var direction:Vector2 = (mouse_position - object_reference.global_position).normalized()
-	var distance = (mouse_position -object_reference.global_position).length()
+	var mouse_position = hand.get_global_mouse_position()
+	var direction:Vector2 = (mouse_position - hand.global_position).normalized()
+	var distance = (mouse_position - hand.global_position).length()
 	var force = direction * speed * delta 
 	if distance > deadzone:
-		object_reference.apply_central_force(force * hand_boost)
+		hand.apply_central_force(force * hand_boost)
 	else:
-		object_reference.linear_velocity = object_reference.linear_velocity * 0.8
+		hand.linear_velocity = object_reference.linear_velocity * 0.8
 
 
 

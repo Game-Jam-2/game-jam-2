@@ -1,14 +1,15 @@
-extends Node2D
+extends State
 
-@onready var KneeMuscle = $KneeMuscle
-@onready var AnkleMuscle = $AnkleMuscle
-@onready var Thigh = $Thigh
-@onready var Calf = $Calf
-@onready var Foot = $Foot
-@onready var ground_detector: Area2D = $Foot/ground_detection
-@onready var current_connector: RigidBody2D = get_parent()
-@onready var Player: Node2D = current_connector.get_parent()
-@onready var Torso: RigidBody2D = Player.get_node("Torso")
+var KneeMuscle 
+var AnkleMuscle
+var Thigh
+var Calf
+var Foot 
+var ground_detector: Area2D
+var current_connector 
+var Player: Node2D 
+var Torso: RigidBody2D
+
 @onready var left_torso_muscle: DampedSpringJoint2D
 @onready var right_torso_muscle: DampedSpringJoint2D
 
@@ -25,7 +26,19 @@ var knee_rest_length: float
 var ankle_rest_length: float
 
 
-func _ready() -> void:
+func enter(previous_state_path:String,dict:= {}) -> void:
+	print("entering")
+	KneeMuscle = object_reference.get_parent().get_node("KneeMuscle")
+	AnkleMuscle = object_reference.get_parent().get_node("AnkleMuscle")
+	Thigh = object_reference.get_parent().get_node("Thigh")
+	Calf  = object_reference.get_parent().get_node("Calf")
+	Foot = object_reference.get_parent().get_node("Foot")
+	ground_detector = Foot.get_node("ground_detection")
+	current_connector = get_parent().get_parent().get_parent()
+	Player = current_connector.get_parent()
+	Torso = Player.get_node("Torso")
+	print("Reference " + str(Foot.name))
+	
 	signal_setup()
 	connect_torso_muscles()
 	knee_stiffness = KneeMuscle.stiffness
@@ -46,7 +59,7 @@ func _on_ground_exited(body):
 	if body.is_in_group("Ground"):
 		is_grounded = false
 
-func _process(delta: float) -> void:
+func update(delta: float) -> void:
 	if Input.is_action_pressed("w"):
 		KneeMuscle.stiffness = 64
 		AnkleMuscle.stiffness = 64
@@ -77,7 +90,8 @@ func _process(delta: float) -> void:
 	else:
 		hopping_direction = Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
+func physics_update(_delta: float) -> void:
+	print("Foot test" + str(Foot))
 	find_torso_target()
 	limit_velocity()
 	balance()
@@ -157,9 +171,9 @@ func connect_torso_muscles():
 func find_torso_target():
 	var desired_height = 500
 	var target_x_offset = 50
-		
-	target_x_offset = ((Foot.global_position.x/abs(Foot.global_position.x)) * target_x_offset)
-		
+	print("foot torso target "+str(Foot))
+	target_x_offset = (((Foot.global_position.x)/abs(Foot.global_position.x)) * target_x_offset)
+	
 	var target_y = Foot.global_position.y - desired_height
 		
 	var target_x = Foot.global_position.x - target_x_offset

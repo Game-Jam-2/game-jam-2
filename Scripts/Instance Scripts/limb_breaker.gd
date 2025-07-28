@@ -9,11 +9,7 @@ func _physics_process(delta: float) -> void:
 			remove_child(limb_reference)
 			get_tree().root.add_child(limb_reference)
 			limb_reference.global_position = global_position
-			queue_free()
-			
+			var idle_state_name = limb_reference.name + "_" + "Idle"
+			limb_reference.get_child(1)._transistion_to_next_state(idle_state_name,{})			
 
-
-	
-	
-	
-		
+ 

@@ -5,6 +5,7 @@ class_name StateMachine extends Node
 @onready var current_state:State = (func get_initial_state() -> State:
 	return initial_state if initial_state != null else get_child(0)
 	).call()
+var first:bool = true
 
 func _ready() -> void:
 	for state_node:State in get_children():
