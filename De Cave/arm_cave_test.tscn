@@ -22,7 +22,7 @@ height = 220.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
 radius = 3.0
 
-[node name="Arm" type="Node2D"]
+[node name="arm_basic" type="Node2D" groups=["Limbs"]]
 position = Vector2(387, 39)
 script = ExtResource("1_0flvs")
 

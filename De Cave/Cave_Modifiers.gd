@@ -1,7 +1,8 @@
 extends Node
 class_name LimbManager
+@onready var meat_grinder = $Area2D
 
-const limb = preload("res://De Cave/arm_cave_test.tscn")
+var limb = preload("res://De Cave/arm_cave_test.tscn")
 
 var groups := {
 	"human": {
@@ -34,16 +35,17 @@ var limbs := {
 		"strength": 7.0,
 		"base_tension": 10.0,
 		"tension": 10.0,
-		"group": "animal",
+		"group": "human",
 		"collected_count": 0
 	}
 }
 
+func _ready() -> void:
+	meat_grinder.connect("limb_sacrifice", on_limb_sacrificed)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Remove Limb in Cave"):
 		on_limb_enter_cave("limb")
-
-
 
 # Called when a new limb enters cave (either armoury, pile or grinder) (currently spawning every time hit tab not just once help)
 func on_limb_enter_cave(limb_name: String):
@@ -59,8 +61,10 @@ func on_limb_collected(limb_name: String):
 		limbs[limb_name]["collected_count"] += 1
 		limbs[limb_name]["strength"] *= 1.2  #adjust to change buff
 
+
 # Called when a limb is sacrificed
 func on_limb_sacrificed(limb_name: String):
+	print("wahoo")
 	if limb_name in limbs:
 		var group = limbs[limb_name]["group"]
 		groups[group]["sacrificed_count"] += 1
@@ -71,9 +75,3 @@ func on_limb_sacrificed(limb_name: String):
 				var base = limbs[limb_key]["base_tension"]
 				var bonus = groups[group]["tension_bonus"]
 				limbs[limb_key]["tension"] = base * bonus
-
-
-func _on_collision_shape_2d_limb_sacrificed() -> void:
-	print("limb time")
-	#on_limb_sacrificed()
-	
