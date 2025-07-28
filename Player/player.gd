@@ -84,9 +84,9 @@ func connect_grabbing_signals(node):
 	if node.has_signal("grabbing"):
 		if not node.is_connected("grabbing", limb_grabbing):
 			node.connect("grabbing", limb_grabbing)
-	if node.has_signal("ungrabbing"):
-		if not node.is_connected("ungrabbing", limb_ungrabbing):
-			node.connect("ungrabbing", limb_ungrabbing)
+	if node.has_signal("releasing"):
+		if not node.is_connected("releasing", limb_ungrabbing):
+			node.connect("releasing", limb_ungrabbing)
 	
 	for child in node.get_children():
 		connect_grabbing_signals(child)
@@ -95,6 +95,7 @@ func limb_grabbing():
 	grabbing = true
 func limb_ungrabbing():
 	grabbing = false
+	print("grab released")
 
 func grab_movement():
 	if grabbing:
