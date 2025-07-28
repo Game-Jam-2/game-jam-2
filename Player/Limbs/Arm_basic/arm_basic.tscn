@@ -126,21 +126,15 @@ position = Vector2(0, 4)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
 bias = 0.9
-softness = 1.0
+softness = 0.1
 
 [node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
-position = Vector2(4, 284)
+position = Vector2(1, 287)
 rotation = 1.65896
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 bias = 0.9
-
-[node name="Hand to Grab Point 2" type="PinJoint2D" parent="."]
-position = Vector2(-2, 285)
-rotation = 1.65896
-node_a = NodePath("../Grab Point")
-node_b = NodePath("../Hand")
-softness = 16.0
+softness = 1.0
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
 position = Vector2(4, 272)
@@ -150,5 +144,5 @@ collision_mask = 14
 mass = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
-position = Vector2(15.2059, 1.66759)
+position = Vector2(14.941, 1.928)
 shape = SubResource("CircleShape2D_ijwyr")

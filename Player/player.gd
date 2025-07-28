@@ -1,7 +1,7 @@
 extends Node2D
 
 var stand_strength = 150
-var roll_strength = 75
+var roll_strength = 300
 var grab_move_speed = 60000
 var grab_deadzone = 20.0
 var grabbing = false
@@ -18,8 +18,8 @@ var grabbing = false
 
 # Swap this for testing limb scene
 var current_limb_scene: PackedScene
-var Head: PackedScene = preload("res://Player/Limbs/Head_basic/Head_basic.tscn")
-var Arm: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
+var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
+var Arm: PackedScene = preload("res://Player/Limbs/Arm_Katana/arm_katana.tscn")
 var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 
 var current_limb: Node = null
@@ -106,7 +106,7 @@ func grab_movement():
 		if distance > grab_deadzone:
 			var direction = to_target.normalized()
 			torso.apply_central_force(direction * grab_move_speed)
-			if abs(torso.linear_velocity.length()) > 500:
+			if abs(torso.linear_velocity.length()) > 750:
 				torso.linear_velocity *= 0.5
 		else:
 			torso.linear_velocity = torso.linear_velocity * 0.8
