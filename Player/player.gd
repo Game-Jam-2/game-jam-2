@@ -2,7 +2,7 @@ extends Node2D
 
 var stand_strength = 150
 var roll_strength = 75
-var grab_move_speed = 10000
+var grab_move_speed = 60000
 var grab_deadzone = 20.0
 var grabbing = false
 

@@ -4,6 +4,7 @@ extends Area2D
 @onready var swing_pin = $"../../swing_pin"
 
 signal grabbing
+signal releasing
 
 var anchor: Vector2
 var hooked = false
@@ -45,3 +46,4 @@ func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("Ground"):
 		hook_body = null
 		tips_in = false
+		releasing.emit()
