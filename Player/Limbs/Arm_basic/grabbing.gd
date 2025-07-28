@@ -1,6 +1,7 @@
 extends State
 
 signal grabbing
+signal releasing
 
 var speed : int = 1000
 var swing_pin: PinJoint2D
@@ -37,6 +38,7 @@ func physics_update(delta: float) -> void:
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_mouse"):
 		swing_pin.queue_free()
+		releasing.emit()
 		finished.emit("Moving")
 	if event.is_action_pressed("space"):
 		pull = true
