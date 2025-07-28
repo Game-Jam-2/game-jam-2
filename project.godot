@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game Jam 2"
-run/main_scene="uid://buiwatv1812e3"
+run/main_scene="uid://bmmetif4dh4tm"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

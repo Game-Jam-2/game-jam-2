@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmmetif4dh4tm"]
+[gd_scene load_steps=4 format=3 uid="uid://bmmetif4dh4tm"]
 
 [ext_resource type="Script" uid="uid://r47kyrhxkb5y" path="res://Menus/quit_from_main.gd" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bm6dixo028wbx" path="res://Menus/main_menu.gd" id="1_48xlc"]
+[ext_resource type="Script" uid="uid://cucwo6kr82rt" path="res://Menus/new_game.gd" id="2_at0u2"]
 
 [node name="Main Menu" type="Node"]
 
@@ -27,10 +28,7 @@ offset_bottom = 370.0
 [node name="New Gane" type="Button" parent="Main Menu/VBoxContainer"]
 layout_mode = 2
 text = "New Game"
-
-[node name="Load Game" type="Button" parent="Main Menu/VBoxContainer"]
-layout_mode = 2
-text = "Load Game"
+script = ExtResource("2_at0u2")
 
 [node name="Quit" type="Button" parent="Main Menu/VBoxContainer"]
 layout_mode = 2
