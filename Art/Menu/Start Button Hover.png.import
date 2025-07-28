@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cotofxp0u2w88"
-path="res://.godot/imported/minimal_industry.png-94200a68ec6386ca8270f088b63399eb.ctex"
+uid="uid://cbp2ibedeqi3w"
+path="res://.godot/imported/Start Button Hover.png-04f7ddb7d91cb3ac24c6f1c47736bf05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/minimal_industry.png"
-dest_files=["res://.godot/imported/minimal_industry.png-94200a68ec6386ca8270f088b63399eb.ctex"]
+source_file="res://Art/Menu/Start Button Hover.png"
+dest_files=["res://.godot/imported/Start Button Hover.png-04f7ddb7d91cb3ac24c6f1c47736bf05.ctex"]
 
 [params]
 

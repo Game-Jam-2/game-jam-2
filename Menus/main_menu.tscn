@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmmetif4dh4tm"]
+[gd_scene load_steps=9 format=3 uid="uid://bmmetif4dh4tm"]
 
-[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background.png" id="1_11gta"]
+[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_11gta"]
 [ext_resource type="Script" uid="uid://r47kyrhxkb5y" path="res://Menus/quit_from_main.gd" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bm6dixo028wbx" path="res://Menus/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Script" uid="uid://cucwo6kr82rt" path="res://Menus/new_game.gd" id="2_at0u2"]
+[ext_resource type="Texture2D" uid="uid://c4jqc0iv050ro" path="res://Art/Menu/Start Button.png" id="3_2k0p2"]
+[ext_resource type="Texture2D" uid="uid://cbp2ibedeqi3w" path="res://Art/Menu/Start Button Hover.png" id="4_y501u"]
+[ext_resource type="Texture2D" uid="uid://dpb7n3176aiip" path="res://Art/Menu/Quit Button.png" id="6_uayf2"]
+[ext_resource type="Texture2D" uid="uid://dbhpt0smdvclt" path="res://Art/Menu/Quit Button Hover.png" id="7_55uyf"]
 
 [node name="Main Menu" type="Node"]
 
@@ -27,17 +31,20 @@ offset_bottom = 652.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main Menu"]
 layout_mode = 0
-offset_left = 283.0
-offset_top = 269.0
-offset_right = 864.0
-offset_bottom = 370.0
+offset_left = 30.0
+offset_top = 88.0
+offset_right = 611.0
+offset_bottom = 189.0
+scale = Vector2(2.44, 2.44)
 
-[node name="New Gane" type="Button" parent="Main Menu/VBoxContainer"]
+[node name="New Gane" type="TextureButton" parent="Main Menu/VBoxContainer"]
 layout_mode = 2
-text = "New Game"
+texture_normal = ExtResource("3_2k0p2")
+texture_hover = ExtResource("4_y501u")
 script = ExtResource("2_at0u2")
 
-[node name="Quit" type="Button" parent="Main Menu/VBoxContainer"]
+[node name="Quit" type="TextureButton" parent="Main Menu/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+texture_normal = ExtResource("6_uayf2")
+texture_hover = ExtResource("7_55uyf")
 script = ExtResource("1_28flt")

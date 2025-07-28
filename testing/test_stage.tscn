@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
-[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background.png" id="1_d3c17"]
+[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_d3c17"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
 [ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="3_daoas"]
 
