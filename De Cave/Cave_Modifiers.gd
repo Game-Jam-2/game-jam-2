@@ -34,17 +34,18 @@ var limbs := {
 		"strength": 7.0,
 		"base_tension": 10.0,
 		"tension": 10.0,
-		"group": "animal",
+		"group": "human",
 		"collected_count": 0
 	}
 }
-
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Remove Limb in Cave"):
 		on_limb_enter_cave("limb")
 
+func _ready() -> void:
+	connect("limb_sacrifice", on_limb_sacrificed)
 
 # Called when a new limb enters cave (either armoury, pile or grinder) (currently spawning every time hit tab not just once help)
 func on_limb_enter_cave(limb_name: String):
@@ -63,6 +64,7 @@ func on_limb_collected(limb_name: String):
 
 # Called when a limb is sacrificed
 func on_limb_sacrificed(limb_name: String):
+	print("wahoo")
 	if limb_name in limbs:
 		var group = limbs[limb_name]["group"]
 		groups[group]["sacrificed_count"] += 1
