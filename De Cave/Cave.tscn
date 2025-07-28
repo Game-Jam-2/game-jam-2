@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://5kfn33bybh6n"]
+[gd_scene load_steps=7 format=3 uid="uid://5kfn33bybh6n"]
 
 [ext_resource type="Script" uid="uid://rdc2d04bck7r" path="res://De Cave/Cave_Modifiers.gd" id="1_8tuhk"]
-[ext_resource type="Script" uid="uid://buf25t76la42" path="res://De Cave/meat_grinder.gd" id="2_0dact"]
+[ext_resource type="Script" uid="uid://1ownvlpycu62" path="res://De Cave/meat_grinder.gd" id="2_0dact"]
+[ext_resource type="Texture2D" uid="uid://d13uqdmomhqx2" path="res://De Cave/Ph Armoury BG.png" id="2_s7e3i"]
 [ext_resource type="Texture2D" uid="uid://8lvpae7aoocc" path="res://De Cave/meat grinder temp.png" id="2_vki6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tuhk"]
@@ -13,6 +14,11 @@ size = Vector2(130.272, 179.231)
 position = Vector2(89, 36)
 script = ExtResource("1_8tuhk")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(487, 288)
+scale = Vector2(0.75, 0.675)
+texture = ExtResource("2_s7e3i")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(486.85, 289.8)
@@ -22,10 +28,10 @@ shape = SubResource("RectangleShape2D_8tuhk")
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-11, 537)
 scale = Vector2(7.74298, 7.30693)
+script = ExtResource("2_0dact")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_vki6m")
-script = ExtResource("2_0dact")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 texture = ExtResource("2_vki6m")

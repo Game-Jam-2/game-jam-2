@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cceaua4lv7tio"]
+[gd_scene load_steps=4 format=3 uid="uid://cceaua4lv7tio"]
 
+[ext_resource type="Texture2D" uid="uid://d13uqdmomhqx2" path="res://De Cave/Ph Armoury BG.png" id="1_kfsgn"]
 [ext_resource type="PackedScene" uid="uid://cisjh7566e0q7" path="res://De Cave/slot.tscn" id="1_m3prs"]
 [ext_resource type="Script" uid="uid://ca687c3wy5ba3" path="res://De Cave/slot.gd" id="2_jqfua"]
 
@@ -9,6 +10,9 @@ anchors_preset = 0
 scale = Vector2(0.984615, 1.03175)
 
 [node name="Background (switched out for tilemap)" type="Sprite2D" parent="."]
+position = Vector2(585, 314.03)
+scale = Vector2(0.761719, 0.654228)
+texture = ExtResource("1_kfsgn")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
