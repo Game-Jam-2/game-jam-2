@@ -10,9 +10,10 @@ func _physics_process(delta: float) -> void:
 			get_tree().root.add_child(limb_reference)
 			limb_reference.global_position = global_position
 			queue_free()
+			
+
+
 	
-
-
-func delete_all_scripts():
-	pass
-	#Probably DFS Algorithm to get rid of all scripts in tree 
+	
+	
+		
