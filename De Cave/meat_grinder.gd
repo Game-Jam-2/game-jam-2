@@ -2,7 +2,6 @@ extends Area2D
 
 var limb = preload("res://De Cave/arm_cave_test.tscn")
 
-
 func _limb_sacrificed():
 	emit_signal("limb_sacrificed")
 

@@ -7,9 +7,9 @@ var hovering = false
 
 var hover_height = 700.0
 var def_hover_height = 700.0 #make same as hover_height
-var hover_force = 370.0
+var hover_force = 1000.0
 var tilt_force = 700.0
-var ascend_force = 180.0
+var ascend_force = 300.0
 var max_hover_velocity = 200.0
 
 func _physics_process(delta):
