@@ -2,6 +2,9 @@ extends Node2D
 
 var stand_strength = 150
 var roll_strength = 75
+var grab_move_speed = 10000
+var grab_deadzone = 20.0
+var grabbing = false
 
 
 @onready var torso: RigidBody2D = $Torso
@@ -50,7 +53,8 @@ func _physics_process(delta: float) -> void:
 			if torso.linear_velocity.x >= -30:
 				torso.apply_central_impulse(Vector2.UP * stand_strength)
 			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
-		
+	
+	grab_movement()
 
 func _attach_limb_to_slot(key: String) -> void:
 	var slot = sockets.get(key)
@@ -72,6 +76,34 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.node_b = limb.get_child(0).get_path()
 	joint.global_position = slot.global_position
 	get_parent().add_child(joint)
-
+	connect_grabbing_signals(limb)
 
 	current_limb = limb
+	
+func connect_grabbing_signals(node):
+	if node.has_signal("grabbing"):
+		if not node.is_connected("grabbing", limb_grabbing):
+			node.connect("grabbing", limb_grabbing)
+	if node.has_signal("ungrabbing"):
+		if not node.is_connected("ungrabbing", limb_ungrabbing):
+			node.connect("ungrabbing", limb_ungrabbing)
+	
+	for child in node.get_children():
+		connect_grabbing_signals(child)
+
+func limb_grabbing():
+	grabbing = true
+func limb_ungrabbing():
+	grabbing = false
+
+func grab_movement():
+	if grabbing:
+		var target_pos = get_global_mouse_position()
+		var to_target = target_pos - global_position
+		var distance = to_target.length()
+
+		if distance > grab_deadzone:
+			var direction = to_target.normalized()
+			torso.apply_central_force(direction * grab_move_speed)
+		else:
+			torso.linear_velocity = torso.linear_velocity * 0.8

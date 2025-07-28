@@ -49,7 +49,8 @@ position = Vector2(92, -56.1)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 300
+tension_threshold = 1500
+node_name = "Arm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 2"]
 position = Vector2(-4, 0)

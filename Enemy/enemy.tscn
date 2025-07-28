@@ -3,8 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
 [ext_resource type="Script" uid="uid://bn0toyh2g3ty2" path="res://Enemy/enemy.gd" id="1_am0pq"]
 [ext_resource type="PackedScene" uid="uid://c44t73wct8usg" path="res://Enemy/Enemy Limbs/arm_basic_enemy.tscn" id="3_am0pq"]
-[ext_resource type="Script" uid="uid://oielko770mgb" path="res://Enemy/limb_breaker.gd" id="3_eqilm"]
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="5_ncf7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqilm"]
+size = Vector2(740, 432.33)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 
@@ -18,37 +20,37 @@
 script = ExtResource("1_am0pq")
 metadata/_edit_horizontal_guides_ = [1.0]
 
-[node name="Arm Attach" type="PinJoint2D" parent="."]
-position = Vector2(-119, -52)
-node_a = NodePath("../Torso")
-
 [node name="Torso" type="RigidBody2D" parent="."]
 visibility_layer = 4
 position = Vector2(-12, 7)
 collision_layer = 32
 collision_mask = 4
-mass = 20.0
+mass = 5.0
 
 [node name="Player_Detect _Left" type="RayCast2D" parent="Torso"]
 position = Vector2(-7, 28)
 target_position = Vector2(-987, -1)
+collision_mask = 5
 collide_with_areas = true
 script = ExtResource("5_ncf7h")
 
 [node name="Player Detect Right" type="RayCast2D" parent="Torso"]
 position = Vector2(-7, 28)
 target_position = Vector2(942, -1)
+collision_mask = 5
 script = ExtResource("5_ncf7h")
 
 [node name="Player_Detect_Down" type="RayCast2D" parent="Torso"]
 position = Vector2(-7, 30)
 target_position = Vector2(-1, 191)
+collision_mask = 5
 collide_with_areas = true
 script = ExtResource("5_ncf7h")
 
 [node name="Player_Detect_Up" type="RayCast2D" parent="Torso"]
 position = Vector2(-7, 30)
 target_position = Vector2(-6, -334)
+collision_mask = 5
 collide_with_areas = true
 script = ExtResource("5_ncf7h")
 
@@ -59,6 +61,14 @@ texture = ExtResource("1_afpow")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
 position = Vector2(-13, 10)
 polygon = PackedVector2Array(53, 93, 49, 53, 56, 37, 60, 7, 63, -23, 86, -47, 73, -61, 72, -85, 80, -92, 77, -110, 60, -110, 20, -126, -14, -131, -34, -129, -45, -121, -67, -110, -80, -109, -97, -95, -85, -78, -85, -60, -90, -48, -82, -29, -75, -10, -67, 13, -60, 38, -65, 71, -62, 86, -30, 96, -14, 93, -16, 116, -4, 111, 4, 122, 11, 96)
+
+[node name="Attack_Range" type="Area2D" parent="Torso"]
+position = Vector2(7, 1.19209e-07)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/Attack_Range"]
+position = Vector2(31, -8.34)
+shape = SubResource("RectangleShape2D_eqilm")
 
 [node name="Right Arm Link" type="RigidBody2D" parent="."]
 position = Vector2(57, -56)
@@ -95,8 +105,15 @@ rotation = 0.975018
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("3_eqilm")
-tension_threshold = 1000
+
+[node name="Arm Attach" type="PinJoint2D" parent="Left Arm Link"]
+position = Vector2(1.65543, 1.12231)
+rotation = -0.975018
+node_a = NodePath("../../Torso")
+
+[node name="Arm_Enemy" parent="Left Arm Link" instance=ExtResource("3_am0pq")]
+position = Vector2(-0.294594, 2.21658)
+rotation = -0.975018
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Arm Link"]
 position = Vector2(-1.19209e-07, 1.19209e-06)
@@ -175,6 +192,3 @@ scale = Vector2(0.455, 0.455)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Right Leg Link")
 bias = 0.9
-
-[node name="Arm_Enemy" parent="." instance=ExtResource("3_am0pq")]
-position = Vector2(-121, -53)

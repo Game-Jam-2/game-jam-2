@@ -68,7 +68,7 @@ node_b = NodePath("../ForeArm")
 bias = 0.9
 
 [node name="ForeArm" type="RigidBody2D" parent="."]
-position = Vector2(-2, 169)
+position = Vector2(-2, 167)
 collision_layer = 2
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_gwuy3")
