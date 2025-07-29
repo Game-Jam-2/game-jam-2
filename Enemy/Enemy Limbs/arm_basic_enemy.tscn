@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c44t73wct8usg"]
+[gd_scene load_steps=16 format=3 uid="uid://c44t73wct8usg"]
 
-[ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_1045o"]
-[ext_resource type="Texture2D" uid="uid://bqakr1rb6uiqi" path="res://Player/Limbs/Leg_basic/Sprites/Calf.png" id="2_vlu41"]
-[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="3_5aumv"]
+[ext_resource type="Texture2D" uid="uid://dwgo5khl4xtqe" path="res://Enemy/Enemy Limbs/sprites/robot limb set/pc-robot-upper-arm-reg.png" id="1_hsgbf"]
+[ext_resource type="Texture2D" uid="uid://c3bot6k18asgl" path="res://Enemy/Enemy Limbs/sprites/robot limb set/enemy-robot-lower-arm-reg.png" id="2_wupst"]
 [ext_resource type="Script" uid="uid://c2mbm30fb0o53" path="res://Enemy/Enemy Limbs/enemy_arm_state_machine.gd" id="4_um587"]
 [ext_resource type="Script" uid="uid://cysns7dwlqdla" path="res://Enemy/Enemy Limbs/enemy_arm_idle.gd" id="5_d7tn5"]
 [ext_resource type="Script" uid="uid://b3soj74fm74dx" path="res://Enemy/Enemy Limbs/enemy_arm_chasing.gd" id="6_hsgbf"]
@@ -61,7 +60,7 @@ shape = SubResource("CapsuleShape2D_dkyer")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bicep"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_1045o")
+texture = ExtResource("1_hsgbf")
 
 [node name="Elbow" type="PinJoint2D" parent="."]
 position = Vector2(5, 110)
@@ -78,7 +77,7 @@ physics_material_override = SubResource("PhysicsMaterial_gwuy3")
 
 [node name="Sprite2D" type="Sprite2D" parent="ForeArm"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_vlu41")
+texture = ExtResource("2_wupst")
 
 [node name="CalfCollisionShape" type="CollisionShape2D" parent="ForeArm"]
 position = Vector2(1, 1)
@@ -102,7 +101,7 @@ physics_material_override = SubResource("PhysicsMaterial_02gj7")
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
 rotation = 0.0108286
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_5aumv")
+texture = ExtResource("2_wupst")
 
 [node name="FootCollisionShape" type="CollisionShape2D" parent="Hand"]
 position = Vector2(1, -4.37114e-08)

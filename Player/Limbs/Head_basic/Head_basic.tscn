@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxn6e386bvl0f"]
 
-[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_41gnb"]
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="2_udqge"]
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="3_7uha8"]
 [ext_resource type="Script" uid="uid://ye0dlsck1odv" path="res://Player/Limbs/Head_basic/float.gd" id="3_tbfuu"]
 [ext_resource type="Script" uid="uid://ruyoo5a3ibsq" path="res://Player/Limbs/Head_basic/Idle.gd" id="4_tbfuu"]
+[ext_resource type="Texture2D" uid="uid://cescsqlc2y05" path="res://Player/Limbs/Head_basic/sprites/pc-robot-head-reg.png" id="4_udqge"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kw5qs"]
 radius = 10.7703
@@ -67,8 +67,7 @@ shape = SubResource("CircleShape2D_7uha8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 position = Vector2(-3.24997, -0.499993)
-scale = Vector2(1.09197, 0.343575)
-texture = ExtResource("1_41gnb")
+texture = ExtResource("4_udqge")
 
 [node name="FloorRay" type="RayCast2D" parent="."]
 position = Vector2(0.53, -38)

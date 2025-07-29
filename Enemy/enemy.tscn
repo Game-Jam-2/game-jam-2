@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0w6x7mcsqror"]
 
-[ext_resource type="Texture2D" uid="uid://c5vcxvc78yklh" path="res://Player/Torso.png" id="1_afpow"]
 [ext_resource type="Script" uid="uid://bn0toyh2g3ty2" path="res://Enemy/enemy.gd" id="1_am0pq"]
 [ext_resource type="PackedScene" uid="uid://c44t73wct8usg" path="res://Enemy/Enemy Limbs/arm_basic_enemy.tscn" id="3_am0pq"]
+[ext_resource type="Texture2D" uid="uid://b5qjx7nsxp08m" path="res://Enemy/enemy-torso-reg.png" id="3_eqilm"]
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="5_ncf7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqilm"]
@@ -56,7 +56,7 @@ script = ExtResource("5_ncf7h")
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
 position = Vector2(0, -1)
-texture = ExtResource("1_afpow")
+texture = ExtResource("3_eqilm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
 position = Vector2(-13, 10)
