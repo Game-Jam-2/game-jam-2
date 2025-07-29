@@ -7,40 +7,27 @@ var grab_deadzone = 20.0
 var grabbing = false
 var incoming_limb: Node = null
 
-@onready var LimbGUI: Control = $LimbGUI
+@onready var LimbGUI: Control = $CanvasLayer/LimbGUI
 @onready var LimbDetector = $LimbDetector
 @onready var torso: RigidBody2D = $Torso
 @onready var sockets := {
-	"1": $"Connector 1",
-	"2": $"Connector 2",
-	"3": $"Connector 3",
-	"4": $"Connector 4",
-	"5": $"Connector 5"
+	"Head": $"Connector 1",
+	"Right Arm": $"Connector 2",
+	"Right Leg": $"Connector 3",
+	"Left Leg": $"Connector 4",
+	"Left Arm": $"Connector 5"
 }
 
-# Swap this for testing limb scene
 var current_limb_scene: PackedScene
-var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
-var Arm: PackedScene = preload("res://Player/Limbs/Arm_Katana/arm_katana.tscn")
-var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
-
-
 var current_limb: Node = null
 
 func _ready() -> void:
+	LimbGUI.connect("limb_sent", limb_recieved)
 	current_limb = torso
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("1"):
-		current_limb_scene = Head
-	if Input.is_action_just_pressed("2") or Input.is_action_just_pressed("5"):
-		current_limb_scene = Arm
-	if Input.is_action_just_pressed("3") or Input.is_action_just_pressed("4"):
-		current_limb_scene = Leg
-		
-	for key in ["1", "2", "3", "4", "5"]:
-		if Input.is_action_just_pressed(key):
-			_attach_limb_to_slot(key)
+func limb_recieved(scene_name, socket):
+	current_limb_scene = load(scene_name)
+	_attach_limb_to_slot(socket)
 
 
 func _physics_process(delta: float) -> void:
@@ -73,6 +60,8 @@ func _attach_limb_to_slot(key: String) -> void:
 			
 	slot.add_child(limb)
 	limb.global_position = slot.global_position
+	var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
+	limb.get_node("StateMachine").current_state = idle_state
 
 	var joint = PinJoint2D.new()
 	joint.node_a = slot.get_path()
