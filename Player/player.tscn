@@ -38,6 +38,7 @@ position = Vector2(10, -3)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
+tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 2"]
 position = Vector2(0, 0.906657)
@@ -49,6 +50,7 @@ position = Vector2(5, 14)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
+tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 3"]
 scale = Vector2(0.3, 0.3)
@@ -59,6 +61,7 @@ position = Vector2(-5, 14)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
+tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 4"]
 scale = Vector2(0.3, 0.3)
