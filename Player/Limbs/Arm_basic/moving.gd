@@ -1,16 +1,15 @@
 extends State
-var speed : int = 1000
+var speed : int = 500
 var collision_in_progress = false
 var object_collided : Node2D
 var first_entry:bool = true #represents the first time this state is entered used to ensure that 
 #connections made when the state is first entered are not made twice 
 var hand_boost : int = 500
-var deadzone : int = 40
+var deadzone : int = 2
 var hand:RigidBody2D
 
 func enter(previous_state_path: String,data:= {}) -> void:
 	hand = object_reference.get_parent().get_node("Hand")
-	print("Hand" + str(hand))
 	if first_entry:
 		hand.contact_monitor = true
 		hand.max_contacts_reported = 10
@@ -30,7 +29,7 @@ func physics_update(delta: float) -> void:
 	if distance > deadzone:
 		hand.apply_central_force(force * hand_boost)
 	else:
-		hand.linear_velocity = hand.linear_velocity * 0.8
+		hand.linear_velocity = hand.linear_velocity * 0.1
 
 
 

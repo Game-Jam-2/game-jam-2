@@ -5,11 +5,11 @@ var floor_ray: RayCast2D
 
 var hovering = false
 
-var hover_height = 700.0
+var hover_height = 170.0
 var def_hover_height = 700.0 #make same as hover_height
-var hover_force = 370.0
+var hover_force = 600.0
 var tilt_force = 700.0
-var ascend_force = 180.0
+var ascend_force = 200.0
 var max_hover_velocity = 200.0
 func enter(previous_state_path:String,data:= {}):
 	floor_ray = object_reference.get_parent().get_node("FloorRay")
@@ -37,4 +37,3 @@ func handle_input(_event:InputEvent):
 	
 	if Input.is_action_pressed("s"):
 		hovering = false
-		
