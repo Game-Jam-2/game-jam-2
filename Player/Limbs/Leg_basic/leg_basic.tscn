@@ -27,7 +27,7 @@ height = 102.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahqge"]
 
-[node name="LegBasic" type="Node2D"]
+[node name="LegBasic" type="Node2D" groups=["Limbs"]]
 
 [node name="Hip" type="RigidBody2D" parent="."]
 collision_layer = 2
