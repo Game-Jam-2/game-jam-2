@@ -9,9 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(4196, 37)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3c17"]
-size = Vector2(83, 29)
-
 [node name="TestStage" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -96,4 +93,4 @@ position = Vector2(882, 41)
 rotation = -0.0101715
 
 [node name="arm_basic" parent="." instance=ExtResource("6_owq45")]
-position = Vector2(1838, -155)
+position = Vector2(1225, -116)
