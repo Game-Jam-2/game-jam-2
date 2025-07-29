@@ -11,4 +11,3 @@ func _on_meat_grinder_area_entered(body) -> void:
 	limb = body.get_parent()
 	if limb.is_in_group("Limbs"):
 		limb_sacrifice.emit(limb.name)
-		print("print")

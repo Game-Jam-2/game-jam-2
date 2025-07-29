@@ -20,7 +20,7 @@ absorbent = true
 radius = 36.0
 height = 224.0
 
-[node name="Arm_Katana" type="Node2D"]
+[node name="Arm_Katana" type="Node2D" groups=["Limbs"]]
 position = Vector2(387, 39)
 
 [node name="Shoulder" type="RigidBody2D" parent="."]

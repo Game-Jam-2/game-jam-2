@@ -12,7 +12,8 @@ radius = 10.7703
 [sub_resource type="CircleShape2D" id="CircleShape2D_7uha8"]
 radius = 38.0132
 
-[node name="HeadBasic" type="Node2D"]
+[node name="HeadBasic" type="Node2D" groups=["Limbs"]]
+script = ExtResource("1_w7gmr")
 
 [node name="Neck" type="RigidBody2D" parent="."]
 collision_layer = 0
