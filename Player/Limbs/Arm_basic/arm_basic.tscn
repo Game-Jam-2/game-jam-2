@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4wambd6lyjw4"]
+[gd_scene load_steps=13 format=3 uid="uid://4wambd6lyjw4"]
 
 [ext_resource type="Script" uid="uid://ckrqtbrww8gnc" path="res://Player/Limbs/Leg_basic/hand_state_machine.gd" id="5_vimqa"]
 [ext_resource type="Texture2D" uid="uid://bft3vhs5olohv" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-upper-arm-reg.png" id="5_xov7s"]
@@ -14,23 +14,11 @@ radius = 8.94427
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nnko"]
 absorbent = true
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkyer"]
-radius = 38.0
-height = 224.0
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gwuy3"]
 absorbent = true
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6khia"]
-radius = 40.0
-height = 192.0
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_02gj7"]
 absorbent = true
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylmc8"]
-radius = 40.0
-height = 220.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
 radius = 3.0
@@ -44,6 +32,7 @@ collision_mask = 14
 mass = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
+scale = Vector2(0.125, 0.125)
 shape = SubResource("CircleShape2D_6khia")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -64,90 +53,81 @@ script = ExtResource("7_xov7s")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Bicep" type="RigidBody2D" parent="."]
-position = Vector2(-2, 55)
+position = Vector2(-1, 5)
 collision_layer = 2
 collision_mask = 14
 mass = 2.06
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
 
-[node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CapsuleShape2D_dkyer")
-
 [node name="Sprite2D" type="Sprite2D" parent="Bicep"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_xov7s")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bicep"]
+polygon = PackedVector2Array(-1, -6, -1, -5, -1, -5, -2, -5, -2, 0, -3, 0, -3, 5, -2, 5, -2, 6, 2, 6, 2, 5, 3, 5, 3, -4, 2, -4, 2, -6)
+
 [node name="Elbow" type="PinJoint2D" parent="."]
-position = Vector2(0, 111)
-scale = Vector2(0.45, 0.45)
+position = Vector2(-1.775, 7.52)
+scale = Vector2(0.07, 0.07)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../ForeArm")
 bias = 0.9
 
 [node name="ForeArm" type="RigidBody2D" parent="."]
-position = Vector2(-2, 167)
+position = Vector2(-2, 11)
 collision_layer = 2
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_gwuy3")
 
 [node name="Sprite2D" type="Sprite2D" parent="ForeArm"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_avert")
 
-[node name="CalfCollisionShape" type="CollisionShape2D" parent="ForeArm"]
-position = Vector2(1, 1)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CapsuleShape2D_6khia")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ForeArm"]
+polygon = PackedVector2Array(3, -5, -1, -5, -1, -4, -2, -4, -2, -3, -3, -3, -3, 3, -2, 3, -2, 5, 3, 5, 3, 4, 4, 4, 4, -4, 3, -4)
 
 [node name="Wrist Joint" type="PinJoint2D" parent="."]
-position = Vector2(-1, 226)
-scale = Vector2(0.405, 0.405)
+position = Vector2(-0.875, 15.44)
+scale = Vector2(0.07, 0.07)
 node_a = NodePath("../ForeArm")
 node_b = NodePath("../Hand")
 angular_limit_upper = 3.14159
 
 [node name="Hand" type="RigidBody2D" parent="."]
-position = Vector2(1, 255)
-rotation = 3.10789
+position = Vector2(0, 18)
 collision_layer = 2
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_02gj7")
 linear_velocity = Vector2(0, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
-rotation = 0.0108286
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_dlvx5")
 
-[node name="FootCollisionShape" type="CollisionShape2D" parent="Hand"]
-position = Vector2(1, -4.37114e-08)
-rotation = 0.00591673
-scale = Vector2(0.3, 0.3)
-shape = SubResource("CapsuleShape2D_ylmc8")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand"]
+polygon = PackedVector2Array(2, -3, -2, -3, -2, -2, -3, -2, -3, 0, -2, 0, -2, 2, -1, 2, -1, 3, 1, 3, 1, 4, 4, 4, 4, -1, 3, -1, 3, -2, 2, -2)
 
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
-position = Vector2(0, 4)
+scale = Vector2(0.07, 0.07)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
 bias = 0.9
 softness = 0.1
 
 [node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
-position = Vector2(1, 287)
+position = Vector2(4, 22)
 rotation = 1.65896
+scale = Vector2(0.035, 0.035)
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 bias = 0.9
 softness = 1.0
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
-position = Vector2(4, 272)
+position = Vector2(4, 22)
 rotation = 1.65896
 collision_layer = 2
 collision_mask = 14
 mass = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
-position = Vector2(14.941, 1.928)
+position = Vector2(0, 5.72205e-06)
+scale = Vector2(0.39, 0.39)
 shape = SubResource("CircleShape2D_ijwyr")

@@ -65,7 +65,7 @@ scale = Vector2(0.448187, 20.5381)
 texture = ExtResource("1_a230b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" groups=["Ground"]]
-position = Vector2(1057, 324)
+position = Vector2(1101, 92)
 shape = SubResource("RectangleShape2D_a230b")
 
 [node name="Floor3" type="StaticBody2D" parent="." groups=["Ground"]]

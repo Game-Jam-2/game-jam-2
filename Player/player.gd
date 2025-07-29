@@ -75,6 +75,7 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.node_a = slot.get_path()
 	joint.node_b = limb.get_child(0).get_path()
 	joint.global_position = slot.global_position
+	joint.softness = 0
 	get_parent().add_child(joint)
 	connect_grabbing_signals(limb)
 

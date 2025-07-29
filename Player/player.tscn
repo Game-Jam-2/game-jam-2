@@ -1,96 +1,105 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjcecy3ssds4p"]
+[gd_scene load_steps=9 format=3 uid="uid://bjcecy3ssds4p"]
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
 [ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_btcbx"]
 [ext_resource type="Script" uid="uid://oielko770mgb" path="res://Scripts/Instance Scripts/limb_breaker.gd" id="3_btcbx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
+radius = 7.11111
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yv0sd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
+radius = 8.41293
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_rupg5")
 metadata/_edit_horizontal_guides_ = [1.0, -54.0]
 metadata/_edit_vertical_guides_ = [-109.0]
 
-[node name="Torso" type="RigidBody2D" parent="."]
-visibility_layer = 4
-position = Vector2(0, -1.66)
-collision_mask = 4
-mass = 20.0
-center_of_mass_mode = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="Torso"]
-position = Vector2(23, 7.56)
-texture = ExtResource("2_btcbx")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
-position = Vector2(10, 18.56)
-polygon = PackedVector2Array(53, 93, 54, 56.1, 56, 37, 60, 7, 63, -23, 79, -53.9, 73, -61, 72, -85, 80, -92, 81, -109.9, 39, -111.9, 17, -130.9, -14, -131, -36, -130.9, -36, -118.9, -67, -110, -88, -109.9, -93, -87.9, -85, -78, -85, -75.3177, -85, -60, -90, -53.9, -82, -29, -75, -10, -67, 13, -63, 36.1, -65, 71, -67, 92.1, -30, 96, -18, 95.1, -14, 123.1, -5, 112.1, 10, 125.1, 11, 96)
-
-[node name="Camera2D" type="Camera2D" parent="Torso"]
-scale = Vector2(0.971257, -2.35303)
-offset = Vector2(0, -130.875)
-zoom = Vector2(0.56, 0.56)
-
 [node name="Connector 1" type="RigidBody2D" parent="."]
-position = Vector2(1.2, -124.34)
+position = Vector2(1, -10)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
 tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 1"]
-position = Vector2(-1.2, 9.24001)
+position = Vector2(3.13747e-09, 0)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_46bvi")
 
 [node name="Connector 2" type="RigidBody2D" parent="."]
-position = Vector2(92, -56.1)
+position = Vector2(10, -3)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 1
+tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 2"]
-position = Vector2(-4, 0)
-shape = SubResource("CircleShape2D_46bvi")
+position = Vector2(0, 0.906657)
+scale = Vector2(0.24, 0.24)
+shape = SubResource("CircleShape2D_btcbx")
 
 [node name="Connector 3" type="RigidBody2D" parent="."]
-position = Vector2(53, 121.9)
+position = Vector2(5, 14)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
+tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 3"]
-position = Vector2(0, -4)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_ocw3p")
 
 [node name="Connector 4" type="RigidBody2D" parent="."]
-position = Vector2(-49, 117.9)
+position = Vector2(-5, 14)
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 4"]
-position = Vector2(4, -3)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_yv0sd")
 
+[node name="Torso" type="RigidBody2D" parent="."]
+visibility_layer = 4
+collision_mask = 4
+mass = 20.0
+center_of_mass_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Torso"]
+texture = ExtResource("2_btcbx")
+offset = Vector2(0, 3.025)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
+position = Vector2(-13, 14)
+polygon = PackedVector2Array(21, -22.9, 6, -22.9, 6, -21.9, 4, -21.9, 4, -20.9, 3, -20.9, 3, -17.9, 2, -17.9, 2, -12.9, 3, -12.9, 3, -10.9, 4, -10.9, 4, -9.9, 5, -9.9, 5, -5.9, 4, -5.9, 4, -1.9, 5, -1.9, 5, -0.9, 6, -0.9, 6, 0.1, 7, 0.1, 7, 1.1, 18, 1.1, 18, 0.1, 20, 0.1, 20, -1.9, 21, -1.9, 21, -5.9, 20, -5.9, 20, -8.9, 21, -8.9, 21, -9.9, 22, -9.9, 22, -10.9, 23, -10.9, 23, -11.9, 24, -11.9, 24, -18.9, 23, -18.9, 23, -21.9, 21, -21.9)
+
+[node name="Camera2D" type="Camera2D" parent="Torso"]
+position = Vector2(-2, 1)
+scale = Vector2(0.971257, -2.35303)
+offset = Vector2(0, -33.935)
+zoom = Vector2(4.455, 4.455)
+
 [node name="Connector 5" type="RigidBody2D" parent="."]
-position = Vector2(-84, -54.1)
-rotation = 0.975018
+position = Vector2(-9, -3)
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 5"]
-position = Vector2(3.90004, -2.18854)
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_rupg5")
 
 [node name="Left Leg Joint 1" type="PinJoint2D" parent="."]
-position = Vector2(-37.22, 109.945)
-scale = Vector2(0.455, 0.455)
+light_mask = 0
+visibility_layer = 0
+position = Vector2(-6, 14)
+scale = Vector2(0.375, 0.375)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 4")
 bias = 0.9
@@ -98,8 +107,8 @@ bias = 0.9
 [node name="Left Leg Joint 2" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(-51.675, 107.455)
-scale = Vector2(0.455, 0.455)
+position = Vector2(-4, 14)
+scale = Vector2(0.375, 0.375)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 4")
 bias = 0.9
@@ -107,8 +116,8 @@ bias = 0.9
 [node name="Right Leg Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(45.07, 114.9)
-scale = Vector2(0.455, 0.455)
+position = Vector2(4, 14)
+scale = Vector2(0.375, 0.375)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 3")
 bias = 0.9
@@ -116,8 +125,8 @@ bias = 0.9
 [node name="Right Leg Joint 2" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(59.84, 114.9)
-scale = Vector2(0.455, 0.455)
+position = Vector2(6, 14)
+scale = Vector2(0.375, 0.375)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 3")
 bias = 0.9
@@ -125,9 +134,9 @@ bias = 0.9
 [node name="Right Arm Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(82.8, -46.205)
+position = Vector2(10, -0.999998)
 rotation = 0.975018
-scale = Vector2(0.455, 0.455)
+scale = Vector2(0.375, 0.375)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 2")
 bias = 0.9
@@ -135,9 +144,9 @@ bias = 0.9
 [node name="Right Arm Joint 2" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(82.8, -63.86)
+position = Vector2(10, -4)
 rotation = 0.975018
-scale = Vector2(0.455, 0.455)
+scale = Vector2(0.375, 0.375)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 2")
 bias = 0.9
@@ -145,9 +154,9 @@ bias = 0.9
 [node name="Head Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(-8, -114.445)
+position = Vector2(1.43051e-06, -9)
 rotation = 0.975018
-scale = Vector2(0.455, 0.455)
+scale = Vector2(0.38, 0.38)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 1")
 bias = 0.9
@@ -155,9 +164,9 @@ bias = 0.9
 [node name="Head Joint 2" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(10, -115.1)
+position = Vector2(2, -9)
 rotation = 0.975018
-scale = Vector2(0.455, 0.455)
+scale = Vector2(0.38, 0.38)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 1")
 bias = 0.9
@@ -165,9 +174,9 @@ bias = 0.9
 [node name="Left Arm Joint 1" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(-76.15, -45.33)
+position = Vector2(-8, -2)
 rotation = -0.603061
-scale = Vector2(0.455, 0.455)
+scale = Vector2(0.41, 0.41)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 5")
 bias = 0.9
@@ -176,9 +185,9 @@ softness = 0.36
 [node name="Left Arm Joint 2" type="PinJoint2D" parent="."]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(-76.15, -58.18)
+position = Vector2(-8, -4)
 rotation = -0.603061
-scale = Vector2(0.455, 0.455)
+scale = Vector2(0.41, 0.41)
 node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 5")
 bias = 0.9
