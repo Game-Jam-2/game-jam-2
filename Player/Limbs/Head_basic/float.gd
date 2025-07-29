@@ -13,8 +13,11 @@ var ascend_force = 180.0
 var max_hover_velocity = 200.0
 func enter(previous_state_path:String,data:= {}):
 	floor_ray = object_reference.get_parent().get_node("FloorRay")
+	print(floor_ray.name)
 	head =  object_reference.get_parent().get_node("Head")
-func physics_update(delta):
+	print(head.name)
+	print("entered float")
+func physics_update(_delta:float):
 	hover()
 
 func hover():
@@ -24,7 +27,7 @@ func hover():
 			if head.linear_velocity.y > -max_hover_velocity:
 				head.apply_central_impulse(Vector2.UP * hover_force * (1.0 - distance_to_floor / hover_height))
 
-func handle_update():
+func handle_input(_event:InputEvent):
 	if Input.is_action_pressed("a") and hovering:
 		head.apply_central_impulse(Vector2.LEFT * ascend_force)
 	if Input.is_action_pressed("d") and hovering:

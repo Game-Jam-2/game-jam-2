@@ -1,51 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxn6e386bvl0f"]
+[gd_scene load_steps=8 format=3 uid="uid://cxn6e386bvl0f"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_41gnb"]
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="2_udqge"]
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="3_7uha8"]
 [ext_resource type="Script" uid="uid://ye0dlsck1odv" path="res://Player/Limbs/Head_basic/float.gd" id="3_tbfuu"]
 [ext_resource type="Script" uid="uid://ruyoo5a3ibsq" path="res://Player/Limbs/Head_basic/Idle.gd" id="4_tbfuu"]
-
-[sub_resource type="GDScript" id="GDScript_udqge"]
-script/source = "extends Node2D
-
-@onready var body: RigidBody2D = $Head
-@onready var floor_ray: RayCast2D = $FloorRay
-
-var hovering = false
-
-var hover_height = 700.0
-var def_hover_height = 700.0 #make same as hover_height
-var hover_force = 370.0
-var tilt_force = 700.0
-var ascend_force = 180.0
-var max_hover_velocity = 200.0
-
-func _physics_process(delta):
-	hover()
-	input()
-
-func hover():
-	if floor_ray.is_colliding() and hovering:
-		var distance_to_floor = floor_ray.get_collision_point().y - body.global_position.y
-		if distance_to_floor < hover_height:
-			if body.linear_velocity.y > -max_hover_velocity:
-				body.apply_central_impulse(Vector2.UP * hover_force * (1.0 - distance_to_floor / hover_height))
-
-func input():
-	if Input.is_action_pressed(\"a\") and hovering:
-		body.apply_central_impulse(Vector2.LEFT * ascend_force)
-	if Input.is_action_pressed(\"d\") and hovering:
-		body.apply_central_impulse(Vector2.RIGHT * ascend_force)
-
-	if Input.is_action_pressed(\"w\") or Input.is_action_pressed(\"space\"):
-		hovering = true
-		body.apply_central_impulse(Vector2.UP * ascend_force)
-	
-	if Input.is_action_pressed(\"s\"):
-		hovering = false
-		
-"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kw5qs"]
 radius = 10.7703
@@ -54,7 +13,6 @@ radius = 10.7703
 radius = 38.0132
 
 [node name="HeadBasic" type="Node2D"]
-script = SubResource("GDScript_udqge")
 
 [node name="Neck" type="RigidBody2D" parent="."]
 collision_layer = 0
@@ -73,7 +31,7 @@ metadata/_custom_type_script = "uid://b5040uwupcrjn"
 [node name="Float" type="Node" parent="StateMachine"]
 script = ExtResource("3_tbfuu")
 
-[node name="Player_HeadBasic_Idle" type="Node" parent="StateMachine"]
+[node name="HeadBasic_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_tbfuu")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
