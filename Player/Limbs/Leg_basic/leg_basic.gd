@@ -27,7 +27,6 @@ var ankle_rest_length: float
 
 
 func enter(previous_state_path:String,dict:= {}) -> void:
-	print("entering")
 	KneeMuscle = object_reference.get_parent().get_node("KneeMuscle")
 	AnkleMuscle = object_reference.get_parent().get_node("AnkleMuscle")
 	Thigh = object_reference.get_parent().get_node("Thigh")
@@ -37,7 +36,6 @@ func enter(previous_state_path:String,dict:= {}) -> void:
 	current_connector = get_parent().get_parent().get_parent()
 	Player = current_connector.get_parent()
 	Torso = Player.get_node("Torso")
-	print("Reference " + str(Foot.name))
 	
 	signal_setup()
 	connect_torso_muscles()

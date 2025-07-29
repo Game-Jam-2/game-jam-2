@@ -4,6 +4,8 @@ var limb_reference: Node2D
 func _physics_process(delta: float) -> void:
 	if get_child_count() == 2:
 		limb_reference = get_child(1)
+		print(limb_reference)
+
 		var tension:Vector2 = linear_velocity - get_child(1).get_child(0).linear_velocity
 		if tension.length() > tension_threshold:
 			remove_child(limb_reference)

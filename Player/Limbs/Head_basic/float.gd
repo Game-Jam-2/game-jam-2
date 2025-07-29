@@ -13,10 +13,8 @@ var ascend_force = 180.0
 var max_hover_velocity = 200.0
 func enter(previous_state_path:String,data:= {}):
 	floor_ray = object_reference.get_parent().get_node("FloorRay")
-	print(floor_ray.name)
 	head =  object_reference.get_parent().get_node("Head")
-	print(head.name)
-	print("entered float")
+
 func physics_update(_delta:float):
 	hover()
 
