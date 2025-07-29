@@ -59,7 +59,7 @@ metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 script = ExtResource("7_0hup5")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Arm_basic_Idle" type="Node" parent="StateMachine"]
+[node name="Arm_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("7_xov7s")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
