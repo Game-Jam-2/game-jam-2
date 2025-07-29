@@ -19,6 +19,11 @@ var incoming_limb: Node = null
 }
 
 var current_limb_scene: PackedScene
+var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
+var Arm: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
+var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
+
+
 var current_limb: Node = null
 
 func _ready() -> void:

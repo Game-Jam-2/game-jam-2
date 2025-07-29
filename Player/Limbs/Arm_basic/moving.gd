@@ -7,9 +7,10 @@ var first_entry:bool = true #represents the first time this state is entered use
 var hand_boost : int = 500
 var deadzone : int = 2
 var hand:RigidBody2D
-
+var bicep
 func enter(previous_state_path: String,data:= {}) -> void:
 	hand = object_reference.get_parent().get_node("Hand")
+	bicep = object_reference.get_parent().get_node("Bicep")
 	if first_entry:
 		hand.contact_monitor = true
 		hand.max_contacts_reported = 10
@@ -43,8 +44,9 @@ func handle_input(event: InputEvent) -> void:
 
 
 func on_collision(body_rid:RID,body:Node,body_shape_index: int, local_shape_index:int) -> void:
-	collision_in_progress = true
-	object_collided = body
+	if body != bicep:
+		collision_in_progress = true
+		object_collided = body
 
 func on_collision_end(body_rid:RID,body:Node,body_shape_index: int, local_shape_index:int) -> void:
 	collision_in_progress = false
