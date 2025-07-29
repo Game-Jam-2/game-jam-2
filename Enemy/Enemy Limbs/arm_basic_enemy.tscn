@@ -111,13 +111,13 @@ shape = SubResource("CapsuleShape2D_ylmc8")
 
 [node name="StateMachine" type="Node2D" parent="Hand" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_um587")
-initial_state = NodePath("Enemy_Arm_Idle")
+initial_state = NodePath("Arm_Enemy_Idle")
 
 [node name="Attacking" type="Node" parent="Hand/StateMachine"]
 script = ExtResource("7_wupst")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Enemy_Arm_Idle" type="Node" parent="Hand/StateMachine"]
+[node name="Arm_Enemy_Idle" type="Node" parent="Hand/StateMachine"]
 script = ExtResource("5_d7tn5")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
