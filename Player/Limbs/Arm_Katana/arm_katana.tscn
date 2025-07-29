@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://da1lbybr2s2ed"]
+[gd_scene load_steps=11 format=3 uid="uid://da1lbybr2s2ed"]
 
 [ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_fvuld"]
-[ext_resource type="Script" uid="uid://btmmtx36cimd8" path="res://Player/Limbs/Arm_Katana/katana.gd" id="1_gr8gs"]
+[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_hft65"]
 [ext_resource type="Script" uid="uid://bxu7ilx8dxkp1" path="res://Player/Limbs/Arm_Katana/katana_tip.gd" id="1_igd87"]
 [ext_resource type="Texture2D" uid="uid://bx1ilmtli3hud" path="res://Player/Limbs/Arm_Katana/Sprites/katana.png" id="1_s8hmk"]
+[ext_resource type="Script" uid="uid://htyqiijnv2p6" path="res://Player/Limbs/Arm_Katana/arm_katana_idle.gd" id="3_hft65"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
 absorbent = true
@@ -32,6 +33,18 @@ physics_material_override = SubResource("PhysicsMaterial_ijwyr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
 shape = SubResource("CircleShape2D_6khia")
 
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_hft65")
+metadata/_custom_type_script = "uid://b5040uwupcrjn"
+
+[node name="Kataning" type="Node" parent="StateMachine"]
+script = ExtResource("1_igd87")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="Arm_Katana_Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_hft65")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
@@ -51,13 +64,11 @@ collision_mask = 4
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_gwuy3")
 gravity_scale = 0.0
-script = ExtResource("1_gr8gs")
 
 [node name="Katana Stab Detector" type="Area2D" parent="Katana"]
 position = Vector2(-3.83499, 86)
 collision_layer = 8
 collision_mask = 4
-script = ExtResource("1_igd87")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Stab Detector"]
 position = Vector2(1.87, -6.675)

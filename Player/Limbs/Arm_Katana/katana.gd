@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends State
 
 var move_speed = 8000
 var deadzone = 20.0
@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	var to_target = target_pos - global_position
 	var distance = to_target.length()
 
-	if freeze != true:
+	if katana.freeze != true:
 		if distance > deadzone:
 			var direction = to_target.normalized()
 			apply_central_force(direction * move_speed)

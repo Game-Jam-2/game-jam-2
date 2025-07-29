@@ -1,7 +1,6 @@
-extends Area2D
+extends State
 
-@onready var Katana = $".."
-@onready var swing_pin = $"../../swing_pin"
+var swing_pin 
 
 signal grabbing
 signal releasing
@@ -12,26 +11,35 @@ var hook_threshold = 10.0
 var tips_in = false
 var Katana_pos: Vector2
 var hook_body: Node
+var katana:RigidBody2D
+var katana_tip:Area2D
 
-func _ready():
-	connect("body_entered", _on_body_entered)
-	connect("body_exited", _on_body_exited)
+var move_speed = 8000
+var deadzone = 20.0
 
-func _process(delta: float) -> void:
+func enter(orevious_state_path:String,dict := {}):
+	katana = object_reference.get_parent().get_node("Katana")
+	katana_tip = katana.get_node("Katana Stab Detector")
+	katana_tip.connect("body_entered", _on_body_entered)
+	katana_tip.connect("body_exited", _on_body_exited)
+	swing_pin = object_reference.get_parent().get_node("swing_pin")
+	
+	
+func update(delta: float) -> void:
 	if not hooked:
-		if tips_in and Input.is_action_pressed("left_mouse") and Katana.linear_velocity.length() > hook_threshold:
-			anchor = global_position
+		if tips_in and Input.is_action_pressed("left_mouse") and katana.linear_velocity.length() > hook_threshold:
+			anchor = katana_tip.global_position
 			hooked = true
-			Katana.lock_rotation = true
+			katana.lock_rotation = true
 			swing_pin.set_node_b(hook_body.get_path())
 			swing_pin.bias = 0.9
 			swing_pin.global_position = anchor
 			get_parent().get_parent().add_child(swing_pin)
 			
 		elif Input.is_action_pressed("right_mouse"):
-			Katana.lock_rotation = true
+			katana.lock_rotation = true
 		else:
-			Katana.lock_rotation = false
+			katana.lock_rotation = false
 	elif Input.is_action_just_released("left_mouse"):
 			hooked = false
 			swing_pin.node_b = NodePath("")
@@ -47,3 +55,15 @@ func _on_body_exited(body: Node) -> void:
 		hook_body = null
 		tips_in = false
 		releasing.emit()
+
+func katana_movement()->void:
+	var target_pos = katana.get_global_mouse_position()
+	var to_target = target_pos - katana.global_position
+	var distance = to_target.length()
+
+	if katana.freeze != true:
+		if distance > deadzone:
+			var direction = to_target.normalized()
+			katana.apply_central_force(direction * move_speed)
+		else:
+			katana.linear_velocity = katana.linear_velocity * 0.8
