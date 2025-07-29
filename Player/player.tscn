@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjcecy3ssds4p"]
+[gd_scene load_steps=11 format=3 uid="uid://bjcecy3ssds4p"]
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
 [ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_btcbx"]
 [ext_resource type="Script" uid="uid://oielko770mgb" path="res://Scripts/Instance Scripts/limb_breaker.gd" id="3_btcbx"]
+[ext_resource type="PackedScene" uid="uid://ckkdvuyueunmr" path="res://GUI/LimbGUI.tscn" id="4_gwnis"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 radius = 7.11111
@@ -12,6 +13,9 @@ radius = 7.11111
 [sub_resource type="CircleShape2D" id="CircleShape2D_ocw3p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yv0sd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwnis"]
+radius = 40.1123
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rupg5"]
 radius = 8.41293
@@ -86,6 +90,13 @@ position = Vector2(-2, 1)
 scale = Vector2(0.971257, -2.35303)
 offset = Vector2(0, -33.935)
 zoom = Vector2(4.455, 4.455)
+
+[node name="LimbDetector" type="Area2D" parent="Torso"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/LimbDetector"]
+shape = SubResource("CircleShape2D_gwnis")
 
 [node name="Connector 5" type="RigidBody2D" parent="."]
 position = Vector2(-9, -3)
@@ -195,3 +206,5 @@ node_a = NodePath("../Torso")
 node_b = NodePath("../Connector 5")
 bias = 0.9
 softness = 0.44
+
+[node name="LimbGUI" parent="." instance=ExtResource("4_gwnis")]
