@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bad272rg8qscu"]
+[gd_scene load_steps=10 format=3 uid="uid://bad272rg8qscu"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_4eotu"]
+[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_u26wj"]
 [ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
+[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="3_ia6fm"]
 [ext_resource type="Texture2D" uid="uid://bbma8ou1p8da2" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue.png" id="3_l5x01"]
 [ext_resource type="Texture2D" uid="uid://wo3w762umer7" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue_end.png" id="4_xihee"]
 
@@ -24,6 +26,19 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_xjcec")
 
 [node name="Sprite2D" type="Sprite2D" parent="Neck"]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_u26wj")
+initial_state = NodePath("Grappling")
+metadata/_custom_type_script = "uid://b5040uwupcrjn"
+
+[node name="Grappling" type="Node" parent="StateMachine"]
+script = ExtResource("1_xjcec")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="HeadGrappleTongue_Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_ia6fm")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Neck Joint" type="PinJoint2D" parent="."]
 scale = Vector2(0.45, 0.45)
@@ -49,7 +64,6 @@ damping = 0.01
 position = Vector2(-1, -33)
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_xjcec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 position = Vector2(-1.25, -16.5)

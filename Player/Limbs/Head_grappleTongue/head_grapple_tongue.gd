@@ -1,11 +1,11 @@
-extends RigidBody2D
+extends State
 
-@onready var GrappleRay = $GrappleRay
-@onready var Tongue = $Tongue
-@onready var Anchor = $"../Anchor"
-@onready var GrappleJoint: DampedSpringJoint2D = $"../GrappleJoint"
-@onready var AnchorMark = $"../Anchor/Anchor Mark"
-
+var GrappleRay 
+var Tongue
+var Anchor 
+var GrappleJoint: DampedSpringJoint2D 
+var AnchorMark 
+var head
 var grappling = false
 var anchor_pos = Vector2.ZERO
 var reel_force = 600.0
@@ -14,10 +14,18 @@ var reel_speed = 100.0
 var min_rope_length = 0.0
 var max_rope_length = 800.0
 
-func _process(delta: float) -> void:
+func enter(previous_state_path:String,data := {}): 
+	GrappleRay = object_reference.get_parent().get_node("Head").get_node("GrappleRay")
+	Tongue = object_reference.get_parent().get_node("Head").get_node("Tongue")
+	Anchor = object_reference.get_parent().get_node("Anchor")
+	GrappleJoint = object_reference.get_parent().get_node("GrappleJoint")
+	AnchorMark = Anchor.get_node("Anchor Mark")
+	head = object_reference.get_parent().get_node("Head")
+func update(delta: float) -> void:
 	if not grappling and Input.is_action_just_pressed("left_mouse"):
 		GrappleJoint.length = 10
-		GrappleRay.target_position = to_local(get_global_mouse_position())
+		#used tongue could use anything other than state and statemachine
+		GrappleRay.target_position = Tongue.to_local(Tongue.get_global_mouse_position())
 		GrappleRay.force_raycast_update()
 		
 		if GrappleRay.is_colliding():
@@ -42,25 +50,25 @@ func _process(delta: float) -> void:
 	Tongue.clear_points()
 	if grappling:
 		Tongue.add_point(Vector2.ZERO)
-		Tongue.add_point(to_local(AnchorMark.global_position))
+		Tongue.add_point(Tongue.to_local(AnchorMark.global_position))
 
 		if Input.is_action_pressed("w"):
-			var dir_to_anchor = (anchor_pos - global_position).normalized()
-			apply_force(dir_to_anchor * reel_force)
+			var dir_to_anchor = (anchor_pos - head.global_position).normalized()
+			head.apply_force(dir_to_anchor * reel_force)
 			GrappleJoint.length = max(min_rope_length, GrappleJoint.length - reel_speed * delta)
 
 		if Input.is_action_pressed("s"):
-			var dir_away = (global_position - anchor_pos).normalized()
-			apply_force(dir_away * reel_force)
+			var dir_away = (head.global_position - anchor_pos).normalized()
+			head.apply_force(dir_away * reel_force)
 			GrappleJoint.length = min(max_rope_length, GrappleJoint.length + reel_speed * delta)
 
 
 		if Input.is_action_pressed("a"):
-			var to_anchor = anchor_pos - global_position
+			var to_anchor = anchor_pos - head.global_position
 			var right = Vector2(to_anchor.y, -to_anchor.x).normalized()
-			apply_force(right * swing_force)
+			head.apply_force(right * swing_force)
 			
 		if Input.is_action_pressed("d"):
-					var to_anchor = anchor_pos - global_position
-					var left = Vector2(-to_anchor.y, to_anchor.x).normalized()
-					apply_force(left * swing_force)
+				var to_anchor = anchor_pos - head.global_position
+				var left = Vector2(-to_anchor.y, to_anchor.x).normalized()
+				head.apply_force(left * swing_force)

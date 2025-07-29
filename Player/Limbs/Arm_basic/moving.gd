@@ -10,6 +10,7 @@ var hand:RigidBody2D
 
 func enter(previous_state_path: String,data:= {}) -> void:
 	hand = object_reference.get_parent().get_node("Hand")
+	print("Hand" + str(hand))
 	if first_entry:
 		hand.contact_monitor = true
 		hand.max_contacts_reported = 10
@@ -29,7 +30,7 @@ func physics_update(delta: float) -> void:
 	if distance > deadzone:
 		hand.apply_central_force(force * hand_boost)
 	else:
-		hand.linear_velocity = object_reference.linear_velocity * 0.8
+		hand.linear_velocity = hand.linear_velocity * 0.8
 
 
 
