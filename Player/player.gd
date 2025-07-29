@@ -5,8 +5,10 @@ var roll_strength = 300
 var grab_move_speed = 6000
 var grab_deadzone = 20.0
 var grabbing = false
+var incoming_limb: Node = null
 
-
+@onready var LimbGUI: Control = $LimbGUI
+@onready var LimbDetector = $LimbDetector
 @onready var torso: RigidBody2D = $Torso
 @onready var sockets := {
 	"1": $"Connector 1",
@@ -21,6 +23,7 @@ var current_limb_scene: PackedScene
 var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
 var Arm: PackedScene = preload("res://Player/Limbs/Arm_Katana/arm_katana.tscn")
 var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
+
 
 var current_limb: Node = null
 
@@ -91,6 +94,7 @@ func connect_grabbing_signals(node):
 	
 	for child in node.get_children():
 		connect_grabbing_signals(child)
+
 
 func limb_grabbing():
 	grabbing = true

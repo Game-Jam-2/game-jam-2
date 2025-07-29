@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckkdvuyueunmr"]
+
+[ext_resource type="Script" uid="uid://b5cvvw7jasne" path="res://GUI/limb_gui.gd" id="1_n4dd4"]
+[ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_ntqpi"]
+
+[node name="LimbGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n4dd4")
+
+[node name="Torso" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 143.0
+offset_right = 756.0
+offset_bottom = 482.0
+texture = ExtResource("2_ntqpi")
+stretch_mode = 4
+
+[node name="Head" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 4.0
+offset_right = 675.0
+offset_bottom = 160.0
+
+[node name="Left Arm" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 178.0
+offset_right = 494.0
+offset_bottom = 341.0
+
+[node name="Right Arm" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 159.0
+offset_right = 958.0
+offset_bottom = 338.0
+
+[node name="Left Leg" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 371.0
+offset_top = 388.0
+offset_right = 591.0
+offset_bottom = 647.0
+
+[node name="Right Leg" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 403.0
+offset_right = 836.0
+offset_bottom = 649.0
