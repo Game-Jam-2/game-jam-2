@@ -23,7 +23,7 @@ absorbent = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
 radius = 10.2564
 
-[node name="Arm" type="Node2D" groups=["Limbs"]]
+[node name="arm_basic" type="Node2D" groups=["Limbs"]]
 position = Vector2(388, 40)
 
 [node name="Shoulder" type="RigidBody2D" parent="."]

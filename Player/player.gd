@@ -94,7 +94,6 @@ func limb_grabbing():
 	grabbing = true
 func limb_ungrabbing():
 	grabbing = false
-	print("grab released")
 
 func grab_movement():
 	if grabbing:
