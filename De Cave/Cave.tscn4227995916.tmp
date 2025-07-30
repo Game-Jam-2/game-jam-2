@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://5kfn33bybh6n"]
 
 [ext_resource type="Script" uid="uid://rdc2d04bck7r" path="res://De Cave/Cave_Modifiers.gd" id="1_8tuhk"]
+[ext_resource type="Script" uid="uid://1ownvlpycu62" path="res://De Cave/meat_grinder.gd" id="2_0dact"]
 [ext_resource type="Texture2D" uid="uid://d13uqdmomhqx2" path="res://De Cave/Ph Armoury BG.png" id="2_s7e3i"]
 [ext_resource type="Texture2D" uid="uid://8lvpae7aoocc" path="res://De Cave/meat grinder temp.png" id="2_vki6m"]
-[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Arm_basic/arm_basic.tscn" id="5_itsc1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tuhk"]
 size = Vector2(130.272, 179.231)
@@ -27,16 +27,14 @@ scale = Vector2(8.83, 3.64)
 shape = SubResource("RectangleShape2D_8tuhk")
 disabled = true
 
-[node name="Meat Grinder" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-11, 537)
 scale = Vector2(7.74298, 7.30693)
 collision_mask = 3
+script = ExtResource("2_0dact")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Meat Grinder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_vki6m")
 
-[node name="Sprite2D" type="Sprite2D" parent="Meat Grinder"]
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 texture = ExtResource("2_vki6m")
-
-[node name="arm_basic" parent="." instance=ExtResource("5_itsc1")]
-position = Vector2(-55, -90)
