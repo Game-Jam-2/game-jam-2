@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://da1lbybr2s2ed"]
+[gd_scene load_steps=10 format=3 uid="uid://da1lbybr2s2ed"]
 
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_hft65"]
 [ext_resource type="Script" uid="uid://bxu7ilx8dxkp1" path="res://Player/Limbs/Arm_Katana/katana_tip.gd" id="1_igd87"]
@@ -17,20 +17,18 @@ absorbent = true
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nnko"]
 absorbent = true
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkyer"]
-radius = 36.0
-height = 224.0
-
 [node name="Arm_Katana" type="Node2D" groups=["Limbs"]]
 position = Vector2(387, 39)
 
 [node name="Shoulder" type="RigidBody2D" parent="."]
+scale = Vector2(0.32, 0.32)
 collision_layer = 2
 collision_mask = 14
 mass = 0.2
 physics_material_override = SubResource("PhysicsMaterial_ijwyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
+scale = Vector2(0.32, 0.32)
 shape = SubResource("CircleShape2D_6khia")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -46,19 +44,20 @@ script = ExtResource("3_hft65")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
+scale = Vector2(0.07, 0.07)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
 bias = 0.9
 
 [node name="Elbow" type="PinJoint2D" parent="."]
-position = Vector2(-0.155, 110.48)
+position = Vector2(-1.43051e-06, 5)
 scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Katana")
 bias = 0.9
 
 [node name="Katana" type="RigidBody2D" parent="."]
-position = Vector2(-0.165009, 201)
+position = Vector2(-4.61936e-07, 19)
 collision_layer = 2
 collision_mask = 4
 mass = 2.0
@@ -75,32 +74,22 @@ position = Vector2(1.87, -6.675)
 shape = SubResource("CircleShape2D_6khia")
 
 [node name="Sprite2D" type="Sprite2D" parent="Katana"]
-position = Vector2(12, -3.5)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0.165009, 0)
 texture = ExtResource("4_hft65")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Katana"]
-position = Vector2(-1, -17.5)
-polygon = PackedVector2Array(-4, 105, 7, 90, 7, -50, -5, -50)
-
 [node name="Bicep" type="RigidBody2D" parent="."]
-position = Vector2(-2, 55)
+position = Vector2(0, 2)
 collision_layer = 2
 collision_mask = 14
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
 gravity_scale = 0.0
 
-[node name="ThighCollisionShape" type="CollisionShape2D" parent="Bicep"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CapsuleShape2D_dkyer")
-
 [node name="Sprite2D" type="Sprite2D" parent="Bicep"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_knysi")
 
 [node name="KatanaMuscle" type="DampedSpringJoint2D" parent="."]
-position = Vector2(0, 54.4)
+position = Vector2(18, 0)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Katana")
 length = 150.0
@@ -109,5 +98,6 @@ stiffness = 32.0
 damping = 5.0
 
 [node name="swing_pin" type="PinJoint2D" parent="."]
+scale = Vector2(0.035, 0.035)
 node_a = NodePath("../Katana")
 softness = 1.0

@@ -1,35 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmmetif4dh4tm"]
+[gd_scene load_steps=7 format=3 uid="uid://bmmetif4dh4tm"]
 
 [ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_11gta"]
-[ext_resource type="Script" uid="uid://r47kyrhxkb5y" path="res://Menus/quit_from_main.gd" id="1_28flt"]
 [ext_resource type="Script" uid="uid://bm6dixo028wbx" path="res://Menus/main_menu.gd" id="1_48xlc"]
-[ext_resource type="Script" uid="uid://cucwo6kr82rt" path="res://Menus/new_game.gd" id="2_at0u2"]
 [ext_resource type="Texture2D" uid="uid://c4jqc0iv050ro" path="res://Art/Menu/Start Button.png" id="3_2k0p2"]
 [ext_resource type="Texture2D" uid="uid://cbp2ibedeqi3w" path="res://Art/Menu/Start Button Hover.png" id="4_y501u"]
 [ext_resource type="Texture2D" uid="uid://dpb7n3176aiip" path="res://Art/Menu/Quit Button.png" id="6_uayf2"]
 [ext_resource type="Texture2D" uid="uid://dbhpt0smdvclt" path="res://Art/Menu/Quit Button Hover.png" id="7_55uyf"]
 
-[node name="Main Menu" type="Node"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(581, 314)
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_48xlc")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577, 313)
 scale = Vector2(1.99, 1.94)
 texture = ExtResource("1_11gta")
 
-[node name="Main Menu" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_48xlc")
-
-[node name="Panel" type="Panel" parent="Main Menu"]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 offset_right = 1150.0
 offset_bottom = 652.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 88.0
@@ -37,14 +30,12 @@ offset_right = 611.0
 offset_bottom = 189.0
 scale = Vector2(2.44, 2.44)
 
-[node name="New Gane" type="TextureButton" parent="Main Menu/VBoxContainer"]
+[node name="New Game" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_2k0p2")
 texture_hover = ExtResource("4_y501u")
-script = ExtResource("2_at0u2")
 
-[node name="Quit" type="TextureButton" parent="Main Menu/VBoxContainer"]
+[node name="Quit" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("6_uayf2")
 texture_hover = ExtResource("7_55uyf")
-script = ExtResource("1_28flt")

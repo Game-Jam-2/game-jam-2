@@ -1,4 +1,15 @@
 extends Control
+var start_scene := "res://testing/test_stage.tscn"
 
+@onready var new_game = $"VBoxContainer/New Game"
+@onready var quit = $VBoxContainer/Quit
 
-#hello is me again, just needs integrating into main script so that the new game button does somethng and the main menu is what shows up first
+func _ready() -> void:
+	new_game.connect("button_down", load_game)
+	quit.connect("button_down", quit_game)
+
+func load_game():
+	get_tree().change_scene_to_file(start_scene)
+
+func quit_game():
+	get_tree().quit()

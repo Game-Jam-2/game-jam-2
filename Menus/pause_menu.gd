@@ -1,22 +1,29 @@
 extends Control
+@onready var resume = $VBoxContainer/Resume
+@onready var quit = $VBoxContainer/Quit
 
 var isOpen = false
 
-func open() -> void:
+func _ready() -> void:
+	resume.connect("button_down", unpause)
+	quit.connect("button_down", quit_game)
+
+func pause() -> void:
 	visible = true
 	isOpen = true
 	get_tree().paused = true
 
-func close() -> void:
+func unpause() -> void:
 	visible = false
 	isOpen = false
 	get_tree().paused = false
 
-# im unsure about this bit, this isnt in the functioning one on the old game but i don know whats happenninnn
+func quit_game():
+	get_tree().quit()
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
-		print("pause")
-		open()
-
-# this pause menu scene and script isnt connected to the main thing so its not working currently if you run the whole thing :thumbs_up:
-# will probably need some wiggling to make work once integrated but the buttons work yippeee
+		if isOpen:
+			unpause()
+		else:
+			pause()

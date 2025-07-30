@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjcecy3ssds4p"]
+[gd_scene load_steps=12 format=3 uid="uid://bjcecy3ssds4p"]
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
 [ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_btcbx"]
 [ext_resource type="Script" uid="uid://oielko770mgb" path="res://Scripts/Instance Scripts/limb_breaker.gd" id="3_btcbx"]
 [ext_resource type="PackedScene" uid="uid://ckkdvuyueunmr" path="res://GUI/LimbGUI.tscn" id="4_gwnis"]
+[ext_resource type="PackedScene" uid="uid://bvy1lt7lc8qck" path="res://Menus/pause_menu.tscn" id="5_k53q1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 radius = 7.11111
@@ -212,3 +213,5 @@ softness = 0.44
 
 [node name="LimbGUI" parent="CanvasLayer" instance=ExtResource("4_gwnis")]
 visible = false
+
+[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("5_k53q1")]
