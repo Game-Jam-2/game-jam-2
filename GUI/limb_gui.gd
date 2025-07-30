@@ -41,23 +41,26 @@ func right_leg():
 
 func _process(delta: float) -> void:
 	if limb_available and Input.is_action_just_pressed("equip limb"):
-		if limb.is_in_group("Limbs"):
-			var state = limb.get_node("StateMachine").current_state
-			var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
-			if state == idle_state:
-				scene_name = "res://Player/Limbs/" + limb.name + "/" + limb.name + ".tscn"
-				visible = true
-				limb.queue_free()
-				get_tree().paused = true
+		var state = limb.get_node("StateMachine").current_state
+		var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
+		if state == idle_state:
+			scene_name = "res://Player/Limbs/" + limb.name + "/" + limb.name + ".tscn"
+			visible = true
+			limb.queue_free()
+			get_tree().paused = true
 
 func _on_limb_equipped(body: Node) -> void:
-	limb = body.get_parent()
-	limb_available = true
+	if body.get_parent():
+		if body.get_parent().is_in_group("Limbs"):
+			limb = body.get_parent()
+			limb_available = true
 
-func _limb_left_radius():
-	limb_available = false
+func _limb_left_radius(body: Node) -> void:
+	if body.get_parent():
+		if body.get_parent().is_in_group("Limbs"):
+			limb_available = false
 
-func send_limb_info():
+func send_limb_info() -> void:
 	limb_sent.emit(scene_name, socket)
 	visible = false
 	get_tree().paused = false

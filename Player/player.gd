@@ -8,7 +8,7 @@ var grabbing = false
 var incoming_limb: Node = null
 
 @onready var LimbGUI: Control = $CanvasLayer/LimbGUI
-@onready var LimbDetector = $LimbDetector
+@onready var LimbDetector = $Torso/LimbDetector
 @onready var torso: RigidBody2D = $Torso
 @onready var sockets := {
 	"Head": $"Connector 1",
