@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://da1lbybr2s2ed"]
 
-[ext_resource type="Texture2D" uid="uid://dk0er804cs3w4" path="res://Player/Limbs/Leg_basic/Sprites/Thigh.png" id="1_fvuld"]
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_hft65"]
 [ext_resource type="Script" uid="uid://bxu7ilx8dxkp1" path="res://Player/Limbs/Arm_Katana/katana_tip.gd" id="1_igd87"]
-[ext_resource type="Texture2D" uid="uid://bx1ilmtli3hud" path="res://Player/Limbs/Arm_Katana/Sprites/katana.png" id="1_s8hmk"]
 [ext_resource type="Script" uid="uid://htyqiijnv2p6" path="res://Player/Limbs/Arm_Katana/arm_katana_idle.gd" id="3_hft65"]
+[ext_resource type="Texture2D" uid="uid://c1dypwvjqlcj0" path="res://Player/Limbs/Arm_Katana/Sprites/katanar-arm-katana.png" id="4_hft65"]
+[ext_resource type="Texture2D" uid="uid://dmgua4os2k6cq" path="res://Player/Limbs/Arm_Katana/Sprites/katana-upper-arm.png" id="5_knysi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
 absorbent = true
@@ -77,7 +77,7 @@ shape = SubResource("CircleShape2D_6khia")
 [node name="Sprite2D" type="Sprite2D" parent="Katana"]
 position = Vector2(12, -3.5)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_s8hmk")
+texture = ExtResource("4_hft65")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Katana"]
 position = Vector2(-1, -17.5)
@@ -97,7 +97,7 @@ shape = SubResource("CapsuleShape2D_dkyer")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bicep"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_fvuld")
+texture = ExtResource("5_knysi")
 
 [node name="KatanaMuscle" type="DampedSpringJoint2D" parent="."]
 position = Vector2(0, 54.4)
