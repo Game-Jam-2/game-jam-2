@@ -65,8 +65,7 @@ func _attach_limb_to_slot(key: String) -> void:
 			
 	slot.add_child(limb)
 	limb.global_position = slot.global_position
-	var idle_state = limb.name + "_Idle"
-	limb.get_node("StateMachine")._transistion_to_next_state(idle_state, {})
+	var equip_state = "Equipping"
 
 	var joint = PinJoint2D.new()
 	joint.node_a = slot.get_path()
@@ -75,7 +74,7 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.softness = 0
 	get_parent().add_child(joint)
 	connect_grabbing_signals(limb)
-
+	limb.get_node("StateMachine")._transistion_to_next_state(equip_state, {})
 	current_limb = limb
 	
 func connect_grabbing_signals(node):
