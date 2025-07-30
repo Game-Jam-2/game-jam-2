@@ -52,7 +52,8 @@ func _process(delta: float) -> void:
 
 func _on_limb_equipped(body: Node) -> void:
 	limb = body.get_parent()
-	limb_available = true
+	if limb.get_node("StateMachine").current_state == limb.get_node("StateMachine").get_node(limb.name + "_Idle"):
+		limb_available = true
 
 func _limb_left_radius():
 	limb_available = false
