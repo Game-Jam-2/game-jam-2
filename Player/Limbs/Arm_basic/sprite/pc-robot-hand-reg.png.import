@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmvu4mhbtqtgc"
-path="res://.godot/imported/pc-robot-hand-reg.png-42a60a75f6d228733f5e3bed464dc06f.ctex"
+path="res://.godot/imported/pc-robot-hand-reg.png-90276a0446d015ebddd57e9026435a10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Limbs/arm_basic/sprite/pc-robot-hand-reg.png"
-dest_files=["res://.godot/imported/pc-robot-hand-reg.png-42a60a75f6d228733f5e3bed464dc06f.ctex"]
+source_file="res://Player/Limbs/Arm_basic/sprite/pc-robot-hand-reg.png"
+dest_files=["res://.godot/imported/pc-robot-hand-reg.png-90276a0446d015ebddd57e9026435a10.ctex"]
 
 [params]
 

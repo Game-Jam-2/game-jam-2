@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bad272rg8qscu"]
+[gd_scene load_steps=11 format=3 uid="uid://bad272rg8qscu"]
 
-[ext_resource type="Script" uid="uid://tfwcfpqtpr4u" path="res://Player/Limbs/Head_grappleTongue/state_machine.gd" id="1_u26wj"]
+[ext_resource type="Texture2D" uid="uid://b3iay1ea82b5i" path="res://Player/Limbs/Head_grappleTongue/Sprites/human-neck.png" id="1_67cgg"]
+[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_u26wj"]
 [ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
 [ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="3_ia6fm"]
 [ext_resource type="Texture2D" uid="uid://ynh4vfw0g7ef" path="res://Player/Limbs/Head_grappleTongue/Sprites/human-grapple-head.png" id="5_ia6fm"]
@@ -10,57 +11,68 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xjcec"]
 radius = 10.7703
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bn0d"]
+radius = 38.0132
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5x01"]
 
-[node name="Head_grappleTongue" type="Node2D" groups=["Limbs"]]
+[node name="HeadGrappleTongue" type="Node2D" groups=["Limbs"]]
 position = Vector2(0, -11)
 
 [node name="Neck" type="RigidBody2D" parent="."]
-position = Vector2(0, 11)
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Neck"]
-scale = Vector2(0.13, 0.13)
 shape = SubResource("CircleShape2D_xjcec")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
+[node name="Sprite2D" type="Sprite2D" parent="Neck"]
+texture = ExtResource("1_67cgg")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_u26wj")
-initial_state = NodePath("Head_grappleTongue_Idle")
-initial_equipped_state = NodePath("Grappling")
+initial_state = NodePath("Grappling")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
 [node name="Grappling" type="Node" parent="StateMachine"]
 script = ExtResource("1_xjcec")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Head_grappleTongue_Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_67cgg")
+[node name="HeadGrappleTongue_Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_ia6fm")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Equipping" type="Node" parent="StateMachine"]
-script = ExtResource("4_u26wj")
-
-[node name="Neck Joint 1" type="PinJoint2D" parent="."]
-position = Vector2(-1, 11)
-scale = Vector2(0.13, 0.13)
+[node name="Neck Joint" type="PinJoint2D" parent="."]
+scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Neck")
 node_b = NodePath("../Head")
 softness = 1.0
 
-[node name="Neck Joint 2" type="PinJoint2D" parent="."]
-position = Vector2(1, 11)
-scale = Vector2(0.13, 0.13)
-node_a = NodePath("../Neck")
-node_b = NodePath("../Head")
-softness = 1.0
+[node name="Neck Muscle 1" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-21.6, -31.865)
+node_a = NodePath("../Head")
+node_b = NodePath("../Neck")
+rest_length = 60.0
+damping = 0.01
+
+[node name="Neck Muscle 2" type="DampedSpringJoint2D" parent="."]
+position = Vector2(21.6, -31.865)
+node_a = NodePath("../Head")
+node_b = NodePath("../Neck")
+rest_length = 60.0
+damping = 0.01
 
 [node name="Head" type="RigidBody2D" parent="."]
-position = Vector2(-1, 4)
+position = Vector2(-1, -33)
 collision_layer = 2
 collision_mask = 5
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2(-1.25, -16.5)
+shape = SubResource("CircleShape2D_2bn0d")
+
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(-4, -16)
 texture = ExtResource("5_ia6fm")
 
 [node name="Tongue" type="Line2D" parent="Head"]
@@ -69,10 +81,8 @@ texture = ExtResource("6_xow5s")
 texture_mode = 1
 
 [node name="GrappleRay" type="RayCast2D" parent="Head"]
+position = Vector2(1, 33)
 collision_mask = 4
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
-polygon = PackedVector2Array(3, 7, -1, 7, -1, 5, -6, 5, -6, 4, -7, 4, -7, -5, -6, -5, -6, -6, 6, -6, 6, -5, 7, -5, 7, -1, 8, -1, 8, 1, 7, 1, 7, 4, 6, 4, 6, 5, 3, 5)
 
 [node name="Anchor" type="RigidBody2D" parent="."]
 position = Vector2(0, -121)
@@ -95,6 +105,5 @@ texture = ExtResource("7_d7e03")
 scale = Vector2(0.03, 0.03)
 
 [node name="GrappleJoint" type="DampedSpringJoint2D" parent="."]
-position = Vector2(1, 6)
-scale = Vector2(0.29, 0.29)
+position = Vector2(0, -26.88)
 node_a = NodePath("../Head")

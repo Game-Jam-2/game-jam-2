@@ -1,5 +1,5 @@
 extends RigidBody2D
-var tension_threshold: int = 500
+var tension_threshold: int = 100
 var limb_reference: Node2D 
 func _physics_process(delta: float) -> void:
 	if get_child_count() == 2:

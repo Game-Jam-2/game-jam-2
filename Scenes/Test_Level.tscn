@@ -330,7 +330,7 @@ sources/0 = SubResource("TileSetAtlasSource_wfdhh")
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8p2tx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yg0us"]
-size = Vector2(669.5, 30)
+size = Vector2(669.5, 33.5)
 
 [node name="Node2D" type="Node2D"]
 
@@ -342,7 +342,7 @@ tile_map_data = PackedByteArray("AAAAACQAAAAAAAwAAAAAACUAAAAAAA0AAAABACQAAAABAAw
 tile_set = SubResource("TileSet_2v7ry")
 
 [node name="arm_basic" parent="." instance=ExtResource("3_2v7ry")]
-position = Vector2(-272, 530)
+position = Vector2(-128, 504)
 
 [node name="arm_katana" parent="." instance=ExtResource("4_8p2tx")]
 position = Vector2(340, 540)
@@ -353,5 +353,5 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_8p2tx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(47.25, 591)
+position = Vector2(46, 591.75)
 shape = SubResource("RectangleShape2D_yg0us")
