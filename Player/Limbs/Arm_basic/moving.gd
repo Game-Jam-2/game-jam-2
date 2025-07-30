@@ -37,7 +37,7 @@ func physics_update(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> void:
-	if (event.is_action_pressed("right_mouse") and collision_in_progress):
+	if (Input.is_action_pressed("left_mouse") and collision_in_progress):
 		#sending object collided with to next state
 		var data:Dictionary = {"object_collided" : object_collided}
 		finished.emit("Grabbing",data)

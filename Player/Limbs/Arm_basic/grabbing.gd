@@ -44,7 +44,7 @@ func physics_update(delta: float) -> void:
 		pull = false
 	
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("right_mouse"):
+	if Input.is_action_just_released("left_mouse"):
 		swing_pin.queue_free()
 		releasing.emit()
 		finished.emit("Moving")
