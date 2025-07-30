@@ -5,11 +5,14 @@ var connecter_regex: RegEx = RegEx.new()
 var player_limb:RigidBody2D
 var first_entry:bool = true
 var speed:int = 200
+var hand:RigidBody2D
 
 func enter(previous_state_path: String,data := {}):
 	print("Attacking State")
+	hand = object_reference.get_parent().get_node("Hand")
 	if first_entry:
-		object_reference.get_parent().get_parent().get_parent().get_node("Torso").get_node("Attack_Range").body_exited.connect(attack_range_exited)
+		print(hand.get_parent().get_parent().get_parent().get_node("Torso").get_node("Attack_Range"))
+		hand.get_parent().get_parent().get_parent().get_node("Torso").get_node("Attack_Range").body_exited.connect(attack_range_exited)
 		raycasts = data["raycasts"]
 		player_torso = data["player_torso"]
 		connecter_regex.compile("Connector \\d")
@@ -19,7 +22,7 @@ func enter(previous_state_path: String,data := {}):
 func physics_update(delta: float) -> void:
 	var direction:Vector2 = (player_limb.global_position - object_reference.global_position)
 	var force:Vector2 = direction * speed * delta
-	object_reference.apply_central_force(force)
+	hand.apply_central_force(force)
 	
 #looking for the limb which is connected to the player if no limbs returns torso
 func get_player_limb() -> RigidBody2D:

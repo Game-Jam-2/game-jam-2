@@ -8,7 +8,7 @@ var swing_pin: PinJoint2D
 var sprite:Sprite2D
 var texture:Texture = load("res://icon.svg")
 var pull:bool = true
-var pull_strength:int = 100
+var pull_strength:int = 200
 var hand_boost:int = 500
 var hand:RigidBody2D
 var bicep:RigidBody2D
