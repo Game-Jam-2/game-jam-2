@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dypya3on0xofm"]
 
 [ext_resource type="Script" uid="uid://ctyl477maeugn" path="res://Player/Limbs/Leg_basic/leg_basic.gd" id="1_ahqge"]
-[ext_resource type="Script" path="res://Player/Limbs/Leg_basic/state_machine.gd" id="1_rqyha"]
+[ext_resource type="Script" uid="uid://djhs15aoftps5" path="res://Player/Limbs/Leg_basic/state_machine.gd" id="1_rqyha"]
 [ext_resource type="Script" uid="uid://di5kvngdxen8y" path="res://Player/Limbs/Leg_basic/idle.gd" id="3_rqyha"]
-[ext_resource type="Script" path="res://Player/Limbs/Leg_basic/node.gd" id="4_5u072"]
+[ext_resource type="Script" uid="uid://bjcushhuk1anw" path="res://Player/Limbs/Leg_basic/node.gd" id="4_5u072"]
 [ext_resource type="Texture2D" uid="uid://vynaukxdo5x2" path="res://Player/Limbs/Leg_basic/Sprites/pc-robot-upper-leg-reg.png" id="4_rqyha"]
 [ext_resource type="Texture2D" uid="uid://cadst7rpiis8t" path="res://Player/Limbs/Leg_basic/Sprites/pc-robot-lower-leg-reg.png" id="5_5u072"]
 [ext_resource type="Texture2D" uid="uid://cu0sa1tbx1h8w" path="res://Player/Limbs/Leg_basic/Sprites/pc-robot-foot-reg.png" id="6_fdklt"]

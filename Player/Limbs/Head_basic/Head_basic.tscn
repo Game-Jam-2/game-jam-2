@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxn6e386bvl0f"]
 
-[ext_resource type="Script" path="res://Player/Limbs/Head_basic/state_machine.gd" id="1_udqge"]
+[ext_resource type="Script" uid="uid://b4lwk33t5i40f" path="res://Player/Limbs/Head_basic/state_machine.gd" id="1_udqge"]
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="3_7uha8"]
 [ext_resource type="Script" uid="uid://ye0dlsck1odv" path="res://Player/Limbs/Head_basic/float.gd" id="3_tbfuu"]
-[ext_resource type="Script" path="res://Player/Limbs/Head_basic/node.gd" id="4_0o3lc"]
+[ext_resource type="Script" uid="uid://ciour0eulqygg" path="res://Player/Limbs/Head_basic/node.gd" id="4_0o3lc"]
 [ext_resource type="Script" uid="uid://ruyoo5a3ibsq" path="res://Player/Limbs/Head_basic/Idle.gd" id="4_tbfuu"]
 [ext_resource type="Texture2D" uid="uid://cescsqlc2y05" path="res://Player/Limbs/Head_basic/sprites/pc-robot-head-reg.png" id="4_udqge"]
 
