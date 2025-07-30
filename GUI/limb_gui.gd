@@ -58,7 +58,6 @@ func _limb_left_radius():
 	limb_available = false
 
 func send_limb_info():
-	print("send limb info")
 	limb_sent.emit(scene_name, socket)
 	visible = false
 	get_tree().paused = false

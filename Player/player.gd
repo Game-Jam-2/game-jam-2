@@ -2,8 +2,8 @@ extends Node2D
 
 var stand_strength = 150
 var roll_strength = 300
-var grab_move_speed = 6000
-var grab_deadzone = 20.0
+var grab_move_speed = 30000
+var grab_deadzone = 5.0
 var grabbing = false
 var incoming_limb: Node = null
 
@@ -53,7 +53,6 @@ func _physics_process(delta: float) -> void:
 
 func _attach_limb_to_slot(key: String) -> void:
 	var slot = sockets.get(key)
-	
 
 	if not slot or slot.get_child_count() > 1:
 		return
@@ -74,6 +73,7 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.softness = 0
 	get_parent().add_child(joint)
 	connect_grabbing_signals(limb)
+	print(equip_state)
 	limb.get_node("StateMachine")._transistion_to_next_state(equip_state, {})
 	current_limb = limb
 	
