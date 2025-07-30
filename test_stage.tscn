@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://buiwatv1812e3"]
 
-[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
-[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_d3c17"]
-[ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
-[ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="5_8bcan"]
-[ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="5_owq45"]
-[ext_resource type="PackedScene" uid="uid://bdi03ompgfx6r" path="res://Scenes/limb_spawner.tscn" id="6_owq45"]
+[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_lawq8"]
+[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="2_mlsmt"]
+[ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="3_rtbpi"]
+[ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="4_04riy"]
+[ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="5_mx1g7"]
+[ext_resource type="PackedScene" uid="uid://bdi03ompgfx6r" path="res://Scenes/limb_spawner.tscn" id="6_o8sic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(4196, 37)
@@ -17,7 +17,7 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(7042, -2591)
 scale = Vector2(14.7892, 14.7892)
-texture = ExtResource("1_d3c17")
+texture = ExtResource("1_lawq8")
 region_enabled = true
 region_rect = Rect2(0, 0, 8192, 324)
 
@@ -31,7 +31,7 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(1431, -444)
 scale = Vector2(3.84568, 3.84568)
-texture = ExtResource("1_d3c17")
+texture = ExtResource("1_lawq8")
 region_enabled = true
 region_rect = Rect2(0, 0, 8192, 324)
 
@@ -46,7 +46,7 @@ collision_mask = 11
 position = Vector2(369.819, 90.0005)
 rotation = 1.5708
 scale = Vector2(0.448187, 14.6762)
-texture = ExtResource("1_a230b")
+texture = ExtResource("2_mlsmt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" groups=["Ground"]]
 position = Vector2(231, 94)
@@ -63,7 +63,7 @@ collision_mask = 8
 position = Vector2(770.892, 90.0019)
 rotation = 1.5708
 scale = Vector2(0.448187, 20.5381)
-texture = ExtResource("1_a230b")
+texture = ExtResource("2_mlsmt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" groups=["Ground"]]
 position = Vector2(1101, 92)
@@ -80,16 +80,16 @@ collision_mask = 8
 position = Vector2(770.892, 90.0019)
 rotation = 1.5708
 scale = Vector2(0.448187, 20.5381)
-texture = ExtResource("1_a230b")
+texture = ExtResource("2_mlsmt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3" groups=["Ground"]]
 position = Vector2(1432, 86)
 shape = SubResource("RectangleShape2D_a230b")
 
-[node name="Cave" parent="." instance=ExtResource("5_8bcan")]
+[node name="Cave" parent="." instance=ExtResource("3_rtbpi")]
 position = Vector2(-5329, -481)
 
-[node name="Player" parent="." instance=ExtResource("2_a230b")]
+[node name="Player" parent="." instance=ExtResource("4_04riy")]
 position = Vector2(886, 41)
 rotation = -0.0101715
 
@@ -97,6 +97,6 @@ rotation = -0.0101715
 position = Vector2(1134, 55)
 rotation = -0.0218747
 
-[node name="Limb_Spawner" parent="." instance=ExtResource("6_owq45")]
+[node name="Limb_Spawner" parent="." instance=ExtResource("6_o8sic")]
 position = Vector2(819, 36)
 limb = "arm_katana"

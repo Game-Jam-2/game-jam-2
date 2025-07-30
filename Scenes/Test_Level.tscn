@@ -334,7 +334,7 @@ sources/0 = SubResource("TileSetAtlasSource_wfdhh")
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8p2tx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yg0us"]
-size = Vector2(669.5, 30)
+size = Vector2(669.5, 33.5)
 
 [node name="Node2D" type="Node2D"]
 
@@ -355,7 +355,7 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_8p2tx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(47.25, 591)
+position = Vector2(46, 591.75)
 shape = SubResource("RectangleShape2D_yg0us")
 
 [node name="Limb_Spawner" parent="." instance=ExtResource("3_2v7ry")]
