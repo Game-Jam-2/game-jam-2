@@ -207,8 +207,4 @@ node_b = NodePath("../Connector 5")
 bias = 0.9
 softness = 0.44
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="LimbGUI" parent="CanvasLayer" instance=ExtResource("4_gwnis")]
-offset_top = 1.0
-offset_bottom = 1.0
+[node name="LimbGUI" parent="." instance=ExtResource("4_gwnis")]

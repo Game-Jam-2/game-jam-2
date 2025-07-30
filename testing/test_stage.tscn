@@ -89,13 +89,8 @@ shape = SubResource("RectangleShape2D_a230b")
 position = Vector2(-2783, 422)
 
 [node name="Player" parent="." instance=ExtResource("2_a230b")]
-position = Vector2(1259, 94)
+position = Vector2(882, 41)
 rotation = -0.0101715
 
-<<<<<<< HEAD
 [node name="Enemy" parent="." instance=ExtResource("5_owq45")]
-position = Vector2(1559, 47)
-=======
-[node name="arm_basic" parent="." instance=ExtResource("6_owq45")]
-position = Vector2(1225, -116)
->>>>>>> origin/master
+position = Vector2(1547, -125)

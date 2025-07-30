@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_udqge"]
 radius = 2.0
 
-[node name="Head_basic" type="Node2D" groups=["Limbs"]]
+[node name="HeadBasic" type="Node2D" groups=["Limbs"]]
 
 [node name="Neck" type="RigidBody2D" parent="."]
 collision_layer = 2
@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://b5040uwupcrjn"
 [node name="Float" type="Node" parent="StateMachine"]
 script = ExtResource("3_tbfuu")
 
-[node name="Head_basic_Idle" type="Node" parent="StateMachine"]
+[node name="HeadBasic_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_tbfuu")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 

@@ -16,7 +16,7 @@ height = 117.647
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahqge"]
 radius = 7.93493
 
-[node name="leg_basic" type="Node2D" groups=["Limbs"]]
+[node name="LegBasic" type="Node2D" groups=["Limbs"]]
 
 [node name="Hip" type="RigidBody2D" parent="."]
 collision_layer = 2
@@ -35,7 +35,7 @@ metadata/_custom_type_script = "uid://b5040uwupcrjn"
 script = ExtResource("1_ahqge")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="leg_basic_Idle" type="Node" parent="StateMachine"]
+[node name="LegBasic_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_rqyha")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
