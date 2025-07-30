@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://5kfn33bybh6n"]
+[gd_scene load_steps=6 format=3 uid="uid://5kfn33bybh6n"]
 
 [ext_resource type="Script" uid="uid://rdc2d04bck7r" path="res://De Cave/Cave_Modifiers.gd" id="1_8tuhk"]
 [ext_resource type="Texture2D" uid="uid://ctumrochwlgol" path="res://Art/Background/Cave-Sprite.png" id="2_s7e3i"]
 [ext_resource type="Texture2D" uid="uid://8lvpae7aoocc" path="res://De Cave/meat grinder temp.png" id="2_vki6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vki6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dact"]
+size = Vector2(222, 95)
 
 [node name="Cave" type="StaticBody2D"]
 collision_layer = 4
@@ -31,3 +34,10 @@ shape = SubResource("RectangleShape2D_vki6m")
 [node name="Sprite2D" type="Sprite2D" parent="Meat Grinder"]
 scale = Vector2(1.363, 1.286)
 texture = ExtResource("2_vki6m")
+
+[node name="Collection Area" type="Area2D" parent="."]
+position = Vector2(490, 301)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collection Area"]
+position = Vector2(6, -17.5)
+shape = SubResource("RectangleShape2D_0dact")

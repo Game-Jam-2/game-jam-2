@@ -8,7 +8,7 @@ var AnchorMark
 var head
 var grappling = false
 var anchor_pos = Vector2.ZERO
-var reel_force = 600.0
+var strength = 600.0
 var swing_force = 400.0
 var reel_speed = 100.0
 var min_rope_length = 0.0
@@ -54,12 +54,12 @@ func update(delta: float) -> void:
 
 		if Input.is_action_pressed("w"):
 			var dir_to_anchor = (anchor_pos - head.global_position).normalized()
-			head.apply_force(dir_to_anchor * reel_force)
+			head.apply_force(dir_to_anchor * strength)
 			GrappleJoint.length = max(min_rope_length, GrappleJoint.length - reel_speed * delta)
 
 		if Input.is_action_pressed("s"):
 			var dir_away = (head.global_position - anchor_pos).normalized()
-			head.apply_force(dir_away * reel_force)
+			head.apply_force(dir_away * strength)
 			GrappleJoint.length = min(max_rope_length, GrappleJoint.length + reel_speed * delta)
 
 

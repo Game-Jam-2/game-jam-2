@@ -1,5 +1,5 @@
 extends State
-var speed : int = 350
+var strength : int = 350
 var collision_in_progress = false
 var object_collided : Node2D
 var first_entry:bool = true #represents the first time this state is entered used to ensure that 
@@ -25,9 +25,9 @@ func physics_update(delta: float) -> void:
 	var mouse_position = hand.get_global_mouse_position()
 	var direction:Vector2 = (mouse_position - hand.global_position).normalized()
 	var distance = (mouse_position - hand.global_position).length()
-	var force = direction * speed * delta 
+	var force = direction * strength * delta 
 	if distance > deadzone:
-		hand.apply_central_force(force * speed)
+		hand.apply_central_force(force * strength)
 	else:
 		hand.linear_velocity = hand.linear_velocity * 0.01
 		print("deadzone, slowing")
