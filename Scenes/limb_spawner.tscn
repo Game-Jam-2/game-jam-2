@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdi03ompgfx6r"]
+
+[ext_resource type="Script" uid="uid://b4lrn3cygdiqv" path="res://testing/limb_spawner.gd" id="1_maixo"]
+
+[node name="Limb_Spawner" type="Node2D"]
+script = ExtResource("1_maixo")

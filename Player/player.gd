@@ -5,6 +5,7 @@ var grab_move_speed = 30000
 var grab_deadzone = 5.0
 var grabbing = false
 var incoming_limb: Node = null
+var limb_dettach_pos: Vector2
 
 @onready var LimbGUI: Control = $CanvasLayer/LimbGUI
 @onready var LimbDetector = $Torso/LimbDetector
@@ -23,6 +24,9 @@ var current_limb: Node = null
 var limb_attached: bool = false
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	var texture = load("res://Art/Menu/cursor.png")
+	Input.set_custom_mouse_cursor(texture, Input.CURSOR_ARROW)
 	LimbGUI.connect("limb_sent", limb_recieved)
 	current_limb = torso
 
@@ -79,6 +83,7 @@ func dettach_limb():
 			print("limb dettached:", child)
 			child.queue_free()
 	current_limb.get_node("StateMachine")._transistion_to_next_state(current_limb.name + "_Idle", {})
+	limb_dettach_pos = current_limb.global_position
 	current_limb = torso
 	grabbing = false
 	limb_attached = false

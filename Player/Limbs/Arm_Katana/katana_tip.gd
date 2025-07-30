@@ -38,7 +38,6 @@ func update(delta: float) -> void:
 			swing_pin.set_node_b(hook_body.get_path())
 			swing_pin.bias = 0.9
 			swing_pin.global_position = anchor
-			get_parent().get_parent().add_child(swing_pin)
 			
 		elif Input.is_action_pressed("right_mouse"):
 			katana.lock_rotation = true

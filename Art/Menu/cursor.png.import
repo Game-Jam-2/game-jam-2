@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmgua4os2k6cq"
-path="res://.godot/imported/katana-upper-arm.png-00d27bcfb8d3d5339b0e125a6adc7900.ctex"
+uid="uid://0w55mbk1smlx"
+path="res://.godot/imported/cursor.png-b00d46350df9a7d87bee4a12ddc8cb4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Limbs/arm_katana/Sprites/katana-upper-arm.png"
-dest_files=["res://.godot/imported/katana-upper-arm.png-00d27bcfb8d3d5339b0e125a6adc7900.ctex"]
+source_file="res://Art/Menu/cursor.png"
+dest_files=["res://.godot/imported/cursor.png-b00d46350df9a7d87bee4a12ddc8cb4e.ctex"]
 
 [params]
 
