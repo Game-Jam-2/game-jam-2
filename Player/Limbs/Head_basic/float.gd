@@ -5,9 +5,9 @@ var floor_ray: RayCast2D
 
 var hovering = false
 
-var hover_height = 170.0
+var hover_height = 120.0
 var def_hover_height = 700.0 #make same as hover_height
-var hover_force = 600.0
+var hover_force = 200.0
 var tilt_force = 700.0
 var ascend_force = 200.0
 var max_hover_velocity = 200.0

@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjcecy3ssds4p"]
+[gd_scene load_steps=15 format=3 uid="uid://bjcecy3ssds4p"]
 
 [ext_resource type="Script" uid="uid://cnfe64t5c7lkq" path="res://Player/player.gd" id="1_rupg5"]
 [ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_btcbx"]
 [ext_resource type="Script" uid="uid://oielko770mgb" path="res://Scripts/Instance Scripts/limb_breaker.gd" id="3_btcbx"]
 [ext_resource type="PackedScene" uid="uid://ckkdvuyueunmr" path="res://GUI/LimbGUI.tscn" id="4_gwnis"]
 [ext_resource type="PackedScene" uid="uid://bvy1lt7lc8qck" path="res://Menus/pause_menu.tscn" id="5_k53q1"]
+[ext_resource type="AudioStream" uid="uid://cr3mkgiyqd6if" path="res://Art/Sound/limbPopping.mp3" id="6_vtle1"]
+[ext_resource type="AudioStream" uid="uid://oennk3ap1k4f" path="res://Art/Sound/DeathSound.mp3" id="7_od3ui"]
+[ext_resource type="Script" uid="uid://cw5y4tqofwigi" path="res://Player/sfx/no_connectors_left.gd" id="7_vtle1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 radius = 7.11111
@@ -31,7 +34,6 @@ position = Vector2(1, -10)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 1"]
 position = Vector2(3.13747e-09, 0)
@@ -43,7 +45,6 @@ position = Vector2(10, -3)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 2"]
 position = Vector2(0, 0.906657)
@@ -55,7 +56,6 @@ position = Vector2(5, 14)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 3"]
 scale = Vector2(0.3, 0.3)
@@ -66,7 +66,6 @@ position = Vector2(-5, 14)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 4"]
 scale = Vector2(0.3, 0.3)
@@ -104,7 +103,6 @@ position = Vector2(-9, -3)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_btcbx")
-tension_threshold = 5000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Connector 5"]
 position = Vector2(0, -4.76837e-07)
@@ -215,3 +213,12 @@ softness = 0.44
 visible = false
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("5_k53q1")]
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="Limb Break" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_vtle1")
+
+[node name="No connectors left" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_od3ui")
+script = ExtResource("7_vtle1")

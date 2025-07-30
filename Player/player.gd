@@ -80,6 +80,7 @@ func dettach_limb():
 			child.queue_free()
 	current_limb.get_node("StateMachine")._transistion_to_next_state(current_limb.name + "_Idle", {})
 	current_limb = torso
+	grabbing = false
 	limb_attached = false
 
 

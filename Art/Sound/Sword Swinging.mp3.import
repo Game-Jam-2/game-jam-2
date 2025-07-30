@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tmnvkue3am0b"
+path="res://.godot/imported/Sword Swinging.mp3-41311c5d54b71545aa99084b83568d16.mp3str"
+
+[deps]
+
+source_file="res://Art/Sound/Sword Swinging.mp3"
+dest_files=["res://.godot/imported/Sword Swinging.mp3-41311c5d54b71545aa99084b83568d16.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
