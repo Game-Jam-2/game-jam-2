@@ -1,5 +1,5 @@
 extends TextureButton
-var start_scene := "res://testing/test_stage.tscn"
+
 
 func _ready() -> void:
 	connect("button_down", load_game)
