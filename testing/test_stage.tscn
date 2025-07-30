@@ -99,4 +99,4 @@ rotation = -0.0218747
 
 [node name="Limb_Spawner" parent="." instance=ExtResource("6_owq45")]
 position = Vector2(819, 36)
-limb = "arm_basic"
+limb = "Head_basic"
