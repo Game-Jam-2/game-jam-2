@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bad272rg8qscu"]
+[gd_scene load_steps=11 format=3 uid="uid://bad272rg8qscu"]
 
-[ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_4eotu"]
+[ext_resource type="Texture2D" uid="uid://b3iay1ea82b5i" path="res://Player/Limbs/Head_grappleTongue/Sprites/human-neck.png" id="1_67cgg"]
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_u26wj"]
 [ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
-[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="3_ia6fm"]
-[ext_resource type="Texture2D" uid="uid://bbma8ou1p8da2" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue.png" id="3_l5x01"]
-[ext_resource type="Texture2D" uid="uid://wo3w762umer7" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue_end.png" id="4_xihee"]
+[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/state.gd" id="3_ia6fm"]
+[ext_resource type="Texture2D" uid="uid://ynh4vfw0g7ef" path="res://Player/Limbs/Head_grappleTongue/Sprites/human-grapple-head.png" id="5_ia6fm"]
+[ext_resource type="Texture2D" uid="uid://bdgtdipchlsng" path="res://Player/Limbs/Head_grappleTongue/Sprites/mid-tongue.png" id="6_xow5s"]
+[ext_resource type="Texture2D" uid="uid://5h20wuwyi2o3" path="res://Player/Limbs/Head_grappleTongue/Sprites/tip-tongue.png" id="7_d7e03"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xjcec"]
 radius = 10.7703
@@ -26,6 +27,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_xjcec")
 
 [node name="Sprite2D" type="Sprite2D" parent="Neck"]
+texture = ExtResource("1_67cgg")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_u26wj")
@@ -71,12 +73,11 @@ shape = SubResource("CircleShape2D_2bn0d")
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 position = Vector2(-4.25, -16.5)
-scale = Vector2(1.09197, 0.343575)
-texture = ExtResource("1_4eotu")
+texture = ExtResource("5_ia6fm")
 
 [node name="Tongue" type="Line2D" parent="Head"]
 texture_repeat = 2
-texture = ExtResource("3_l5x01")
+texture = ExtResource("6_xow5s")
 texture_mode = 1
 
 [node name="GrappleRay" type="RayCast2D" parent="Head"]
@@ -98,7 +99,7 @@ shape = SubResource("CircleShape2D_l5x01")
 [node name="Sprite2D" type="Sprite2D" parent="Anchor"]
 position = Vector2(-1, 0.499998)
 scale = Vector2(0.03, 0.03)
-texture = ExtResource("4_xihee")
+texture = ExtResource("7_d7e03")
 
 [node name="Anchor Mark" type="Marker2D" parent="Anchor"]
 scale = Vector2(0.03, 0.03)
