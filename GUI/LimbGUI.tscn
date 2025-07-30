@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckkdvuyueunmr"]
+[gd_scene load_steps=7 format=3 uid="uid://ckkdvuyueunmr"]
 
 [ext_resource type="Script" uid="uid://b5cvvw7jasne" path="res://GUI/limb_gui.gd" id="1_n4dd4"]
 [ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_ntqpi"]
+[ext_resource type="Texture2D" uid="uid://ce6nxnhfrw7uy" path="res://Art/Whole-Limbs/outlines/whole head outline.png" id="3_hdlt0"]
+[ext_resource type="Texture2D" uid="uid://djgp4ky7k3606" path="res://Art/Whole-Limbs/outlines/whole arm outline.png" id="4_63p51"]
+[ext_resource type="Texture2D" uid="uid://chloggm04eud1" path="res://Art/Whole-Limbs/outlines/whole head outline greyed.png" id="4_bvy6i"]
+[ext_resource type="Texture2D" uid="uid://dmsq5r1yk0l16" path="res://Art/Whole-Limbs/outlines/whole arm outline greyed.png" id="6_f5167"]
 
 [node name="LimbGUI" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_n4dd4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 651.0
+color = Color(0.572988, 0.572988, 0.572988, 0.380392)
 
 [node name="Torso" type="TextureRect" parent="."]
 layout_mode = 0
@@ -20,24 +30,34 @@ stretch_mode = 4
 
 [node name="Head" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 486.0
-offset_top = 4.0
-offset_right = 675.0
-offset_bottom = 160.0
+offset_left = 479.0
+offset_top = -5.0
+offset_right = 698.0
+offset_bottom = 167.0
+texture_normal = ExtResource("3_hdlt0")
+texture_hover = ExtResource("4_bvy6i")
+stretch_mode = 4
 
 [node name="Left Arm" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 182.0
-offset_top = 178.0
-offset_right = 494.0
-offset_bottom = 341.0
+offset_left = 405.0
+offset_top = 187.0
+offset_right = 532.0
+offset_bottom = 470.0
+texture_normal = ExtResource("4_63p51")
+texture_hover = ExtResource("6_f5167")
+stretch_mode = 4
 
 [node name="Right Arm" type="TextureButton" parent="."]
+show_behind_parent = true
 layout_mode = 0
-offset_left = 656.0
-offset_top = 159.0
-offset_right = 958.0
-offset_bottom = 338.0
+offset_left = 643.0
+offset_top = 188.0
+offset_right = 770.0
+offset_bottom = 488.0
+texture_normal = ExtResource("4_63p51")
+texture_hover = ExtResource("6_f5167")
+stretch_mode = 4
 
 [node name="Left Leg" type="TextureButton" parent="."]
 layout_mode = 0
