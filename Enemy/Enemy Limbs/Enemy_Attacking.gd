@@ -20,7 +20,7 @@ func enter(previous_state_path: String,data := {}):
 		first_entry = false
 
 func physics_update(delta: float) -> void:
-	var direction:Vector2 = (player_limb.global_position - object_reference.global_position)
+	var direction:Vector2 = (player_limb.global_position - hand.global_position)
 	var force:Vector2 = direction * speed * delta
 	hand.apply_central_force(force)
 	

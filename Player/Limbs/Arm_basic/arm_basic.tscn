@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://4wambd6lyjw4"]
 
-[ext_resource type="Script" uid="uid://d1n2ya7o4ftpj" path="res://Player/Limbs/Arm_basic/equipping.gd" id="5_avert"]
+[ext_resource type="Script" path="res://Player/Limbs/Arm_basic/equipping.gd" id="5_avert"]
 [ext_resource type="Script" uid="uid://ckrqtbrww8gnc" path="res://Player/Limbs/Leg_basic/hand_state_machine.gd" id="5_vimqa"]
 [ext_resource type="Texture2D" uid="uid://bft3vhs5olohv" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-upper-arm-reg.png" id="5_xov7s"]
 [ext_resource type="Texture2D" uid="uid://5yc2qnvt22ea" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-lower-arm-reg.png" id="6_avert"]
@@ -22,7 +22,7 @@ absorbent = true
 absorbent = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
-radius = 18.667
+radius = 31.2988
 
 [node name="arm_basic" type="Node2D" groups=["Limbs"]]
 

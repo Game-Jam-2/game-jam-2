@@ -5,26 +5,24 @@
 [ext_resource type="Texture2D" uid="uid://buibibv8p63go" path="res://Enemy/Enemy Limbs/sprites/robot limb set/enemy-hand-reg.png" id="3_wupst"]
 [ext_resource type="Script" uid="uid://c2mbm30fb0o53" path="res://Enemy/Enemy Limbs/enemy_arm_state_machine.gd" id="4_um587"]
 [ext_resource type="Script" uid="uid://cysns7dwlqdla" path="res://Enemy/Enemy Limbs/enemy_arm_idle.gd" id="5_d7tn5"]
+[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="5_lksrc"]
 [ext_resource type="Script" uid="uid://b3soj74fm74dx" path="res://Enemy/Enemy Limbs/enemy_arm_chasing.gd" id="6_hsgbf"]
 [ext_resource type="Script" uid="uid://dbhw721hp54rw" path="res://Enemy/Enemy Limbs/Enemy_Attacking.gd" id="7_wupst"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3u7ju"]
+radius = 8.94427
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5x5mh"]
 absorbent = true
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
-radius = 3.0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nnko"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ensm3"]
 absorbent = true
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gwuy3"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i7l26"]
 absorbent = true
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_02gj7"]
-absorbent = true
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ijwyr"]
-radius = 8.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ckyc4"]
+radius = 18.667
 
 [node name="Arm_Enemy" type="Node2D"]
 position = Vector2(387, 39)
@@ -32,17 +30,18 @@ position = Vector2(387, 39)
 [node name="Shoulder" type="RigidBody2D" parent="."]
 collision_layer = 2
 collision_mask = 14
-mass = 0.2
-physics_material_override = SubResource("PhysicsMaterial_ijwyr")
+mass = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
-shape = SubResource("CircleShape2D_6khia")
+scale = Vector2(0.125, 0.125)
+shape = SubResource("CircleShape2D_3u7ju")
 
-[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
 position = Vector2(7, 247)
 rotation = 3.12025
 script = ExtResource("4_um587")
 initial_state = NodePath("Arm_Enemy_Idle")
+initial_equipped_state = NodePath("Equipping")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("7_wupst")
@@ -59,87 +58,101 @@ metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 [node name="Pull_Timer" type="Timer" parent="StateMachine/Enemy_Arm_Chasing"]
 wait_time = 0.5
 
+[node name="Equipping" type="Node" parent="StateMachine"]
+script = ExtResource("5_lksrc")
+metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
 [node name="Bicep" type="RigidBody2D" parent="."]
-position = Vector2(-1, 11)
+position = Vector2(-1, 17)
 collision_layer = 2
 collision_mask = 14
-physics_material_override = SubResource("PhysicsMaterial_3nnko")
+mass = 2.06
+physics_material_override = SubResource("PhysicsMaterial_5x5mh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bicep"]
+position = Vector2(0, -8)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_hsgbf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bicep"]
-polygon = PackedVector2Array(4, -7, 5, -7, 5, 8, 2, 8, -5, 8, -5, 0, -3, 0, -3, -8, -2, -8, -1, -9, 3, -9)
+position = Vector2(1, -11)
+polygon = PackedVector2Array(-2, -6, 2, -6, 2, -3, 4, -3, 4, 10, -2, 10, -2, 11, -5, 11, -5, 10, -6, 10, -6, 3, -4, 3, -4, -5, -3, -5, -3, -6)
 
 [node name="Elbow" type="PinJoint2D" parent="."]
-position = Vector2(0, 21)
-scale = Vector2(0.45, 0.45)
+position = Vector2(-6.07967e-06, 16)
+scale = Vector2(0.07, 0.07)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../ForeArm")
 bias = 0.9
 
 [node name="ForeArm" type="RigidBody2D" parent="."]
-position = Vector2(-3, 30)
-scale = Vector2(1.5, 1.5)
+position = Vector2(-2, 24)
 collision_layer = 2
 collision_mask = 14
-physics_material_override = SubResource("PhysicsMaterial_gwuy3")
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_ensm3")
 
 [node name="Sprite2D" type="Sprite2D" parent="ForeArm"]
+position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_wupst")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ForeArm"]
-polygon = PackedVector2Array(4.66669, -7.33333, 4.66669, -6, 6, -6, 6, 6, 4.66669, 6, 4.66669, 7.33334, 2.66669, 7.33334, -2.66666, 7.33334, -2.66666, 4.66667, -4.66666, 4.66667, -4.66666, -4.66666, -3.33333, -4.66666, -2.66666, -6, -1.33333, -6, -1.33333, -7.33333)
+polygon = PackedVector2Array(-1, -9, 4, -9, 5, -7, 6, -7, 6, 5, 5, 5, 5, 7, -3, 7, -3, 4, -5, 4, -5, 3, -5, -6, -3, -6, -3, -7, -2, -8)
 
 [node name="Wrist Joint" type="PinJoint2D" parent="."]
-position = Vector2(-2, 38)
-scale = Vector2(0.405, 0.405)
+position = Vector2(-1, 30)
+scale = Vector2(0.07, 0.07)
 node_a = NodePath("../ForeArm")
 node_b = NodePath("../Hand")
-bias = 0.9
+angular_limit_upper = 3.14159
 
 [node name="Hand" type="RigidBody2D" parent="."]
-position = Vector2(4, 50)
-rotation = 3.12025
-scale = Vector2(1.5, 1.5)
+position = Vector2(0, 30)
 collision_layer = 2
 collision_mask = 14
-physics_material_override = SubResource("PhysicsMaterial_02gj7")
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_i7l26")
+linear_velocity = Vector2(0, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
+position = Vector2(-1, 4)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_wupst")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand"]
-polygon = PackedVector2Array(5.87059, 6.12668, 5.94173, 2.79411, 4.6087, 2.76565, 4.63716, 1.43262, 4.73676, -3.23299, 3.40372, -3.26144, 3.43217, -4.59447, -3.23297, -4.73674, -3.26141, -3.40371, -4.59445, -3.43217, -4.66559, -0.0995941, -3.33255, -0.0711365, -3.40369, 3.26143, -1.40414, 3.30412, -1.43259, 4.63715, -0.766083, 4.65137, -0.794556, 5.98441)
+position = Vector2(0, 6)
+polygon = PackedVector2Array(5, -3, 5, 4, 0, 4, 0, 3, -3, 3, -3, 1, -4, 1, -4, -2, -6, -2, -6, -5, -4, -5, -4, -7, 2, -7, 2, -5, 4, -5)
 
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, -5.68434e-14)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Shoulder")
-bias = 0.9
 
 [node name="Hand to Grab Point 1" type="PinJoint2D" parent="."]
-position = Vector2(3, 43)
-scale = Vector2(0.2, 0.2)
+position = Vector2(4, 34)
+rotation = 1.65896
+scale = Vector2(0.035, 0.035)
 node_a = NodePath("../Grab Point")
 node_b = NodePath("../Hand")
 bias = 0.9
 
 [node name="Hand to Grab Point 2" type="PinJoint2D" parent="."]
-position = Vector2(-4, 43)
-scale = Vector2(0.2, 0.2)
-node_a = NodePath("../Grab Point")
-node_b = NodePath("../Hand")
+position = Vector2(3, 38)
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Hand")
+node_b = NodePath("../Grab Point")
+bias = 0.9
 
 [node name="Grab Point" type="RigidBody2D" parent="."]
-position = Vector2(-1, 47)
+position = Vector2(4, 34)
+rotation = 1.65896
 collision_layer = 2
 collision_mask = 14
 mass = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
-position = Vector2(5, 3)
-shape = SubResource("CircleShape2D_ijwyr")
+position = Vector2(1.34831, 3.8964)
+scale = Vector2(0.39, 0.39)
+shape = SubResource("CircleShape2D_ckyc4")
