@@ -38,7 +38,7 @@ shape = SubResource("CircleShape2D_6khia")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
 script = ExtResource("5_vimqa")
-initial_state = NodePath("arm_basic_Idle")
+initial_state = NodePath("Arm_Idle")
 initial_equipped_state = NodePath("Moving")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 

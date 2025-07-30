@@ -18,9 +18,10 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Neck"]
 shape = SubResource("CircleShape2D_udqge")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
 script = ExtResource("2_udqge")
-initial_state = NodePath("Float")
+initial_state = NodePath("HeadBasic_Idle")
+initial_equipped_state = NodePath("Float")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
 [node name="Float" type="Node" parent="StateMachine"]
