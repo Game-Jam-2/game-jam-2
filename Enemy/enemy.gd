@@ -1,5 +1,5 @@
 extends Node2D
- 
+var grabbing:bool
 func _ready() -> void:
 	#attaches joints to the main body
 	var joint =get_node("Left Arm Link").get_node("Arm Attach")

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="5_ncf7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqilm"]
-size = Vector2(89, 36)
+size = Vector2(187, 62.5865)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46bvi"]
 radius = 2.18577
@@ -40,6 +40,7 @@ script = ExtResource("5_ncf7h")
 
 [node name="Player Detect Right" type="RayCast2D" parent="Torso"]
 position = Vector2(0, 1)
+scale = Vector2(1.08894, 1.01212)
 target_position = Vector2(240, 0)
 collision_mask = 5
 script = ExtResource("5_ncf7h")
@@ -71,7 +72,8 @@ position = Vector2(7, 1.19209e-07)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/Attack_Range"]
-position = Vector2(-6.5, 1)
+position = Vector2(2.5, 1.70196)
+scale = Vector2(-1.30244, 1.97569)
 shape = SubResource("RectangleShape2D_eqilm")
 
 [node name="Right Arm Link" type="RigidBody2D" parent="."]
@@ -119,7 +121,7 @@ node_a = NodePath("../../Torso")
 position = Vector2(0.761494, 0.516259)
 shape = SubResource("CircleShape2D_rupg5")
 
-[node name="Arm_Enemy" parent="Left Arm Link" instance=ExtResource("3_am0pq")]
+[node name="Arm_Enemy" parent="Left Arm Link" groups=["Limbs"] instance=ExtResource("3_am0pq")]
 position = Vector2(-0.0662212, -0.0448895)
 rotation = 0.664625
 
