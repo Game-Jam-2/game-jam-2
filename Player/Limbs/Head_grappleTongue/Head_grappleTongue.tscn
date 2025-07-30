@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_4eotu"]
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_u26wj"]
 [ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
-[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="3_ia6fm"]
+[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/state.gd" id="3_ia6fm"]
 [ext_resource type="Texture2D" uid="uid://bbma8ou1p8da2" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue.png" id="3_l5x01"]
 [ext_resource type="Texture2D" uid="uid://wo3w762umer7" path="res://Player/Limbs/Head_grappleTongue/Sprites/tongue_end.png" id="4_xihee"]
 
@@ -15,7 +15,7 @@ radius = 38.0132
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5x01"]
 
-[node name="HeadGrappleTongue" type="Node2D" groups=["Limbs"]]
+[node name="Head_GrappleTongue" type="Node2D" groups=["Limbs"]]
 position = Vector2(0, -11)
 
 [node name="Neck" type="RigidBody2D" parent="."]
