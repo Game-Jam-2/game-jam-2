@@ -58,14 +58,17 @@ func on_limb_sacrificed(body: Node):
 		if body.get_parent().is_in_group("Limbs"):
 			limb = body.get_parent()
 			var limb_name = body.name
-			if limb_name in limbs:
-				var group = limbs[limb_name]["group"]
-				groups[group]["sacrificed_count"] += 1
-				groups[group]["tension_bonus"] += 0.2  # adjust to change buff
+			var state = limb.get_node("StateMachine").current_state
+			var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
+			if state == idle_state:
+				if limb_name in limbs:
+					var group = limbs[limb_name]["group"]
+					groups[group]["sacrificed_count"] += 1
+					groups[group]["tension_bonus"] += 0.2  # adjust to change buff
 				
-				for limb_key in limbs.keys():
-					if limbs[limb_key]["group"] == group:
-						var base = limbs[limb_key]["base_tension"]
-						var bonus = groups[group]["tension_bonus"]
-						limbs[limb_key]["tension"] = base * bonus
-			limb.queue_free()
+					for limb_key in limbs.keys():
+						if limbs[limb_key]["group"] == group:
+							var base = limbs[limb_key]["base_tension"]
+							var bonus = groups[group]["tension_bonus"]
+							limbs[limb_key]["tension"] = base * bonus
+				limb.queue_free()
