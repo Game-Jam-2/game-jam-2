@@ -82,6 +82,7 @@ scale = Vector2(0.448187, 20.5381)
 texture = ExtResource("1_a230b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3" groups=["Ground"]]
+visible = false
 position = Vector2(1432, 86)
 shape = SubResource("RectangleShape2D_a230b")
 
@@ -93,5 +94,5 @@ position = Vector2(882, 41)
 rotation = -0.0101715
 
 [node name="Enemy" parent="." instance=ExtResource("5_owq45")]
-position = Vector2(1132, 48)
+position = Vector2(1134, 55)
 rotation = -0.0218747
