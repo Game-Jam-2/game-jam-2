@@ -8,10 +8,5 @@ func _ready() -> void:
 	
 func _on_limb_equipped(body: Node) -> void:
 	limb = body.get_parent()
-	if limb.is_in_group("Limbs"):
-		var state = limb.get_node("StateMachine").current_state
-		var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
-		print("state:", state)
-		print("idle state", idle_state)
-		if state == idle_state:
-			visible = true
+	if limb.get_node("StateMachine").current_state == limb.get_node("StateMachine").get_node(limb.name + "_Idle"):
+		limb_available = true
