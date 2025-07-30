@@ -1,7 +1,6 @@
 extends Node2D
 
-var stand_strength = 150
-var roll_strength = 250
+var roll_strength = 60
 var grab_move_speed = 30000
 var grab_deadzone = 5.0
 var grabbing = false
@@ -19,12 +18,9 @@ var incoming_limb: Node = null
 }
 
 var current_limb_scene: PackedScene
-var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
-var Arm: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
-var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
-
 
 var current_limb: Node = null
+var limb_attached: bool = false
 
 func _ready() -> void:
 	LimbGUI.connect("limb_sent", limb_recieved)
@@ -39,16 +35,15 @@ func _physics_process(delta: float) -> void:
 	if current_limb and current_limb.has_method("physics_update"):
 		current_limb.physics_update(delta)
 	
-	if current_limb == torso:
+	if !limb_attached:
 		if Input.is_action_pressed("d"):
-			if torso.linear_velocity.x <= 30:
-				torso.apply_central_impulse(Vector2.UP * stand_strength)
 			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
 		if Input.is_action_pressed("a"):
-			if torso.linear_velocity.x >= -30:
-				torso.apply_central_impulse(Vector2.UP * stand_strength)
 			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
 	
+	elif Input.is_action_just_pressed("equip limb") and limb_attached:
+		dettach_limb()
+		
 	grab_movement()
 
 func _attach_limb_to_slot(key: String) -> void:
@@ -75,8 +70,19 @@ func _attach_limb_to_slot(key: String) -> void:
 	connect_grabbing_signals(limb)
 	print(equip_state)
 	limb.get_node("StateMachine")._transistion_to_next_state(equip_state, {})
+	limb_attached = true
 	current_limb = limb
-	
+
+func dettach_limb():
+	for child in get_parent().get_children():
+		if child is PinJoint2D:
+			print("limb dettached:", child)
+			child.queue_free()
+	current_limb.get_node("StateMachine")._transistion_to_next_state(current_limb.name + "_Idle", {})
+	current_limb = torso
+	limb_attached = false
+
+
 func connect_grabbing_signals(node):
 	if node.has_signal("grabbing"):
 		if not node.is_connected("grabbing", limb_grabbing):

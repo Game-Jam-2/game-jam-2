@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://da1lbybr2s2ed"]
 
-[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_hft65"]
+[ext_resource type="Script" uid="uid://bgrnudfh0jyyf" path="res://Player/Limbs/arm_katana/state_machine.gd" id="1_1f585"]
 [ext_resource type="Script" uid="uid://bxu7ilx8dxkp1" path="res://Player/Limbs/arm_katana/katana_tip.gd" id="1_igd87"]
 [ext_resource type="Script" uid="uid://htyqiijnv2p6" path="res://Player/Limbs/arm_katana/arm_katana_idle.gd" id="3_hft65"]
 [ext_resource type="Texture2D" uid="uid://c1dypwvjqlcj0" path="res://Player/Limbs/arm_katana/Sprites/katanar-arm-katana.png" id="4_hft65"]
@@ -34,7 +34,7 @@ scale = Vector2(0.32, 0.32)
 shape = SubResource("CircleShape2D_6khia")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
-script = ExtResource("1_hft65")
+script = ExtResource("1_1f585")
 initial_state = NodePath("arm_katana_Idle")
 initial_equipped_state = NodePath("Kataning")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"

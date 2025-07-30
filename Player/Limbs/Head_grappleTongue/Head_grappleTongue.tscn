@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bad272rg8qscu"]
 
-[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_u26wj"]
+[ext_resource type="Script" uid="uid://tfwcfpqtpr4u" path="res://Player/Limbs/Head_grappleTongue/state_machine.gd" id="1_u26wj"]
 [ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
-[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/state.gd" id="3_ia6fm"]
+[ext_resource type="Script" uid="uid://b1fs2cdxwpteu" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue_idle.gd" id="3_67cgg"]
 [ext_resource type="Script" uid="uid://fgbqp8yx01cn" path="res://Player/Limbs/Head_grappleTongue/equipping.gd" id="4_u26wj"]
 [ext_resource type="Texture2D" uid="uid://ynh4vfw0g7ef" path="res://Player/Limbs/Head_grappleTongue/Sprites/human-grapple-head.png" id="5_ia6fm"]
 [ext_resource type="Texture2D" uid="uid://bdgtdipchlsng" path="res://Player/Limbs/Head_grappleTongue/Sprites/mid-tongue.png" id="6_xow5s"]
@@ -13,7 +13,7 @@ radius = 10.7703
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5x01"]
 
-[node name="Head_GrappleTongue" type="Node2D" groups=["Limbs"]]
+[node name="Head_grappleTongue" type="Node2D" groups=["Limbs"]]
 position = Vector2(0, -11)
 
 [node name="Neck" type="RigidBody2D" parent="."]
@@ -27,7 +27,7 @@ shape = SubResource("CircleShape2D_xjcec")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
 script = ExtResource("1_u26wj")
-initial_state = NodePath("Head_GrappleTongue_Idle")
+initial_state = NodePath("Head_grappleTongue_Idle")
 initial_equipped_state = NodePath("Grappling")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
@@ -35,8 +35,8 @@ metadata/_custom_type_script = "uid://b5040uwupcrjn"
 script = ExtResource("1_xjcec")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Head_GrappleTongue_Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_ia6fm")
+[node name="Head_grappleTongue_Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_67cgg")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Equipping" type="Node" parent="StateMachine"]

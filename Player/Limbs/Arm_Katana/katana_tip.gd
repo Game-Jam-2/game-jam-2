@@ -13,16 +13,20 @@ var Katana_pos: Vector2
 var hook_body: Node
 var katana:RigidBody2D
 var katana_tip:Area2D
+var thrust_cooldown: bool
+var thrusting: bool = false
+var thrusting_time: bool = false
 
-var move_speed = 8000
+var thrust_force = 7500
+var move_speed = 1000
 var deadzone = 2.0
 
 func enter(orevious_state_path:String,dict := {}):
-	katana = object_reference.get_parent().get_node("Katana")
+	katana = get_parent().get_parent().get_node("Katana")
 	katana_tip = katana.get_node("Katana Stab Detector")
 	katana_tip.connect("body_entered", _on_body_entered)
 	katana_tip.connect("body_exited", _on_body_exited)
-	swing_pin = object_reference.get_parent().get_node("swing_pin")
+	swing_pin = get_parent().get_parent().get_node("swing_pin")
 	
 	
 func update(delta: float) -> void:
@@ -43,6 +47,11 @@ func update(delta: float) -> void:
 	elif Input.is_action_just_released("left_mouse"):
 			hooked = false
 			swing_pin.node_b = NodePath("")
+
+func physics_update(delta: float):
+	katana_movement()
+	katana_thrust()
+	
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Ground"):
@@ -67,3 +76,23 @@ func katana_movement()->void:
 			katana.apply_central_force(direction * move_speed)
 		else:
 			katana.linear_velocity = katana.linear_velocity * 0.8
+
+func katana_thrust():
+	var target_pos = katana.get_global_mouse_position()
+	var to_target = target_pos - katana.global_position
+	var direction = to_target.normalized()
+	if Input.is_action_just_pressed("space") and thrust_cooldown == false:
+		thrust_cooldown = true
+		thrusting_time = true
+		await get_tree().create_timer(5).timeout
+		reset_thrust_cooldown()
+	if thrusting_time:
+		thrusting_time = false
+		thrusting = true
+		await get_tree().create_timer(1.5).timeout
+		thrusting = false
+	if thrusting:
+		katana.apply_central_force(direction * thrust_force)
+
+func reset_thrust_cooldown():
+	thrust_cooldown = false

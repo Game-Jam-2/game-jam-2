@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxn6e386bvl0f"]
+[gd_scene load_steps=8 format=3 uid="uid://cxn6e386bvl0f"]
 
-[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="2_udqge"]
+[ext_resource type="Script" uid="uid://b4lwk33t5i40f" path="res://Player/Limbs/Head_basic/state_machine.gd" id="1_udqge"]
 [ext_resource type="Script" uid="uid://b1icav5l3x7un" path="res://Player/Limbs/Head_basic/floor_ray.gd" id="3_7uha8"]
 [ext_resource type="Script" uid="uid://ye0dlsck1odv" path="res://Player/Limbs/Head_basic/float.gd" id="3_tbfuu"]
+[ext_resource type="Script" uid="uid://ciour0eulqygg" path="res://Player/Limbs/Head_basic/node.gd" id="4_0o3lc"]
 [ext_resource type="Script" uid="uid://ruyoo5a3ibsq" path="res://Player/Limbs/Head_basic/Idle.gd" id="4_tbfuu"]
 [ext_resource type="Texture2D" uid="uid://cescsqlc2y05" path="res://Player/Limbs/Head_basic/sprites/pc-robot-head-reg.png" id="4_udqge"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udqge"]
 radius = 2.0
 
-[node name="HeadBasic" type="Node2D" groups=["Limbs"]]
+[node name="Head_basic" type="Node2D" groups=["Limbs"]]
 
 [node name="Neck" type="RigidBody2D" parent="."]
 collision_layer = 2
@@ -19,17 +20,20 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_udqge")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
-script = ExtResource("2_udqge")
-initial_state = NodePath("HeadBasic_Idle")
+script = ExtResource("1_udqge")
+initial_state = NodePath("Head_basic_Idle")
 initial_equipped_state = NodePath("Float")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
 [node name="Float" type="Node" parent="StateMachine"]
 script = ExtResource("3_tbfuu")
 
-[node name="HeadBasic_Idle" type="Node" parent="StateMachine"]
+[node name="Head_basic_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_tbfuu")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="Equipping" type="Node" parent="StateMachine"]
+script = ExtResource("4_0o3lc")
 
 [node name="Head" type="RigidBody2D" parent="."]
 position = Vector2(0, -6)

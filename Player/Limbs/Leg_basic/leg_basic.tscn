@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dypya3on0xofm"]
+[gd_scene load_steps=11 format=3 uid="uid://dypya3on0xofm"]
 
 [ext_resource type="Script" uid="uid://ctyl477maeugn" path="res://Player/Limbs/Leg_basic/leg_basic.gd" id="1_ahqge"]
-[ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="2_rqyha"]
+[ext_resource type="Script" uid="uid://djhs15aoftps5" path="res://Player/Limbs/Leg_basic/state_machine.gd" id="1_rqyha"]
 [ext_resource type="Script" uid="uid://di5kvngdxen8y" path="res://Player/Limbs/Leg_basic/idle.gd" id="3_rqyha"]
+[ext_resource type="Script" uid="uid://bjcushhuk1anw" path="res://Player/Limbs/Leg_basic/node.gd" id="4_5u072"]
 [ext_resource type="Texture2D" uid="uid://vynaukxdo5x2" path="res://Player/Limbs/Leg_basic/Sprites/pc-robot-upper-leg-reg.png" id="4_rqyha"]
 [ext_resource type="Texture2D" uid="uid://cadst7rpiis8t" path="res://Player/Limbs/Leg_basic/Sprites/pc-robot-lower-leg-reg.png" id="5_5u072"]
 [ext_resource type="Texture2D" uid="uid://cu0sa1tbx1h8w" path="res://Player/Limbs/Leg_basic/Sprites/pc-robot-foot-reg.png" id="6_fdklt"]
@@ -16,7 +17,7 @@ height = 117.647
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahqge"]
 radius = 7.93493
 
-[node name="LegBasic" type="Node2D" groups=["Limbs"]]
+[node name="leg_basic" type="Node2D" groups=["Limbs"]]
 
 [node name="Hip" type="RigidBody2D" parent="."]
 collision_layer = 2
@@ -26,18 +27,22 @@ collision_mask = 4
 scale = Vector2(0.16, 0.16)
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_rqyha")
-initial_state = NodePath("Legging")
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
+script = ExtResource("1_rqyha")
+initial_state = NodePath("leg_basic_Idle")
+initial_equipped_state = NodePath("Legging")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
 [node name="Legging" type="Node" parent="StateMachine"]
 script = ExtResource("1_ahqge")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="LegBasic_Idle" type="Node" parent="StateMachine"]
+[node name="leg_basic_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_rqyha")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="Equipping" type="Node" parent="StateMachine"]
+script = ExtResource("4_5u072")
 
 [node name="Thigh" type="RigidBody2D" parent="."]
 position = Vector2(0, 4.94)
