@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://buibibv8p63go" path="res://Enemy/Enemy Limbs/sprites/robot limb set/enemy-hand-reg.png" id="3_wupst"]
 [ext_resource type="Script" uid="uid://c2mbm30fb0o53" path="res://Enemy/Enemy Limbs/enemy_arm_state_machine.gd" id="4_um587"]
 [ext_resource type="Script" uid="uid://cysns7dwlqdla" path="res://Enemy/Enemy Limbs/enemy_arm_idle.gd" id="5_d7tn5"]
-[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="5_lksrc"]
+[ext_resource type="Script" uid="uid://c04m2y18r7i7h" path="res://Enemy/Enemy Limbs/equipping.gd" id="5_lksrc"]
 [ext_resource type="Script" uid="uid://b3soj74fm74dx" path="res://Enemy/Enemy Limbs/enemy_arm_chasing.gd" id="6_hsgbf"]
 [ext_resource type="Script" uid="uid://dbhw721hp54rw" path="res://Enemy/Enemy Limbs/Enemy_Attacking.gd" id="7_wupst"]
 
@@ -13,12 +13,15 @@
 radius = 8.94427
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5x5mh"]
+rough = true
 absorbent = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ensm3"]
+rough = true
 absorbent = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i7l26"]
+rough = true
 absorbent = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ckyc4"]
@@ -29,7 +32,7 @@ position = Vector2(387, 39)
 
 [node name="Shoulder" type="RigidBody2D" parent="."]
 collision_layer = 2
-collision_mask = 14
+collision_mask = 15
 mass = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
@@ -64,8 +67,9 @@ metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
 [node name="Bicep" type="RigidBody2D" parent="."]
 position = Vector2(-1, 17)
+rotation = -0.00167504
 collision_layer = 2
-collision_mask = 14
+collision_mask = 15
 mass = 2.06
 physics_material_override = SubResource("PhysicsMaterial_5x5mh")
 
@@ -88,7 +92,7 @@ bias = 0.9
 [node name="ForeArm" type="RigidBody2D" parent="."]
 position = Vector2(-2, 24)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 15
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_ensm3")
 
@@ -110,7 +114,7 @@ angular_limit_upper = 3.14159
 [node name="Hand" type="RigidBody2D" parent="."]
 position = Vector2(0, 30)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 15
 mass = 3.0
 physics_material_override = SubResource("PhysicsMaterial_i7l26")
 linear_velocity = Vector2(0, 2)
@@ -148,8 +152,8 @@ bias = 0.9
 [node name="Grab Point" type="RigidBody2D" parent="."]
 position = Vector2(4, 34)
 rotation = 1.65896
-collision_layer = 2
-collision_mask = 14
+collision_layer = 128
+collision_mask = 11
 mass = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]

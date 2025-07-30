@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://4wambd6lyjw4"]
 
-[ext_resource type="Script" uid="uid://d1n2ya7o4ftpj" path="res://Player/Limbs/arm_basic/equipping.gd" id="5_avert"]
+[ext_resource type="Script" uid="uid://d1n2ya7o4ftpj" path="res://Player/Limbs/Arm_basic/equipping.gd" id="5_avert"]
 [ext_resource type="Script" uid="uid://ckrqtbrww8gnc" path="res://Player/Limbs/Leg_basic/hand_state_machine.gd" id="5_vimqa"]
-[ext_resource type="Texture2D" uid="uid://bft3vhs5olohv" path="res://Player/Limbs/arm_basic/sprite/pc-robot-upper-arm-reg.png" id="5_xov7s"]
-[ext_resource type="Texture2D" uid="uid://5yc2qnvt22ea" path="res://Player/Limbs/arm_basic/sprite/pc-robot-lower-arm-reg.png" id="6_avert"]
-[ext_resource type="Script" uid="uid://b6kgvrxfdpf03" path="res://Player/Limbs/arm_basic/moving.gd" id="6_vimqa"]
-[ext_resource type="Script" uid="uid://mf1b00t6o5nl" path="res://Player/Limbs/arm_basic/grabbing.gd" id="7_0hup5"]
-[ext_resource type="Texture2D" uid="uid://bmvu4mhbtqtgc" path="res://Player/Limbs/arm_basic/sprite/pc-robot-hand-reg.png" id="7_dlvx5"]
-[ext_resource type="Script" uid="uid://cqfdarext13kx" path="res://Player/Limbs/arm_basic/player_arm_idle.gd" id="7_xov7s"]
+[ext_resource type="Texture2D" uid="uid://bft3vhs5olohv" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-upper-arm-reg.png" id="5_xov7s"]
+[ext_resource type="Texture2D" uid="uid://5yc2qnvt22ea" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-lower-arm-reg.png" id="6_avert"]
+[ext_resource type="Script" uid="uid://b6kgvrxfdpf03" path="res://Player/Limbs/Arm_basic/moving.gd" id="6_vimqa"]
+[ext_resource type="Script" uid="uid://mf1b00t6o5nl" path="res://Player/Limbs/Arm_basic/grabbing.gd" id="7_0hup5"]
+[ext_resource type="Texture2D" uid="uid://bmvu4mhbtqtgc" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-hand-reg.png" id="7_dlvx5"]
+[ext_resource type="Script" uid="uid://cqfdarext13kx" path="res://Player/Limbs/Arm_basic/player_arm_idle.gd" id="7_xov7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
 radius = 8.94427

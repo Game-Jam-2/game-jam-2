@@ -95,7 +95,7 @@ rotation = -0.0101715
 
 [node name="Enemy" parent="." instance=ExtResource("5_owq45")]
 position = Vector2(1134, 55)
-rotation = -0.0218747
+rotation = 0.0212211
 
 [node name="Limb_Spawner" parent="." instance=ExtResource("6_owq45")]
 position = Vector2(819, 36)

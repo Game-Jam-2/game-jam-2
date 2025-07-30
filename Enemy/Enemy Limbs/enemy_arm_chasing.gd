@@ -2,13 +2,13 @@ extends State
 
 var player_position:Vector2
 var raycasts:Array[RayCast2D]
-var speed:int = 200
-var pull_strength:int = 200
+var speed:int = 500
+var pull_strength:int = 2
 var floor_pos:Vector2
 var grabbing:bool = false 
 var swing_pin: PinJoint2D
 var floor:Node2D
-var hand_boost:int = 200
+
 var first_entry:bool = true
 var hand:RigidBody2D
 func enter(previous_state_path: String,data:={}):
@@ -30,15 +30,24 @@ func physics_update(_delta:float):
 			floor = raycast.get_collider()		
 
 	var direction:Vector2 = (player_position - hand.global_position)
-	var force = direction.x * speed * _delta
-	
-	hand.apply_central_force(Vector2(force,floor_pos.y))
+	var forceX = direction.x * speed * _delta
+	var force = direction * speed * _delta
+	hand.apply_central_force(Vector2(forceX,floor_pos.y + 50))
 	
 	if grabbing:
 		grab()
 		await get_tree().create_timer(1)
-		object_reference.get_parent().get_node("Bicep").apply_impulse(Vector2(force,floor_pos.y))
-		object_reference.get_parent().get_node("ForeArm").apply_impulse(Vector2(force,floor_pos.y))
+		var Torso = object_reference.get_parent().get_parent().get_parent().get_node("Torso")
+		var bicep = object_reference.get_parent().get_node("Bicep")
+		var foreArm = object_reference.get_parent().get_node("ForeArm")
+		
+		assert(Torso.name == "Torso")
+		assert(bicep.name == "Bicep")
+		assert(foreArm.name == "ForeArm")
+		
+	
+		Torso.apply_impulse(force * 5)
+		
 		swing_pin.queue_free()
 		grabbing = false
 
@@ -46,7 +55,7 @@ func physics_update(_delta:float):
 #grabs onto the floor 
 func grab() -> void:
 	swing_pin = PinJoint2D.new()
-	swing_pin.set_node_a(object_reference.get_path())
+	swing_pin.set_node_a(hand.get_path())
 	swing_pin.set_node_b(floor.get_path())
 	swing_pin.bias = 0.0
 	swing_pin.global_position = object_reference.get_parent().get_node("Grab Point").position

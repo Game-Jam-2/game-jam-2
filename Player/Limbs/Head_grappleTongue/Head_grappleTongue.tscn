@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tfwcfpqtpr4u" path="res://Player/Limbs/Head_grappleTongue/state_machine.gd" id="1_u26wj"]
 [ext_resource type="Script" uid="uid://k4dt42qc1yff" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue.gd" id="1_xjcec"]
-[ext_resource type="Script" uid="uid://b1fs2cdxwpteu" path="res://Player/Limbs/Head_grappleTongue/head_grapple_tongue_idle.gd" id="3_67cgg"]
-[ext_resource type="Script" uid="uid://fgbqp8yx01cn" path="res://Player/Limbs/Head_grappleTongue/equipping.gd" id="4_u26wj"]
+[ext_resource type="Script" uid="uid://3xt8qxhf75ch" path="res://Scripts/Classes/State.gd" id="3_ia6fm"]
 [ext_resource type="Texture2D" uid="uid://ynh4vfw0g7ef" path="res://Player/Limbs/Head_grappleTongue/Sprites/human-grapple-head.png" id="5_ia6fm"]
 [ext_resource type="Texture2D" uid="uid://bdgtdipchlsng" path="res://Player/Limbs/Head_grappleTongue/Sprites/mid-tongue.png" id="6_xow5s"]
 [ext_resource type="Texture2D" uid="uid://5h20wuwyi2o3" path="res://Player/Limbs/Head_grappleTongue/Sprites/tip-tongue.png" id="7_d7e03"]
