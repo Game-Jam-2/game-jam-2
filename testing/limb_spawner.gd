@@ -9,3 +9,4 @@ func spawn_limb():
 	print(limb_scene)
 	var limb_instance = limb_scene.instantiate()
 	add_child(limb_instance)
+	
