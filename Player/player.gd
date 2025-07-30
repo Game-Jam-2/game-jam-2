@@ -1,7 +1,7 @@
 extends Node2D
 
 var stand_strength = 150
-var roll_strength = 300
+var roll_strength = 250
 var grab_move_speed = 30000
 var grab_deadzone = 5.0
 var grabbing = false
@@ -102,7 +102,7 @@ func grab_movement():
 
 		if distance > grab_deadzone:
 			var direction = to_target.normalized()
-			torso.apply_central_force(direction * grab_move_speed)
+			torso.apply_central_force(direction * -grab_move_speed)
 			if abs(torso.linear_velocity.length()) > 750:
 				torso.linear_velocity *= 0.5
 		else:

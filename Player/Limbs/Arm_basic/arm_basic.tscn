@@ -29,7 +29,7 @@ radius = 28.3214
 [node name="Shoulder" type="RigidBody2D" parent="."]
 position = Vector2(0, 9.53674e-07)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 12
 mass = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder"]
@@ -60,7 +60,7 @@ script = ExtResource("5_avert")
 [node name="Bicep" type="RigidBody2D" parent="."]
 position = Vector2(-1, 17)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 12
 mass = 2.06
 physics_material_override = SubResource("PhysicsMaterial_3nnko")
 
@@ -83,7 +83,7 @@ bias = 0.9
 [node name="ForeArm" type="RigidBody2D" parent="."]
 position = Vector2(-2, 24)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 12
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_gwuy3")
 
@@ -105,7 +105,7 @@ angular_limit_upper = 3.14159
 [node name="Hand" type="RigidBody2D" parent="."]
 position = Vector2(0, 30)
 collision_layer = 2
-collision_mask = 14
+collision_mask = 12
 mass = 3.0
 physics_material_override = SubResource("PhysicsMaterial_02gj7")
 linear_velocity = Vector2(0, 2)
@@ -144,7 +144,7 @@ bias = 0.9
 position = Vector2(4, 34)
 rotation = 1.65896
 collision_layer = 2
-collision_mask = 14
+collision_mask = 12
 mass = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab Point"]
