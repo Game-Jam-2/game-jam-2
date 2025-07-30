@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
 [ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="5_8bcan"]
 [ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="5_owq45"]
-[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/arm_basic/arm_basic.tscn" id="6_owq45"]
-[ext_resource type="PackedScene" uid="uid://da1lbybr2s2ed" path="res://Player/Limbs/arm_katana/arm_katana.tscn" id="7_351xn"]
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Arm_basic/arm_basic.tscn" id="6_owq45"]
+[ext_resource type="PackedScene" uid="uid://da1lbybr2s2ed" path="res://Player/Limbs/Arm_Katana/arm_katana.tscn" id="7_351xn"]
 [ext_resource type="PackedScene" uid="uid://bad272rg8qscu" path="res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn" id="8_6bnb0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
