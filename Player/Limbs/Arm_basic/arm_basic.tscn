@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://4wambd6lyjw4"]
 
-[ext_resource type="Script" uid="uid://d1n2ya7o4ftpj" path="res://Player/Limbs/Arm_basic/equipping.gd" id="5_avert"]
+[ext_resource type="Script" path="res://Player/Limbs/Arm_basic/equipping.gd" id="5_avert"]
 [ext_resource type="Script" uid="uid://ckrqtbrww8gnc" path="res://Player/Limbs/Leg_basic/hand_state_machine.gd" id="5_vimqa"]
 [ext_resource type="Texture2D" uid="uid://bft3vhs5olohv" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-upper-arm-reg.png" id="5_xov7s"]
 [ext_resource type="Texture2D" uid="uid://5yc2qnvt22ea" path="res://Player/Limbs/Arm_basic/sprite/pc-robot-lower-arm-reg.png" id="6_avert"]
@@ -36,7 +36,7 @@ mass = 0.4
 scale = Vector2(0.125, 0.125)
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_equipped_state")]
 script = ExtResource("5_vimqa")
 initial_state = NodePath("Arm_Idle")
 initial_equipped_state = NodePath("Moving")

@@ -10,8 +10,9 @@ var swing_pin: PinJoint2D
 var floor:Node2D
 var hand_boost:int = 200
 var first_entry:bool = true
-
+var hand:RigidBody2D
 func enter(previous_state_path: String,data:={}):
+	hand = object_reference.get_parent().get_node("Hand")
 	if first_entry:
 		player_position = data["player_position"]
 		raycasts = data["raycasts"]
@@ -28,10 +29,10 @@ func physics_update(_delta:float):
 			floor_pos = raycast.get_collision_point()
 			floor = raycast.get_collider()		
 
-	var direction:Vector2 = (player_position - object_reference.global_position)
+	var direction:Vector2 = (player_position - hand.global_position)
 	var force = direction.x * speed * _delta
 	
-	object_reference.apply_central_force(Vector2(force,floor_pos.y))
+	hand.apply_central_force(Vector2(force,floor_pos.y))
 	
 	if grabbing:
 		grab()
@@ -50,7 +51,7 @@ func grab() -> void:
 	swing_pin.bias = 0.0
 	swing_pin.global_position = object_reference.get_parent().get_node("Grab Point").position
 	swing_pin.disable_collision = false
-	object_reference.get_parent().add_child(swing_pin)
+	hand.get_parent().add_child(swing_pin)
 	
 func timeout()->void:
 	grabbing = true
