@@ -1,8 +1,9 @@
 extends Node
 class_name LimbManager
-@onready var meat_grinder = $Area2D
 
-var limb = preload("res://De Cave/arm_cave_test.tscn")
+@onready var meat_grinder = $"Meat Grinder"
+
+var limb: Node
 
 var groups := {
 	"human": {
@@ -41,18 +42,7 @@ var limbs := {
 }
 
 func _ready() -> void:
-	meat_grinder.connect("limb_sacrifice", on_limb_sacrificed)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Remove Limb in Cave"):
-		on_limb_enter_cave("limb")
-
-# Called when a new limb enters cave (either armoury, pile or grinder) (currently spawning every time hit tab not just once help)
-func on_limb_enter_cave(limb_name: String):
-	var limb_scene = limbs["arm_basic"]
-	var limb_instance = limb.instantiate()
-	limb_instance.position = get_viewport().get_mouse_position()
-	add_child(limb_instance)
+	meat_grinder.connect("body_entered", on_limb_sacrificed)
 
 
 # Called when a limb is collected
@@ -63,15 +53,19 @@ func on_limb_collected(limb_name: String):
 
 
 # Called when a limb is sacrificed
-func on_limb_sacrificed(limb_name: String):
-	print("wahoo")
-	if limb_name in limbs:
-		var group = limbs[limb_name]["group"]
-		groups[group]["sacrificed_count"] += 1
-		groups[group]["tension_bonus"] += 0.2  # adjust to change buff
-		
-		for limb_key in limbs.keys():
-			if limbs[limb_key]["group"] == group:
-				var base = limbs[limb_key]["base_tension"]
-				var bonus = groups[group]["tension_bonus"]
-				limbs[limb_key]["tension"] = base * bonus
+func on_limb_sacrificed(body: Node):
+	if body.get_parent():
+		if body.get_parent().is_in_group("Limbs"):
+			limb = body.get_parent()
+			var limb_name = body.name
+			if limb_name in limbs:
+				var group = limbs[limb_name]["group"]
+				groups[group]["sacrificed_count"] += 1
+				groups[group]["tension_bonus"] += 0.2  # adjust to change buff
+				
+				for limb_key in limbs.keys():
+					if limbs[limb_key]["group"] == group:
+						var base = limbs[limb_key]["base_tension"]
+						var bonus = groups[group]["tension_bonus"]
+						limbs[limb_key]["tension"] = base * bonus
+			limb.queue_free()
