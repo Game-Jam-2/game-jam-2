@@ -1,23 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://da1lbybr2s2ed"]
+[gd_scene load_steps=11 format=3 uid="uid://da1lbybr2s2ed"]
 
 [ext_resource type="Script" uid="uid://b5040uwupcrjn" path="res://Scripts/Classes/StateMachine.gd" id="1_hft65"]
-[ext_resource type="Script" uid="uid://bxu7ilx8dxkp1" path="res://Player/Limbs/Arm_Katana/katana_tip.gd" id="1_igd87"]
-[ext_resource type="Script" uid="uid://htyqiijnv2p6" path="res://Player/Limbs/Arm_Katana/arm_katana_idle.gd" id="3_hft65"]
-[ext_resource type="Texture2D" uid="uid://c1dypwvjqlcj0" path="res://Player/Limbs/Arm_Katana/Sprites/katanar-arm-katana.png" id="4_hft65"]
-[ext_resource type="Texture2D" uid="uid://dmgua4os2k6cq" path="res://Player/Limbs/Arm_Katana/Sprites/katana-upper-arm.png" id="5_knysi"]
+[ext_resource type="Script" uid="uid://bxu7ilx8dxkp1" path="res://Player/Limbs/arm_katana/katana_tip.gd" id="1_igd87"]
+[ext_resource type="Script" uid="uid://htyqiijnv2p6" path="res://Player/Limbs/arm_katana/arm_katana_idle.gd" id="3_hft65"]
+[ext_resource type="Texture2D" uid="uid://c1dypwvjqlcj0" path="res://Player/Limbs/arm_katana/Sprites/katanar-arm-katana.png" id="4_hft65"]
+[ext_resource type="Script" uid="uid://dey1fpqnv13hp" path="res://Player/Limbs/arm_katana/equipping.gd" id="4_knysi"]
+[ext_resource type="Texture2D" uid="uid://dmgua4os2k6cq" path="res://Player/Limbs/arm_katana/Sprites/katana-upper-arm.png" id="5_knysi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ijwyr"]
 absorbent = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6khia"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gwuy3"]
-absorbent = true
+radius = 2.15466
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nnko"]
 absorbent = true
 
-[node name="Arm_Katana" type="Node2D" groups=["Limbs"]]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gwuy3"]
+absorbent = true
+
+[node name="arm_katana" type="Node2D" groups=["Limbs"]]
 position = Vector2(387, 39)
 
 [node name="Shoulder" type="RigidBody2D" parent="."]
@@ -31,17 +33,22 @@ physics_material_override = SubResource("PhysicsMaterial_ijwyr")
 scale = Vector2(0.32, 0.32)
 shape = SubResource("CircleShape2D_6khia")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "initial_equipped_state")]
 script = ExtResource("1_hft65")
+initial_state = NodePath("arm_katana_Idle")
+initial_equipped_state = NodePath("Kataning")
 metadata/_custom_type_script = "uid://b5040uwupcrjn"
 
 [node name="Kataning" type="Node" parent="StateMachine"]
 script = ExtResource("1_igd87")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
 
-[node name="Arm_Katana_Idle" type="Node" parent="StateMachine"]
+[node name="arm_katana_Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_hft65")
 metadata/_custom_type_script = "uid://3xt8qxhf75ch"
+
+[node name="Equipping" type="Node" parent="StateMachine"]
+script = ExtResource("4_knysi")
 
 [node name="Shoulder to bicep" type="PinJoint2D" parent="."]
 scale = Vector2(0.07, 0.07)
@@ -50,35 +57,14 @@ node_b = NodePath("../Shoulder")
 bias = 0.9
 
 [node name="Elbow" type="PinJoint2D" parent="."]
-position = Vector2(-1.43051e-06, 5)
+position = Vector2(-1.43051e-06, 7)
 scale = Vector2(0.45, 0.45)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Katana")
 bias = 0.9
 
-[node name="Katana" type="RigidBody2D" parent="."]
-position = Vector2(-4.61936e-07, 19)
-collision_layer = 2
-collision_mask = 4
-mass = 2.0
-physics_material_override = SubResource("PhysicsMaterial_gwuy3")
-gravity_scale = 0.0
-
-[node name="Katana Stab Detector" type="Area2D" parent="Katana"]
-position = Vector2(-3.83499, 86)
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Stab Detector"]
-position = Vector2(1.87, -6.675)
-shape = SubResource("CircleShape2D_6khia")
-
-[node name="Sprite2D" type="Sprite2D" parent="Katana"]
-position = Vector2(0.165009, 0)
-texture = ExtResource("4_hft65")
-
 [node name="Bicep" type="RigidBody2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 collision_layer = 2
 collision_mask = 14
 mass = 0.5
@@ -88,8 +74,12 @@ gravity_scale = 0.0
 [node name="Sprite2D" type="Sprite2D" parent="Bicep"]
 texture = ExtResource("5_knysi")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bicep"]
+polygon = PackedVector2Array(2, -6, -1, -6, -1, -5, -2, -5, -2, 0, -3, 0, -3, 5, -2, 5, -2, 6, 2, 6, 2, 5, 3, 5, 3, -4, 2, -4)
+
 [node name="KatanaMuscle" type="DampedSpringJoint2D" parent="."]
-position = Vector2(18, 0)
+position = Vector2(0, 2)
+scale = Vector2(0.125, 0.125)
 node_a = NodePath("../Bicep")
 node_b = NodePath("../Katana")
 length = 150.0
@@ -98,6 +88,31 @@ stiffness = 32.0
 damping = 5.0
 
 [node name="swing_pin" type="PinJoint2D" parent="."]
+position = Vector2(0, 2)
 scale = Vector2(0.035, 0.035)
 node_a = NodePath("../Katana")
 softness = 1.0
+
+[node name="Katana" type="RigidBody2D" parent="."]
+position = Vector2(-4.76837e-07, 18)
+collision_layer = 2
+collision_mask = 36
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_gwuy3")
+gravity_scale = 0.0
+
+[node name="Katana Stab Detector" type="Area2D" parent="Katana"]
+position = Vector2(-0.999999, 17)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana/Katana Stab Detector"]
+position = Vector2(2, -6)
+shape = SubResource("CircleShape2D_6khia")
+
+[node name="Sprite2D" type="Sprite2D" parent="Katana"]
+position = Vector2(0.165009, 0)
+texture = ExtResource("4_hft65")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Katana"]
+polygon = PackedVector2Array(2, -5, 0, -5, 0, -4, -1, -4, -1, 7, 0, 7, 0, 10, 1, 10, 1, 12, 2, 12)

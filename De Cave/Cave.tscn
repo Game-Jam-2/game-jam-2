@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rdc2d04bck7r" path="res://De Cave/Cave_Modifiers.gd" id="1_8tuhk"]
 [ext_resource type="Texture2D" uid="uid://d13uqdmomhqx2" path="res://De Cave/Ph Armoury BG.png" id="2_s7e3i"]
 [ext_resource type="Texture2D" uid="uid://8lvpae7aoocc" path="res://De Cave/meat grinder temp.png" id="2_vki6m"]
-[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Arm_basic/arm_basic.tscn" id="5_itsc1"]
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/arm_basic/arm_basic.tscn" id="5_itsc1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tuhk"]
 size = Vector2(130.272, 179.231)

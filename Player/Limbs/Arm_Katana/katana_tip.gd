@@ -15,7 +15,7 @@ var katana:RigidBody2D
 var katana_tip:Area2D
 
 var move_speed = 8000
-var deadzone = 20.0
+var deadzone = 2.0
 
 func enter(orevious_state_path:String,dict := {}):
 	katana = object_reference.get_parent().get_node("Katana")

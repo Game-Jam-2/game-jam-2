@@ -215,3 +215,5 @@ softness = 0.44
 visible = false
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("5_k53q1")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Pause Menu"]

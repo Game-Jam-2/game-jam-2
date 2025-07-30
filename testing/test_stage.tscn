@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://buiwatv1812e3"]
+[gd_scene load_steps=10 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
 [ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_d3c17"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
 [ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="5_8bcan"]
 [ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="5_owq45"]
-[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Arm_basic/arm_basic.tscn" id="6_owq45"]
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/arm_basic/arm_basic.tscn" id="6_owq45"]
+[ext_resource type="PackedScene" uid="uid://da1lbybr2s2ed" path="res://Player/Limbs/arm_katana/arm_katana.tscn" id="7_351xn"]
+[ext_resource type="PackedScene" uid="uid://bad272rg8qscu" path="res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn" id="8_6bnb0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(4196, 37)
@@ -38,7 +40,7 @@ region_rect = Rect2(0, 0, 8192, 324)
 [node name="Floor" type="StaticBody2D" parent="." groups=["Ground"]]
 light_mask = 4
 visibility_layer = 11
-position = Vector2(797, 483)
+position = Vector2(706, 161)
 collision_layer = 4
 collision_mask = 11
 
@@ -55,7 +57,7 @@ shape = SubResource("RectangleShape2D_a230b")
 [node name="Floor2" type="StaticBody2D" parent="." groups=["Ground"]]
 light_mask = 4
 visibility_layer = 11
-position = Vector2(21, 86)
+position = Vector2(28, 62)
 collision_layer = 4
 collision_mask = 8
 
@@ -72,7 +74,7 @@ shape = SubResource("RectangleShape2D_a230b")
 [node name="Floor3" type="StaticBody2D" parent="." groups=["Ground"]]
 light_mask = 4
 visibility_layer = 11
-position = Vector2(-5212, 86)
+position = Vector2(-4754, 73)
 collision_layer = 4
 collision_mask = 8
 
@@ -83,12 +85,11 @@ scale = Vector2(0.448187, 20.5381)
 texture = ExtResource("1_a230b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3" groups=["Ground"]]
-visible = false
 position = Vector2(1432, 86)
 shape = SubResource("RectangleShape2D_a230b")
 
 [node name="Cave" parent="." instance=ExtResource("5_8bcan")]
-position = Vector2(-2783, 422)
+position = Vector2(-5329, -481)
 
 [node name="Player" parent="." instance=ExtResource("2_a230b")]
 position = Vector2(886, 41)
@@ -98,5 +99,11 @@ rotation = -0.0101715
 position = Vector2(1134, 55)
 rotation = -0.0218747
 
+[node name="arm_katana" parent="." instance=ExtResource("7_351xn")]
+position = Vector2(770, 28)
+
 [node name="arm_basic" parent="." instance=ExtResource("6_owq45")]
 position = Vector2(992, 18)
+
+[node name="Head_GrappleTongue" parent="." instance=ExtResource("8_6bnb0")]
+position = Vector2(675, 20)
