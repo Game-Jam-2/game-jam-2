@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://buiwatv1812e3"]
+[gd_scene load_steps=8 format=3 uid="uid://buiwatv1812e3"]
 
 [ext_resource type="Texture2D" uid="uid://cb1oia1so6aed" path="res://Player/Limbs/Leg_basic/Sprites/Foot.png" id="1_a230b"]
 [ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_d3c17"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_a230b"]
 [ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="5_8bcan"]
 [ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="5_owq45"]
+[ext_resource type="PackedScene" uid="uid://4wambd6lyjw4" path="res://Player/Limbs/Arm_basic/arm_basic.tscn" id="6_owq45"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a230b"]
 size = Vector2(4196, 37)
@@ -96,3 +97,5 @@ rotation = -0.0101715
 [node name="Enemy" parent="." instance=ExtResource("5_owq45")]
 position = Vector2(1134, 55)
 rotation = -0.0218747
+
+[node name="arm_basic" parent="." instance=ExtResource("6_owq45")]

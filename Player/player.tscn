@@ -210,3 +210,4 @@ softness = 0.44
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LimbGUI" parent="CanvasLayer" instance=ExtResource("4_gwnis")]
+visible = false

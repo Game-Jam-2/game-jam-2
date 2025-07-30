@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b712no3yj5f3a" path="res://Player/pc-robot-torso-reg.png" id="2_ntqpi"]
 
 [node name="LimbGUI" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_n4dd4")

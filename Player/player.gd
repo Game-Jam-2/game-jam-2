@@ -7,18 +7,17 @@ var grab_deadzone = 20.0
 var grabbing = false
 var incoming_limb: Node = null
 
-@onready var LimbGUI: Control = $LimbGUI
+@onready var LimbGUI: Control = $CanvasLayer/LimbGUI
 @onready var LimbDetector = $LimbDetector
 @onready var torso: RigidBody2D = $Torso
 @onready var sockets := {
-	"1": $"Connector 1",
-	"2": $"Connector 2",
-	"3": $"Connector 3",
-	"4": $"Connector 4",
-	"5": $"Connector 5"
+	"Head": $"Connector 1",
+	"Right Arm": $"Connector 2",
+	"Right Leg": $"Connector 3",
+	"Left Leg": $"Connector 4",
+	"Left Arm": $"Connector 5"
 }
 
-# Swap this for testing limb scene
 var current_limb_scene: PackedScene
 var Head: PackedScene = preload("res://Player/Limbs/Head_grappleTongue/Head_grappleTongue.tscn")
 var Arm: PackedScene = preload("res://Player/Limbs/Arm_basic/arm_basic.tscn")
@@ -28,19 +27,12 @@ var Leg: PackedScene = preload("res://Player/Limbs/Leg_basic/leg_basic.tscn")
 var current_limb: Node = null
 
 func _ready() -> void:
+	LimbGUI.connect("limb_sent", limb_recieved)
 	current_limb = torso
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("1"):
-		current_limb_scene = Head
-	if Input.is_action_just_pressed("2") or Input.is_action_just_pressed("5"):
-		current_limb_scene = Arm
-	if Input.is_action_just_pressed("3") or Input.is_action_just_pressed("4"):
-		current_limb_scene = Leg
-		
-	for key in ["1", "2", "3", "4", "5"]:
-		if Input.is_action_just_pressed(key):
-			_attach_limb_to_slot(key)
+func limb_recieved(scene_name, socket):
+	current_limb_scene = load(scene_name)
+	_attach_limb_to_slot(socket)
 
 
 func _physics_process(delta: float) -> void:
@@ -80,7 +72,6 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.node_b = limb.get_child(0).get_path()
 	joint.global_position = slot.global_position
 	joint.softness = 0
-	joint.bias = 0.9
 	get_parent().add_child(joint)
 	connect_grabbing_signals(limb)
 	limb.get_node("StateMachine")._transistion_to_next_state(equip_state, {})
@@ -102,7 +93,6 @@ func limb_grabbing():
 	grabbing = true
 func limb_ungrabbing():
 	grabbing = false
-	print("grab released")
 
 func grab_movement():
 	if grabbing:
