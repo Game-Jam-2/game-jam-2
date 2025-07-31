@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://bqpyw32dacmwe"]
+[gd_scene load_steps=16 format=4 uid="uid://bqpyw32dacmwe"]
 
+[ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_3d0ua"]
 [ext_resource type="Texture2D" uid="uid://6qyhr3febo61" path="res://Art/tileset.png" id="1_wfdhh"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_2v7ry"]
 [ext_resource type="PackedScene" uid="uid://bdi03ompgfx6r" path="res://Scenes/limb_spawner.tscn" id="3_2v7ry"]
@@ -335,7 +336,7 @@ sources/0 = SubResource("TileSetAtlasSource_wfdhh")
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8p2tx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yg0us"]
-size = Vector2(669.5, 34.5)
+size = Vector2(907.75, 34.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8p2tx"]
 size = Vector2(773, 67)
@@ -353,6 +354,20 @@ size = Vector2(97, 33)
 size = Vector2(490, 78)
 
 [node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-2193.95, 343)
+scale = Vector2(2.98119, 1.98766)
+texture = ExtResource("1_3d0ua")
+region_enabled = true
+region_rect = Rect2(0, 0, 8192, 324)
 
 [node name="Cave" parent="." instance=ExtResource("4_8p2tx")]
 position = Vector2(-895, 245)
@@ -386,7 +401,7 @@ position = Vector2(750, -2)
 limb = "Leg_basic"
 
 [node name="Enemy" parent="." instance=ExtResource("5_yg0us")]
-position = Vector2(1432, 383)
+position = Vector2(1179, 387)
 
 [node name="Floor" type="Node2D" parent="."]
 
@@ -396,7 +411,7 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_8p2tx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(46, 591.25)
+position = Vector2(-73.125, 591.25)
 shape = SubResource("RectangleShape2D_yg0us")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Ground"]]
