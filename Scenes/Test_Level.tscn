@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://bqpyw32dacmwe"]
+[gd_scene load_steps=20 format=4 uid="uid://bqpyw32dacmwe"]
 
 [ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_3d0ua"]
 [ext_resource type="AudioStream" uid="uid://oennk3ap1k4f" path="res://Art/Sound/DeathSound.mp3" id="1_w5b1h"]
 [ext_resource type="Texture2D" uid="uid://6qyhr3febo61" path="res://Art/tileset.png" id="1_wfdhh"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_2v7ry"]
-[ext_resource type="AudioStream" uid="uid://cgorkh56xfxlm" path="res://Art/Sound/RobotNoises.mp3" id="2_ij6dx"]
 [ext_resource type="PackedScene" uid="uid://bdi03ompgfx6r" path="res://Scenes/limb_spawner.tscn" id="3_2v7ry"]
 [ext_resource type="Script" uid="uid://ch5ve210fsfpe" path="res://Scenes/crackling.gd" id="3_fjjtf"]
 [ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="4_8p2tx"]
@@ -366,9 +365,9 @@ size = Vector2(8602, 879)
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("1_w5b1h")
+autoplay = true
 
 [node name="Crackling" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("2_ij6dx")
 autoplay = true
 script = ExtResource("3_fjjtf")
 
