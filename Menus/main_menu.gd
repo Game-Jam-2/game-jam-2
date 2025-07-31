@@ -1,5 +1,5 @@
 extends Control
-var start_scene := "res://testing/test_stage.tscn"
+var start_scene := "res://Scenes/Test_Level.tscn"
 
 @onready var new_game = $"VBoxContainer/New Game"
 @onready var quit = $VBoxContainer/Quit
