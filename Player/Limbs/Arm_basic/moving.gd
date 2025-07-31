@@ -30,7 +30,6 @@ func physics_update(delta: float) -> void:
 		hand.apply_central_force(force * strength)
 	else:
 		hand.linear_velocity = hand.linear_velocity * 0.01
-		print("deadzone, slowing")
 
 
 

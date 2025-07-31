@@ -48,14 +48,11 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("d"):
 			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
 			if torso.linear_velocity.length() < 0.01 and self_righting_active:
-				print("stabilising")
 				torso.apply_central_impulse(Vector2.UP * roll_strength * push_strength)
 			self_righting_active = true
 		if Input.is_action_pressed("a"):
-			print("a")
 			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
 			if torso.linear_velocity.length() < 0.01 and self_righting_active:
-				print("stabilising")
 				torso.apply_central_impulse(Vector2.UP * roll_strength * push_strength)
 			self_righting_active = true
 			
@@ -87,7 +84,6 @@ func _attach_limb_to_slot(key: String) -> void:
 	joint.softness = 0
 	get_parent().add_child(joint)
 	connect_grabbing_signals(limb)
-	print(equip_state)
 	limb.get_node("StateMachine")._transistion_to_next_state(equip_state, {})
 	limb_attached = true
 	current_limb = limb

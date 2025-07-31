@@ -66,7 +66,6 @@ func timeout()->void:
 	grabbing = true
 
 func attack_range_entered(body:Node2D):
-	print("range_entered")
 	var data = {"raycasts": raycasts,"player_torso":body}
 	finished.emit("Attacking",data)
 	

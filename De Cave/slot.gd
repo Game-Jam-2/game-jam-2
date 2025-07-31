@@ -5,9 +5,3 @@ extends Control
 
 func _ready():
 	texture_rect.texture = item_texture
-
-func _on_mouse_entered():
-	if item_texture:
-		print("Hovering over item")
-	else:
-		print("Hovering over empty slot")

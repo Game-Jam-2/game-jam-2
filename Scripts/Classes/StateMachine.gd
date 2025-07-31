@@ -20,7 +20,6 @@ func _transistion_to_next_state(target_state_path: String ,data:Dictionary = {})
 	current_state.exit()
 	current_state = get_node(target_state_path)
 	current_state.enter(previous_state_path,data)
-	print("transition to state:", current_state.name)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	current_state.handle_input(event)
@@ -31,7 +30,6 @@ func _process(delta: float) -> void:
 	if current_state.name == "Equipping":
 		var transition_to = initial_equipped_state.name
 		_transistion_to_next_state(transition_to, {})
-		print("node name:", self.name)
 
 
 func _physics_process(delta: float) -> void:

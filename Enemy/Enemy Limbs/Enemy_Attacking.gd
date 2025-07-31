@@ -29,7 +29,6 @@ func enter(previous_state_path: String,data := {}):
 		first = false
 
 	if first_entry:
-		print(hand.get_parent().get_parent().get_parent().get_node("Torso").get_node("Attack_Range"))
 		hand.get_parent().get_parent().get_parent().get_node("Torso").get_node("Attack_Range").body_exited.connect(attack_range_exited)
 		raycasts = data["raycasts"]
 		player_torso = data["player_torso"]
@@ -82,8 +81,6 @@ func attack_range_exited(body: Node2D):
 func hand_collided(body:RigidBody2D):
 	if body.is_in_group("Limb") or body.name == "Torso":
 		grabbing = true
-		print("BODY COLLIDED " + str(body))
-	print("IRRELEVANT BODY" + str(body))
 	
 	
 
@@ -102,7 +99,6 @@ func add_torso_collision_mask() -> void:
 	for child in object_reference.get_parent().get_children():
 		if child is RigidBody2D:
 			child.set_collision_mask_value(1,true)
-			print(child.get_collision_layer_value(1))
 
 			
 func remove_torso_collision_mask() -> void:

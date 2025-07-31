@@ -86,7 +86,6 @@ func update(delta: float) -> void:
 		hopping_direction = Vector2.ZERO
 
 func physics_update(_delta: float) -> void:
-	print("Foot test" + str(Foot))
 	find_torso_target()
 	limit_velocity()
 	balance()
@@ -111,7 +110,6 @@ func limit_velocity():
 func find_torso_target():
 	var desired_height = 500
 	var target_x_offset = 50
-	print("foot torso target "+str(Foot))
 	target_x_offset = (((Foot.global_position.x)/abs(Foot.global_position.x)) * target_x_offset)
 	
 	var target_y = Foot.global_position.y - desired_height
@@ -156,7 +154,6 @@ func hopping():
 	
 	if is_hopping:
 		Torso.inertia = Torso.inertia*10
-		print("hopping")
 		KneeMuscle.rest_length = 40
 		AnkleMuscle.rest_length = 20
 		await get_tree().create_timer(0.2).timeout
