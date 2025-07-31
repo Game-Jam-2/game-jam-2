@@ -40,6 +40,7 @@ func right_leg():
 	send_limb_info()
 
 func _process(delta: float) -> void:
+	check_connectors()
 	if Input.is_action_just_pressed("equip limb") and !limb_equipped:
 		for body in LimbDetector.get_overlapping_bodies():
 			var limb = body.get_parent()
@@ -61,3 +62,31 @@ func send_limb_info() -> void:
 
 func limb_dettached():
 	limb_equipped = false
+
+func check_connectors():
+	if !Player.get_node("Connector 1"):
+		head_button.visible = false
+	else:
+		head_button.visible = true
+	
+	if !Player.get_node("Connector 2"):
+		Right_Arm_button.visible = false
+	else:
+		Right_Arm_button.visible = true
+	
+	if !Player.get_node("Connector 3"):
+		Right_Leg_button.visible = false
+	else:
+		Right_Leg_button.visible = true
+	
+	if !Player.get_node("Connector 4"):
+		Left_Leg_button.visible = false
+	else:
+		Left_Leg_button.visible = true
+	
+	if !Player.get_node("Connector 5"):
+		Left_Arm_button.visible = false
+	else:
+		Left_Arm_button.visible = true
+		
+		
