@@ -2,8 +2,9 @@ extends Node2D
 
 signal dettach_limb_sent
 
-var roll_strength = 60
-var grab_move_speed = 30000
+var push_strength:int = 100
+var roll_strength:int = 60
+var grab_move_speed:int = 30000
 var grab_deadzone = 5.0
 var grabbing = false
 var incoming_limb: Node = null
@@ -24,6 +25,7 @@ var current_limb_scene: PackedScene
 
 var current_limb: Node = null
 var limb_attached: bool = false
+var self_righting_active = false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -32,7 +34,7 @@ func _ready() -> void:
 	LimbGUI.connect("limb_sent", limb_recieved)
 	get_parent().get_node("Cave").connect("send_data", modifier_data)
 	current_limb = torso
-
+	
 func limb_recieved(scene_name, socket):
 	current_limb_scene = load(scene_name)
 	_attach_limb_to_slot(socket)
@@ -45,8 +47,18 @@ func _physics_process(delta: float) -> void:
 	if !limb_attached:
 		if Input.is_action_pressed("d"):
 			torso.apply_central_impulse(Vector2.RIGHT * roll_strength)
+			if torso.linear_velocity.length() < 0.01 and self_righting_active:
+				print("stabilising")
+				torso.apply_central_impulse(Vector2.UP * roll_strength * push_strength)
+			self_righting_active = true
 		if Input.is_action_pressed("a"):
+			print("a")
 			torso.apply_central_impulse(Vector2.LEFT * roll_strength)
+			if torso.linear_velocity.length() < 0.01 and self_righting_active:
+				print("stabilising")
+				torso.apply_central_impulse(Vector2.UP * roll_strength * push_strength)
+			self_righting_active = true
+			
 	
 	elif Input.is_action_just_pressed("equip limb") and limb_attached:
 		dettach_limb()
