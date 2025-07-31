@@ -398,10 +398,6 @@ limb = "arm_katana"
 position = Vector2(123, 14)
 limb = "arm_basic"
 
-[node name="Head_Spawner" parent="." instance=ExtResource("3_2v7ry")]
-position = Vector2(23, 16)
-limb = "Head_basic"
-
 [node name="Head_grappleTongue" parent="." instance=ExtResource("3_2v7ry")]
 position = Vector2(318, 21)
 limb = "arm_basic"

@@ -83,7 +83,6 @@ func _attach_limb_to_slot(key: String) -> void:
 func dettach_limb():
 	for child in get_parent().get_children():
 		if child is PinJoint2D:
-			print("limb dettached:", child)
 			child.queue_free()
 	current_limb.get_node("StateMachine")._transistion_to_next_state(current_limb.name + "_Idle", {})
 	limb_dettach_pos = current_limb.global_position
