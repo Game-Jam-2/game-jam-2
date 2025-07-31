@@ -1,7 +1,6 @@
 extends Control
-var limb: Node
 var limb_idle: bool = false
-var limb_available: bool = false
+var limb_equipped: bool = false
 var scene_name: String
 var socket: String
 @onready var Player: Node = get_parent().get_parent()
@@ -16,8 +15,8 @@ var socket: String
 signal limb_sent
 
 func _ready() -> void:
-	LimbDetector.connect("body_entered", _on_limb_equipped)
-	LimbDetector.connect("body_exited", _limb_left_radius)
+	var player = get_parent().get_parent()
+	player.connect("dettach_limb_sent", limb_dettached)
 	head_button.connect("button_down", head)
 	Left_Arm_button.connect("button_down", left_arm)
 	Right_Arm_button.connect("button_down", right_arm)
@@ -41,30 +40,24 @@ func right_leg():
 	send_limb_info()
 
 func _process(delta: float) -> void:
-	if limb_available and Input.is_action_just_pressed("equip limb"):
-		var state = limb.get_node("StateMachine").current_state
-		var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
-		if state == idle_state:
-			scene_name = "res://Player/Limbs/" + limb.name + "/" + limb.name + ".tscn"
-			visible = true
-			limb.queue_free()
-			get_tree().paused = true
-
-
-func _on_limb_equipped(body: Node) -> void:
-	if body.get_parent():
-		if body.get_parent().is_in_group("Limbs"):
-			limb = body.get_parent()
-			print("limb:", limb)
-			limb_available = true
-
-func _limb_left_radius(body: Node) -> void:
-	if body.get_parent():
-		if body.get_parent().is_in_group("Limbs"):
-			limb_available = false
+	if Input.is_action_just_pressed("equip limb") and !limb_equipped:
+		for body in LimbDetector.get_overlapping_bodies():
+			var limb = body.get_parent()
+			if limb and limb.is_in_group("Limbs"):
+				var state = limb.get_node("StateMachine").current_state
+				var idle_state = limb.get_node("StateMachine").get_node(limb.name + "_Idle")
+				if state == idle_state:
+					scene_name = "res://Player/Limbs/" + limb.name + "/" + limb.name + ".tscn"
+					visible = true
+					limb.queue_free()
+					get_tree().paused = true
+					limb_equipped = true
+					break
 
 func send_limb_info() -> void:
 	limb_sent.emit(scene_name, socket)
 	visible = false
-	print("limb:", scene_name)
 	get_tree().paused = false
+
+func limb_dettached():
+	limb_equipped = false

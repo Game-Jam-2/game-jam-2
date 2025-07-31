@@ -1,5 +1,7 @@
 extends Node2D
 
+signal dettach_limb_sent
+
 var roll_strength = 60
 var grab_move_speed = 30000
 var grab_deadzone = 5.0
@@ -88,6 +90,7 @@ func dettach_limb():
 	current_limb = torso
 	grabbing = false
 	limb_attached = false
+	dettach_limb_sent.emit()
 
 
 func connect_grabbing_signals(node):
@@ -127,13 +130,9 @@ func modifier_data(limbs, groups):
 			var connected_limb = child.get_child(0)
 			var limb_name = connected_limb.name
 			var connector = child
-			
-			if limb_name in limbs:
-				var group = limbs[limb_name]["group"]
 				
-				if limb_name in limbs:
-					if connector.has_variable("tension_threshold"):
-						connector.tension_threshold *= limbs[limb_name]["tension"]
-
-					if connected_limb.has_variable("strength"):
-						connected_limb.strength *= limbs[limb_name]["strength"]
+			if limb_name in limbs:
+				if connector.has_variable("tension_threshold"):
+					connector.tension_threshold *= limbs[limb_name]["tension"]
+				if connected_limb.has_variable("strength"):
+					connected_limb.strength *= limbs[limb_name]["strength"]

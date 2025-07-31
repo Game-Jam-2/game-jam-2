@@ -90,7 +90,7 @@ shape = SubResource("RectangleShape2D_a230b")
 position = Vector2(-5329, -481)
 
 [node name="Player" parent="." instance=ExtResource("2_a230b")]
-position = Vector2(886, 41)
+position = Vector2(647, 41)
 rotation = -0.0101715
 
 [node name="Enemy" parent="." instance=ExtResource("5_owq45")]
@@ -98,5 +98,13 @@ position = Vector2(1134, 55)
 rotation = -0.0218747
 
 [node name="Limb_Spawner" parent="." instance=ExtResource("6_owq45")]
-position = Vector2(819, 36)
+position = Vector2(572, 40)
 limb = "arm_katana"
+
+[node name="Limb_Spawner2" parent="." instance=ExtResource("6_owq45")]
+position = Vector2(528, 47)
+limb = "arm_basic"
+
+[node name="Limb_Spawner3" parent="." instance=ExtResource("6_owq45")]
+position = Vector2(549, 40)
+limb = "Head_basic"

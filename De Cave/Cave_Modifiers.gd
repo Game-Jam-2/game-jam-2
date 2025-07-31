@@ -11,19 +11,19 @@ var limb: Node
 var groups := {
 	"human": {
 		"sacrificed_count": 0,
-		"tension_bonus": 1.2
+		"tension_bonus": 1.1
 	},
 	"entity": {
 		"sacrificed_count": 0,
-		"tension_bonus": 1.2
+		"tension_bonus": 1.1
 	},
 	"effect": {
 		"sacrificed_count": 0,
-		"tension_bonus": 1.2
+		"tension_bonus": 1.1
 	},
 	"weapon": {
 		"sacrificed_count": 0,
-		"tension_bonus": 1.2
+		"tension_bonus": 1.1
 	}
 }
 
