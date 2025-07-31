@@ -1,5 +1,7 @@
 extends Node2D
 
+signal dettach_limb_sent
+
 var roll_strength = 60
 var grab_move_speed = 30000
 var grab_deadzone = 5.0
@@ -28,6 +30,7 @@ func _ready() -> void:
 	var texture = load("res://Art/Menu/cursor.png")
 	Input.set_custom_mouse_cursor(texture, Input.CURSOR_ARROW)
 	LimbGUI.connect("limb_sent", limb_recieved)
+	get_parent().get_node("Cave").connect("send_data", modifier_data)
 	current_limb = torso
 
 func limb_recieved(scene_name, socket):
@@ -87,6 +90,7 @@ func dettach_limb():
 	current_limb = torso
 	grabbing = false
 	limb_attached = false
+	dettach_limb_sent.emit()
 
 
 func connect_grabbing_signals(node):
@@ -119,3 +123,16 @@ func grab_movement():
 				torso.linear_velocity *= 0.5
 		else:
 			torso.linear_velocity = torso.linear_velocity * 0.8
+
+func modifier_data(limbs, groups):
+	for child in get_children():
+		if "Connector" in child.name and child.get_child_count() > 0:
+			var connected_limb = child.get_child(0)
+			var limb_name = connected_limb.name
+			var connector = child
+				
+			if limb_name in limbs:
+				if connector.has_variable("tension_threshold"):
+					connector.tension_threshold *= limbs[limb_name]["tension"]
+				if connected_limb.has_variable("strength"):
+					connected_limb.strength *= limbs[limb_name]["strength"]

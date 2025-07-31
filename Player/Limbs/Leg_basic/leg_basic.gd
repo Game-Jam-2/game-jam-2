@@ -10,8 +10,6 @@ var current_connector
 var Player: Node2D 
 var Torso: RigidBody2D
 
-@onready var left_torso_muscle: DampedSpringJoint2D
-@onready var right_torso_muscle: DampedSpringJoint2D
 
 var is_grounded: bool
 var torso_target: Vector2
@@ -38,7 +36,6 @@ func enter(previous_state_path:String,dict:= {}) -> void:
 	Torso = Player.get_node("Torso")
 	
 	signal_setup()
-	connect_torso_muscles()
 	knee_stiffness = KneeMuscle.stiffness
 	ankle_stiffness = AnkleMuscle.stiffness
 	knee_rest_length = KneeMuscle.rest_length
@@ -111,61 +108,6 @@ func limit_velocity():
 		Foot.linear_velocity = Foot.linear_velocity.normalized() * max_speed
 
 
-func connect_torso_muscles():
-	var current_connector_num = current_connector.name.substr(10).to_int()
-	
-	var connections = 0
-	var connector_count = 0
-	for child in Player.get_children():
-		if String(child.name).begins_with("Connector "):
-			connector_count += 1
-		
-		if connections == 2:
-			break
-		elif (int(String(child.name).substr(10)) == current_connector_num - 1):
-			connections += 1
-			var connector_joint_1 := DampedSpringJoint2D.new()
-			connector_joint_1.node_a = Thigh.get_path()
-			connector_joint_1.node_b = child.get_path()
-			connector_joint_1.length = Thigh.global_position.distance_to(child.global_position)
-			add_child(connector_joint_1)
-			right_torso_muscle = connector_joint_1
-			stiff = right_torso_muscle.stiffness
-			
-		elif (int(String(child.name).substr(10)) == current_connector_num + 1):
-			connections += 1
-			var connector_joint_2 := DampedSpringJoint2D.new()
-			connector_joint_2.node_a = Thigh.get_path()
-			connector_joint_2.node_b = child.get_path()
-			connector_joint_2.length = Thigh.global_position.distance_to(child.global_position)
-			add_child(connector_joint_2)
-			left_torso_muscle = connector_joint_2
-			break
-			
-	if connections == 1:
-		var highest_connector = "Connector " + String(connector_count)
-		var connecter_1 = "Connector 1"
-		
-		#for if current connector is highest number
-		if current_connector_num == connector_count:
-			var connector_joint_2 := DampedSpringJoint2D.new()
-			connector_joint_2.node_a = Thigh.get_path()
-			connector_joint_2.node_b = get_node(connecter_1).get_path()
-			connector_joint_2.length = Thigh.global_position.distance_to(get_node(connecter_1).global_position)
-			add_child(connector_joint_2)
-			left_torso_muscle = connector_joint_2
-		else:
-			#if current connector is connector 1
-			for child in Player.get_children():
-				if child.name == highest_connector:
-					var connector_joint_1 := DampedSpringJoint2D.new()
-					connector_joint_1.node_a = Thigh.get_path()
-					connector_joint_1.node_b = child.get_path()
-					connector_joint_1.length = Thigh.global_position.distance_to(child.global_position)
-					add_child(connector_joint_1)
-					right_torso_muscle = connector_joint_1
-					break
-
 func find_torso_target():
 	var desired_height = 500
 	var target_x_offset = 50
@@ -180,20 +122,7 @@ func find_torso_target():
 
 func balance():
 	if !is_grounded and !is_hopping:
-		left_torso_muscle.stiffness = 64
-		right_torso_muscle.stiffness = 64
-		left_torso_muscle.bias = 0.9
-		right_torso_muscle.bias = 0.9
-		left_torso_muscle.rest_length = left_torso_muscle.length
-		right_torso_muscle.rest_length = left_torso_muscle.length
-		left_torso_muscle.damping = 0.01
-		right_torso_muscle.damping = 0.01
 		return
-		
-	left_torso_muscle.stiffness = 0
-	right_torso_muscle.stiffness = 0
-	left_torso_muscle.bias = 0
-	right_torso_muscle.bias = 0
 	
 	# Target velocity scaling (tune these)
 	var max_x_speed = 100.0

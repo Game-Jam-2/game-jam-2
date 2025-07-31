@@ -18,7 +18,7 @@ var thrusting: bool = false
 var thrusting_time: bool = false
 
 var thrust_force = 7500
-var move_speed = 1000
+var strength = 1000
 var deadzone = 2.0
 
 func enter(orevious_state_path:String,dict := {}):
@@ -72,7 +72,7 @@ func katana_movement()->void:
 	if katana.freeze != true:
 		if distance > deadzone:
 			var direction = to_target.normalized()
-			katana.apply_central_force(direction * move_speed)
+			katana.apply_central_force(direction * strength)
 		else:
 			katana.linear_velocity = katana.linear_velocity * 0.8
 
