@@ -1,11 +1,13 @@
-[gd_scene load_steps=16 format=4 uid="uid://bqpyw32dacmwe"]
+[gd_scene load_steps=19 format=4 uid="uid://bqpyw32dacmwe"]
 
 [ext_resource type="Texture2D" uid="uid://bethytt7md71p" path="res://Art/Background/Background.png" id="1_3d0ua"]
+[ext_resource type="AudioStream" uid="uid://oennk3ap1k4f" path="res://Art/Sound/DeathSound.mp3" id="1_w5b1h"]
 [ext_resource type="Texture2D" uid="uid://6qyhr3febo61" path="res://Art/tileset.png" id="1_wfdhh"]
 [ext_resource type="PackedScene" uid="uid://bjcecy3ssds4p" path="res://Player/player.tscn" id="2_2v7ry"]
 [ext_resource type="PackedScene" uid="uid://bdi03ompgfx6r" path="res://Scenes/limb_spawner.tscn" id="3_2v7ry"]
 [ext_resource type="PackedScene" uid="uid://5kfn33bybh6n" path="res://De Cave/Cave.tscn" id="4_8p2tx"]
 [ext_resource type="PackedScene" uid="uid://d0w6x7mcsqror" path="res://Enemy/enemy.tscn" id="5_yg0us"]
+[ext_resource type="Script" uid="uid://b7ep2qm1np72x" path="res://Scenes/kill_box.gd" id="7_m3ir4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wfdhh"]
 texture = ExtResource("1_wfdhh")
@@ -353,7 +355,15 @@ size = Vector2(97, 33)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoso"]
 size = Vector2(490, 78)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6dx"]
+size = Vector2(8602, 879)
+
 [node name="Node2D" type="Node2D"]
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("1_w5b1h")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -393,7 +403,7 @@ position = Vector2(23, 16)
 limb = "Head_basic"
 
 [node name="Head_grappleTongue" parent="." instance=ExtResource("3_2v7ry")]
-position = Vector2(643, 3)
+position = Vector2(318, 21)
 limb = "arm_basic"
 
 [node name="Leg_Spawner" parent="." instance=ExtResource("3_2v7ry")]
@@ -453,3 +463,11 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
 position = Vector2(-21, 19)
 shape = SubResource("RectangleShape2D_gdoso")
+
+[node name="KillBox" type="Area2D" parent="."]
+position = Vector2(-823, 717)
+script = ExtResource("7_m3ir4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox"]
+position = Vector2(2210, 410)
+shape = SubResource("RectangleShape2D_ij6dx")
