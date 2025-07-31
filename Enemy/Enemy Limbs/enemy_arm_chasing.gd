@@ -2,7 +2,7 @@ extends State
 
 var player_position:Vector2
 var raycasts:Array[RayCast2D]
-var speed:int = 500
+var speed:int = 2
 var pull_strength:int = 2
 var floor_pos:Vector2
 var grabbing:bool = false 

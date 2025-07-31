@@ -4,7 +4,7 @@ var player_torso:RigidBody2D
 var connecter_regex: RegEx = RegEx.new()
 var player_limb:RigidBody2D
 var first_entry:bool = true
-var speed:int = 500
+var speed:int = 200
 var hand:RigidBody2D
 var limb_root: RigidBody2D
 var torso:RigidBody2D
