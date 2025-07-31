@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 			get_parent().get_node("SFX").get_node("Limb Break").play()
 			get_parent().grabbing = false
 			get_parent().limb_attached = false
+			get_parent().dettach_limb_sent.emit()
 			get_parent().current_limb = get_parent().torso
 			queue_free()
 
